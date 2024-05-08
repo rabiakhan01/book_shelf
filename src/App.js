@@ -1,9 +1,13 @@
 import '../src/assets/fonts/font.css'
+import Layout from './components/Layout/Layout';
+
 function App() {
   return (
-    <div className="">
-      <h4 className='uppercase'>big bookShelf</h4>
-    </div>
+    <Layout>
+      <div>
+        <p className=''>BookShelf Oasis</p>
+      </div>
+    </Layout>
   );
 }
 

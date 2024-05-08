@@ -6,7 +6,7 @@ images
 const BooksData = [
     {
         id: 1,
-        author_name: 'Haruki Murakami',
+        author: 'Haruki Murakami',
         book_name: 'After Dark',
         rating: {
             star: 4.0,

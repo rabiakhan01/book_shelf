@@ -1,5 +1,8 @@
 const images = {
 
+    //logo
+    logo: require('./logo.png'),
+
     //books section
     book_1: require('./book_1.png'),
     book_2: require('./book_2.png'),
