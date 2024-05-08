@@ -35,3 +35,5 @@ const images = {
     viewer_4: require('./viewer_4.png'),
 
 }
+
+export default images;
