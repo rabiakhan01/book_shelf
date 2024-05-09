@@ -5,7 +5,6 @@ function App() {
   return (
     <Layout>
       <div>
-        <p className=''>BookShelf Oasis</p>
       </div>
     </Layout>
   );

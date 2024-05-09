@@ -22,7 +22,7 @@ const images = {
 
     //authors section 
     author_1: require('./author_1.jpg'),
-    author_2: require('./author_2.jpg'),
+    author_2: require('./author_2.png'),
     author_3: require('./author_3.jpg'),
     author_4: require('./author_4.jpg'),
     author_5: require('./author_5.jpg'),
@@ -35,7 +35,7 @@ const images = {
     //viewers section
     viewer_1: require('./viewer_1.png'),
     viewer_2: require('./viewer_2.png'),
-    viewer_4: require('./viewer_4.png'),
+    viewer_3: require('./viewer_3.png'),
 
 }
 
