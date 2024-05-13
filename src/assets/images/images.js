@@ -31,6 +31,7 @@ const images = {
 
     //hero section
     hero_1: require('./hero_1.jpg'),
+    label: require('./Lable.svg').default,
 
     //viewers section
     viewer_1: require('./viewer_1.png'),

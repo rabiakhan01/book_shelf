@@ -10,6 +10,7 @@ const btnsecondaryColor = "#2A2C2E";
 const textPrimaryColor = "#000000DE";
 const textSecondaryColor = "#FFFFFF";
 const textLightWhiteColor = "#F6F4F0";
+const textLightBlackColor = "#2A2C2E";
 
 const yellowColor700 = "#F4BA30";
 const whiteColor = "#FFFFFF";
@@ -27,6 +28,7 @@ export {
     textPrimaryColor,
     textSecondaryColor,
     textLightWhiteColor,
+    textLightBlackColor,
     yellowColor700,
     blackColor60,
     whiteColor,
