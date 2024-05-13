@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import images from '../../assets/images/images';
-import icons from '../../assets/icons/icons';
-import { Button } from "../Shared";
+import icons from "../../../assets/icons/icons";
+import { Button } from '../index'
 const Navbar = () => {
 
     const [drawer, setDrawer] = useState(false);
@@ -32,14 +31,13 @@ const Navbar = () => {
                     </div>
                     <div>
                         <Button
-                            ButtonName="Login"
-                            Variant="outlined"
-                            PadHorizontal="lg:px-5"
-                            PadVertical="lg:py-[8px]"
-                            SmPadHorizontal="sm:px-4"
-                            SmPadVertical="sm:py-2"
 
-                        />
+                            variant="filled"
+                            size="small"
+
+                        >
+                            Login
+                        </Button>
                     </div>
                     <div className="flex lg:hidden">
                         {

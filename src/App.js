@@ -1,5 +1,5 @@
 import '../src/assets/fonts/font.css'
-import Layout from './components/Layout/Layout';
+import { Layout } from './components/Shared';
 
 function App() {
   return (

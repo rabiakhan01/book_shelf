@@ -1,6 +1,5 @@
 import React from "react";
-import icons from "../../assets/icons/icons";
-import images from "../../assets/images/images";
+import icons from "../../../assets/icons/icons";
 const Footer = () => {
     return (
         <footer className="w-full bg-secondaryColor">

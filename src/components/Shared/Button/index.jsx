@@ -1,12 +1,20 @@
 import React from "react";
 
-const Button = ({ ButtonName, Variant, PadHorizontal, PadVertical, SmPadHorizontal, SmPadVertical }) => {
+const Button = ({ children, variant, size }) => {
+
+    if (size === "small") {
+        size = "h-8 w-12 xs:h-9 xs:w-14 sm:h-10 sm:w-20 lg:h-12 lg:w-20";
+    }
+    if (variant === 'filled') {
+        variant = "bg-btnPrimaryColor";
+    }
+    else {
+        variant = "bg-btnsecondaryColor border border-btnPrimaryColor text-textSecondaryColor";
+    }
     return (
         <button
-            className={`
-            ${Variant ? Variant === 'filled' ? 'bg-btnPrimaryColor' : 'bg-btnsecondaryColor border border-btnPrimaryColor' : 'bg-btnPrimaryColor'}
-             flex justify-center items-center rounded-xl error: bg-yellowColor400 uppercase text-[10px] xs:text-xs sm:text-sm lg:text-base font-medium px-2 py-[6px] xs:py-2 ${SmPadHorizontal} ${SmPadVertical} ${PadHorizontal} ${PadVertical} `}>
-            {ButtonName}
+            className={`${variant} ${size}  rounded-xl text-xs xs:text-sm xl:text-base font-medium uppercase`}>
+            {children}
         </button>
     )
 }
