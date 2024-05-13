@@ -25,7 +25,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-3 sm:gap-5 xl:gap-8 h-auto w-auto">
                     <div className="flex items-center gap-2 sm:gap-3 xl:gap-4">
-                        <img src={icons.search} alt="search" className="hidden lg:flex" />
+                        <img src={icons.whiteSearch} alt="search" className="hidden lg:flex" />
                         <img src={icons.bookmark} alt="bookmark" />
                         <img src={icons.cart} alt="cart" />
                     </div>
