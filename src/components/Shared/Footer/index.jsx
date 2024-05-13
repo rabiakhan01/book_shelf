@@ -9,7 +9,7 @@ const Footer = () => {
                         <img src={icons.logo} alt="logo" />
                         <h1 className="flex text-textSecondaryColor text-[13px] sm:text-sm xl:text-base font-medium uppercase">bookmooch</h1>
                     </div>
-                    <div className="flex gap-4 xs:gap-6">
+                    <div className="flex gap-2 sm:gap-6">
                         <img src={icons.insta} alt="insta" className="object-scale-down" />
                         <img src={icons.facebook} alt="facebook" className="object-scale-down" />
                         <img src={icons.twitter} alt="twitter" className="object-scale-down" />

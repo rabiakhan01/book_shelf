@@ -3,7 +3,7 @@ import images from "../../assets/images/images"
 images
 // books data
 
-const BooksData = [
+const allBooksData = [
     {
         id: 1,
         author: 'Haruki Murakami',
@@ -323,7 +323,7 @@ const BooksData = [
 
 //authors data
 
-const AuthorsData = [
+const allAuthorsData = [
     {
         id: 1,
         book_count: 20,
@@ -370,7 +370,7 @@ const AuthorsData = [
 
 //reviews
 
-const ReviewsData = [
+const allReviewsData = [
     {
         id: 1,
         viewer_name: 'Geoffrey Mott',
