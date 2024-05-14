@@ -10,10 +10,10 @@ const HeroSection = () => {
             </div>
             <div className="flex flex-col md:flex-row gap-2 w-full mb-2">
 
-                <div className="relative flex flex-col gap-4 justify-between w-full md:w-1/2 bg-secondaryColor p-4 sm:p-7 lg:p-9 h-64 sm:h-72 md:h-auto lg:h-80 rounded-xl">
-                    <div className="flex flex-col gap-5 w-11/12 sm:w-3/4">
+                <div className="relative flex flex-col gap-4 justify-between w-full md:w-1/2 bg-secondaryColor p-4 sm:p-7 lg:p-9 h-68 sm:h-72 md:h-80 rounded-xl">
+                    <div className="flex flex-col gap-5">
                         <h1 className="text-textSecondaryColor text-xl sm:text-2xl md:text-3xl uppercase w-full lg:w-3/4 z-10">find something to read</h1>
-                        <p className="text-textLightWhiteColor text-base z-10">Fancy something unusual and unpredictable? Funny or exciting? No problem. Check out the collections we have prepared for you.</p>
+                        <p className="text-textLightWhiteColor text-base z-10 w-2/3 md:w-2/3 xl:w-1/2">Fancy something unusual and unpredictable? Funny or exciting? No problem. Check out the collections we have prepared for you.</p>
                     </div>
                     <div>
                         <Button
@@ -26,7 +26,7 @@ const HeroSection = () => {
                     <img src={icons.blackSearch} alt="" className="absolute right-0 bottom-0 h-52 w-5h-52 xs:h-60 xs:w-60 sm:h-64 sm:w-64 lg:h-72 lg:w-72" />
                 </div>
 
-                <div className="relative flex h-64 sm:h-72 md:h-auto lg:h-80 w-full md:w-1/2">
+                <div className="relative flex h-68 sm:h-72 md:h-80 w-full md:w-1/2">
                     <div className="flex w-full">
                         <img src={images.hero_1} alt="hero" className="object-fit w-full h-full rounded-xl" />
                     </div>

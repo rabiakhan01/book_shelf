@@ -6,6 +6,7 @@ images
 const allBooksData = [
     {
         id: 1,
+        author_id: 8,
         author: 'Haruki Murakami',
         book_name: 'After Dark',
         rating: {
@@ -174,6 +175,7 @@ const allBooksData = [
     },
     {
         id: 9,
+        author_id: 3,
         author_name: 'Jane Austen',
         book_name: 'Pride and Prejudice',
         rating: {
@@ -195,6 +197,7 @@ const allBooksData = [
     },
     {
         id: 10,
+        author_id: 2,
         author_name: 'Leo Tolstoy',
         book_name: 'War and Peace',
         rating: {
@@ -319,6 +322,119 @@ const allBooksData = [
         plot_summary: 'A Teaspoon of Earth and Sea is a novel by Dina Nayeri, published in 2013. Set in Iran during the 1980s, the story follows a young girl named Saba as she navigates the complexities of family, love, and identity in the aftermath of the Iranian Revolution. Through Saba\'s eyes, Nayeri offers a poignant exploration of the immigrant experience and the search for belonging.',
         book_cover: images.book_15
     },
+
+    {
+        id: 16,
+        author_id: 1, // Fyodor Dostoyevsky
+        author_name: 'Fyodoe Dostoyevskiy',
+        book_name: 'The Brothers Karamazov',
+        rating: {
+            star: 4.9,
+            views: 400,
+            reviews: 90
+        },
+        category: 'Philosophical Fiction',
+        publish_date: '1880',
+        language: 'Russian',
+        pages: 796,
+        read_time: '20-25 hours',
+        type: 'Paperback',
+        publisher: 'The Russian Messenger',
+        old_price: 30.00,
+        new_price: 24.99,
+        plot_summary: 'The Brothers Karamazov is the final novel by Fyodor Dostoevsky, first published in 1880. It is a passionate philosophical novel that explores profound questions of morality, faith, and the existence of God through the tumultuous lives of three brothers: Dmitry, Ivan, and Alyosha Karamazov.',
+        book_cover: images.book_17
+    },
+    {
+        id: 17,
+        author_id: 4, // Charles Dickens
+        author_name: 'Charles Dickens',
+        book_name: 'Great Expectations',
+        rating: {
+            star: 4.7,
+            views: 350,
+            reviews: 75
+        },
+        category: 'Novel',
+        publish_date: '1861',
+        language: 'English',
+        pages: 544,
+        read_time: '15-18 hours',
+        type: 'Paperback',
+        publisher: 'Chapman & Hall',
+        old_price: 18.99,
+        new_price: 14.99,
+        plot_summary: 'Great Expectations is a novel by Charles Dickens, first published in 1861. It is one of Dickens\'s most popular works and is now considered a classic of English literature. The story follows the life of an orphan named Pip, from his childhood through adulthood, as he navigates love, wealth, and social class in Victorian England.',
+        book_cover: images.book_18
+    },
+    {
+        id: 18,
+        author_id: 5, // William Shakespeare
+        author_name: 'William Shakespeare',
+        book_name: 'Romeo and Juliet',
+        rating: {
+            star: 4.9,
+            views: 600,
+            reviews: 120
+        },
+        category: 'Tragedy',
+        publish_date: '1597',
+        language: 'English',
+        pages: 368,
+        read_time: '10-12 hours',
+        type: 'Paperback',
+        publisher: 'Various',
+        old_price: 9.99,
+        new_price: 7.99,
+        plot_summary: 'Romeo and Juliet is a tragedy by William Shakespeare, written early in his career. It tells the story of two young star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare\'s most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed plays.',
+        book_cover: images.book_20
+    },
+    {
+        id: 19,
+        author_id: 6, // Mark Twain
+        author_name: 'Mark Twain',
+        book_name: 'The Adventures of Tom Sawyer',
+        rating: {
+            star: 4.8,
+            views: 350,
+            reviews: 80
+        },
+        category: 'Adventure',
+        publish_date: '1876',
+        language: 'English',
+        pages: 224,
+        read_time: '6-8 hours',
+        type: 'Paperback',
+        publisher: 'Chatto & Windus',
+        old_price: 10.50,
+        new_price: 8.99,
+        plot_summary: 'The Adventures of Tom Sawyer is an adventure novel by Mark Twain, published in 1876. It tells the story of a young boy named Tom Sawyer and his adventures in the fictional town of St. Petersburg, inspired by Twain\'s own experiences growing up in Hannibal, Missouri.',
+        book_cover: images.book_21
+    },
+    {
+        id: 20,
+        author_id: 7, // Agatha Christie
+        author_name: 'Agatha Christie',
+        book_name: 'Murder on the Orient Express',
+        rating: {
+            star: 4.7,
+            views: 300,
+            reviews: 75
+        },
+        category: 'Mystery',
+        publish_date: 'January 1934',
+        language: 'English',
+        pages: 256,
+        read_time: '5-7 hours',
+        type: 'Paperback',
+        publisher: 'Collins Crime Club',
+        old_price: 12.99,
+        new_price: 9.99,
+        plot_summary: 'Murder on the Orient Express is a detective novel by Agatha Christie, featuring her detective Hercule Poirot. It was first published in the United Kingdom in 1934. The novel takes place on the luxurious Orient Express train, where Poirot investigates the murder of an American businessman.',
+        book_cover: images.book_22
+    }
+
+
 ];
 
 //authors data
@@ -365,7 +481,74 @@ const allAuthorsData = [
         book_count: 22,
         author_imgae: images.author_7,
         author_name: 'Agatha Christie'
+    },
+    {
+        id: 8,
+        book_count: 2,
+        author_imgae: '',
+        author_name: 'Haruki Murakami'
+    },
+    {
+        id: 9,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Daniel Cargallo'
+    },
+    {
+        id: 10,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Erik Spiekermann'
+    },
+    {
+        id: 11,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Patrick Ness'
+    },
+    {
+        id: 12,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'C.R. Brunt'
+    },
+    {
+        id: 13,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Donald Norman'
+    },
+    {
+        id: 14,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Don DeLillo'
+    },
+    {
+        id: 15,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Nathaniel Fick'
+    },
+    {
+        id: 16,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Donna Tartt'
+    },
+    {
+        id: 17,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Dante Alighieri'
+    },
+    {
+        id: 18,
+        book_count: 1,
+        author_imgae: '',
+        author_name: 'Dina Nayeri'
     }
+
 ];
 
 //reviews
