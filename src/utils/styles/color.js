@@ -11,13 +11,13 @@ const textPrimaryColor = "#000000DE";
 const textSecondaryColor = "#FFFFFF";
 const textLightWhiteColor = "#F6F4F0";
 const textLightBlackColor = "#2A2C2E";
+const textGrayColor = "#00000061";
 
 const yellowColor700 = "#F4BA30";
 const whiteColor = "#FFFFFF";
 const blackColor60 = "#00000099";
 const yellowColor400 = "#F4D867";
 const grayColor = "#FFFFFF99";
-const blackColor38 = "#00000061";
 const blackColor = "#000000DE";
 
 export {
@@ -34,6 +34,6 @@ export {
     whiteColor,
     yellowColor400,
     grayColor,
-    blackColor38,
+    textGrayColor,
     blackColor
 }

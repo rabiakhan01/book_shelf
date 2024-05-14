@@ -14,7 +14,7 @@ import {
   whiteColor,
   yellowColor400,
   grayColor,
-  blackColor38,
+  textGrayColor,
   blackColor
 } from './src/utils/styles/color';
 
@@ -34,7 +34,7 @@ module.exports = {
         'textLightBlackColor': textLightBlackColor,
         'yellowColor700': yellowColor700,
         'blackColor': blackColor,
-        'blackColor38': blackColor38,
+        'textGrayColor': textGrayColor,
         'blackColor60': blackColor60,
         'whiteColor': whiteColor,
         'grayColor': grayColor,

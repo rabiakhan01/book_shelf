@@ -7,7 +7,7 @@ const allBooksData = [
     {
         id: 1,
         author_id: 8,
-        author: 'Murakami',
+        author_name: 'Murakami',
         book_name: 'After Dark',
         rating: {
             star: 4.0,
@@ -25,6 +25,7 @@ const allBooksData = [
         new_price: 10.50,
         plot_summary: 'In a hard-boiled city of crooks, grifts, and rackets lurk a pair of toughs: Box and They’re the kind of men capable of extracting apologies and reparations, of teaching you a chilling lesson. They seldom think twice, and ask very few questions. Until one night over the poker table, they encounter a pulp writer with wild ideas and an unscrupulous private detective, leading them into what is either a classic mystery or a senseless maze of corpses.',
         book_img: images.book_1
+
     },
     {
         id: 2,
@@ -44,7 +45,7 @@ const allBooksData = [
         publisher: 'G.P. Putnam\'s Sons',
         old_price: 0,
         new_price: 14.50,
-        plot_summary: 'The Godfather is a crime novel written by American author Mario Puzo. Originally published in 1969, the novel details the story of a fictional Mafia family based in New York City (and Long Beach, New York), headed by Vito Corleone.',
+        plot_summary: 'The Godfather is a crime novel written by American _name Mario Puzo. Originally published in 1969, the novel details the story of a fictional Mafia family based in New York City (and Long Beach, New York), headed by Vito Corleone.',
         book_img: images.book_2
     },
     {
@@ -112,8 +113,8 @@ const allBooksData = [
     },
     {
         id: 6,
-        author_name: 'C.R. Brunt',
-        book_name: 'From the Memoirs of a Non-Enemy Combatant',
+        author_name: 'Daniel GarGallo',
+        book_name: 'She Beyond Sun',
         rating: {
             star: 4.5,
             views: 120,

@@ -3,7 +3,7 @@ import HeroSection from "../../components/HomePage/HeroSection";
 import BestSeller from "../../components/HomePage/BestSeller";
 const HomePage = () => {
     return (
-        <div>
+        <div className="flex flex-col gap-2">
             <HeroSection />
             <BestSeller />
         </div>
