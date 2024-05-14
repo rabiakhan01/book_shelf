@@ -1,9 +1,12 @@
 import React from "react";
 import HeroSection from "../../components/HomePage/HeroSection";
-
+import BestSeller from "../../components/HomePage/BestSeller";
 const HomePage = () => {
     return (
-        <HeroSection />
+        <div>
+            <HeroSection />
+            <BestSeller />
+        </div>
     );
 }
 
