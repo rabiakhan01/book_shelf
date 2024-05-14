@@ -32,9 +32,8 @@ const Navbar = () => {
                     <div>
                         <Button
 
-                            variant="filled"
+                            variant="contained"
                             size="small"
-
                         >
                             Login
                         </Button>
@@ -42,9 +41,9 @@ const Navbar = () => {
                     <div className="flex lg:hidden">
                         {
                             drawer ?
-                                <img src={icons.cross} alt="cross" className=" h-2 w-2 small-tab:h-3 small-tab:w-3 sm:h-4 sm:w-4" onClick={handelMenu} />
+                                <img src={icons.cross} alt="cross" className="h-3 w-3 sm:h-4 sm:w-4" onClick={handelMenu} />
                                 :
-                                <img src={icons.hamburger} alt="hamburger" className=" h-3 w-3 small-tab:h-4 small-tab:w-4 sm:h-5 sm:w-5" onClick={handelMenu} />
+                                <img src={icons.hamburger} alt="hamburger" className="h-4 w-4 sm:h-5 sm:w-5" onClick={handelMenu} />
                         }
                     </div>
                 </div>

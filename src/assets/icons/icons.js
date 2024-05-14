@@ -1,6 +1,7 @@
 const icons = {
     //icons
     logo: require('./Logo.svg').default,
+    arrow: require('./arrow.svg').default,
     blackSearch: require('./blackColorSearchIcon.svg').default,
     whiteSearch: require('./whiteColorSerachIcon.svg').default,
     bookmark: require('./book.svg').default,
@@ -10,6 +11,7 @@ const icons = {
     review: require('./review.svg').default,
     star: require('./star.svg').default,
     twitter: require('./twitter.svg').default,
+    questionMark: require('./question_mark.svg').default,
     vector: require('./Vector.png'),
     yellow_star: require('./yellow-star.png'),
     hamburger: require('./hamburger.png'),

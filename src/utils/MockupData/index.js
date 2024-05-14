@@ -155,7 +155,7 @@ const allBooksData = [
     },
     {
         id: 8,
-        author_name: 'Donald Norman',
+        author_name: 'Donald',
         book_name: 'The Design of Everyday Things',
         rating: {
             star: 4.2,

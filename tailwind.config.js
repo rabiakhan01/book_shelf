@@ -42,11 +42,11 @@ module.exports = {
       screens: {
         'extra-small': '320px',
         'small-tab': '450px',
-        'sm': '640px',
+        'sm': '605px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',
-        '2xl': '1536px'
+        '2xl': '1282px'
       },
       transitionProperty: {
         'height': 'height'
