@@ -30,7 +30,7 @@ const images = {
     author_7: require('./author_7.jpg'),
 
     //hero section
-    hero_1: require('./hero_1.jpg'),
+    hero_1: require('./hero_1.svg').default,
     label: require('./Lable.svg').default,
 
     //viewers section

@@ -6,7 +6,7 @@ const Button = ({ children, variant, size }) => {
         size = "h-8 w-14 xs:h-9 xs:w-14 sm:h-10 sm:w-20 lg:h-12 lg:w-20";
     }
     else if (size === "medium") {
-        size = "h-10 w-28 xs:h-12 xs:w-32 sm:w-36 "
+        size = "h-10 w-28 sm:h-12 sm:w-32 sm:w-36 "
     }
     if (variant === 'filled') {
         variant = "bg-btnPrimaryColor";
@@ -16,7 +16,7 @@ const Button = ({ children, variant, size }) => {
     }
     return (
         <button
-            className={`${variant} ${size}  rounded-xl text-xs xs:text-sm xl:text-base font-medium uppercase`}>
+            className={`${variant} ${size}  rounded-xl text-xs sm:text-sm lg:text-base font-medium uppercase`}>
             {children}
         </button>
     )

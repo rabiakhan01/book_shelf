@@ -40,7 +40,8 @@ module.exports = {
         'grayColor': grayColor,
       },
       screens: {
-        'xs': '370px',
+        'extra-small': '320px',
+        'small-tab': '450px',
         'sm': '640px',
         'md': '768px',
         'lg': '1024px',
