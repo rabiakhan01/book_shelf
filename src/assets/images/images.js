@@ -5,7 +5,7 @@ const images = {
 
     //books section
     book_1: require('./book_1.png'),
-    book_2: require('./book_2.png'),
+    book_2: require('./book_2.svg').default,
     book_3: require('./book_3.png'),
     book_4: require('./book_4.png'),
     book_5: require('./book_5.png'),

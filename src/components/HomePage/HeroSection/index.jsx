@@ -5,8 +5,8 @@ import Button from "../../Shared/Button";
 const HeroSection = () => {
     return (
         <div>
-            <div className="flex mt-7 mb-2 justify-center items-center ">
-                <h1 className="text-base small-tab:text-2xl sm:text-4xl lg:text-5xl  uppercase font-semibold text-textLightBlackColor">reading makes the world huge</h1>
+            <div className="flex mt-7 mb-2 justify-center items-center">
+                <h1 className="text-[5.8vw] 2xl:text-[4.8rem] text-nowrap uppercase font-semibold text-textLightBlackColor">reading makes the world huge</h1>
             </div>
             <div className="flex flex-col md:flex-row gap-2 w-full mb-2">
 

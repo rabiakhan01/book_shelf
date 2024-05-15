@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
 const Navbar = () => {
-
     const [drawer, setDrawer] = useState(false);
-    const handelMenu = () => {
-        setDrawer(!drawer);
+
+    const showMenu = () => {
+        setDrawer(true);
+        document.body.classList.add('overflow-hidden');
     }
+    const hideMenu = () => {
+        setDrawer(false);
+        document.body.classList.remove('overflow-hidden')
+    }
+
     return (
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-10">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-4`}>
@@ -41,15 +47,15 @@ const Navbar = () => {
                     <div className="flex lg:hidden">
                         {
                             drawer ?
-                                <img src={icons.cross} alt="cross" className="h-3 w-3 sm:h-4 sm:w-4" onClick={handelMenu} />
+                                <img src={icons.cross} alt="cross" className="h-3 w-3 sm:h-4 sm:w-4" onClick={hideMenu} />
                                 :
-                                <img src={icons.hamburger} alt="hamburger" className="h-4 w-4 sm:h-5 sm:w-5" onClick={handelMenu} />
+                                <img src={icons.hamburger} alt="hamburger" className="h-4 w-4 sm:h-5 sm:w-5" onClick={showMenu} />
                         }
                     </div>
                 </div>
                 {
                     drawer &&
-                    <div className={`flex xl:hidden right-0 top-14 absolute text-base text-textLightWhiteColor font-medium w-full transition-height duration-1000 ease-in-out`}>
+                    <div className={`flex lg:hidden right-0 top-14 absolute text-base text-textLightWhiteColor font-medium w-full transition-height duration-1000 ease-in-out`}>
                         <ul className="relative flex flex-col h-[90vh] w-full justify-center items-center bg-secondaryColor rounded-b-2xl">
                             <li>Books</li>
                             <li>Authors</li>

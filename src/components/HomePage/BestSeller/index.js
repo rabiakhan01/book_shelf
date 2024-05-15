@@ -15,8 +15,8 @@ const BestSeller = () => {
                     allBooksData.filter((book, index) => index < 8).map((book, index) => {
                         return (
                             <div key={index} className="flex w-full sm:w-[49%] lg:w-[32.5%] h-56  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-4 xl:gap-6">
-                                <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 ">
-                                    <img src={book.book_img} alt="book_cover" className="object-cover w-full h-full rounded-xl" />
+                                <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 rounded-xl overflow-hidden">
+                                    <img src={book.book_img} alt="book_cover" className="object-cover w-full h-full " />
                                 </div>
                                 <div className="flex flex-col h-48 w-full  gap-2 ">
                                     <div className="flex justify-between">
