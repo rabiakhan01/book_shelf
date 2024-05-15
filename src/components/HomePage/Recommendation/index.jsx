@@ -10,8 +10,8 @@ const Recommendation = () => {
 
             </div>
 
-            <div className="relative justify-end items-center flex w-1/2 p-4 h-auto bg-slate-500">
-                <img src={icons.questionMark} alt="" className="absolute bottom-0 right-16 sm:right-32 md:right-40 h-full w-full" />
+            <div className="relative justify-end items-center flex w-1/2 p-4 h-auto">
+                <img src={icons.questionMark} alt="" className="absolute bottom-0 right-10 md:right-20 lg:right-4 xl:right-0 sm:h-full sm:w-full" />
                 <div className="flex">
                     <Button
                         variant="contained"

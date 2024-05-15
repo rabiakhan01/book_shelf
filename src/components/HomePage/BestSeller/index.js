@@ -7,7 +7,7 @@ import icons from "../../../assets/icons/icons";
 const BestSeller = () => {
     return (
         <div className="flex flex-col bg-secondaryColor">
-            <div className="text-base sm:text-xl xl:text-2xl font-medium p-4 uppercase text-textLightWhiteColor">
+            <div className="text-base text-xl md:text-2xl xl:text-3xl font-medium p-4 uppercase text-textLightWhiteColor">
                 <h1>bestsellers</h1>
             </div>
             <div className="flex flex-row-reverse flex-wrap justify-center gap-2 w-full p-2">
