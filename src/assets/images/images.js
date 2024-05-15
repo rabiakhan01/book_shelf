@@ -21,13 +21,13 @@ const images = {
     book_15: require('./book_15.png'),
 
     //authors section 
-    author_1: require('./author_1.jpg'),
-    author_2: require('./author_2.png'),
-    author_3: require('./author_3.jpg'),
-    author_4: require('./author_4.jpg'),
-    author_5: require('./author_5.jpg'),
-    author_6: require('./author_6.jpg'),
-    author_7: require('./author_7.jpg'),
+    author_1: require('./author_1.svg').default,
+    author_2: require('./author_2.svg').default,
+    author_3: require('./author_3.svg').default,
+    author_4: require('./author_4.svg').default,
+    author_5: require('./author_5.svg').default,
+    author_6: require('./author_6.svg').default,
+    author_7: require('./author_7.svg').default,
 
     //hero section
     hero_1: require('./hero_1.svg').default,

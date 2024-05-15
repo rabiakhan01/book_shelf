@@ -43,6 +43,7 @@ module.exports = {
         'extra-small': '320px',
         'small-tab': '450px',
         'sm': '605px',
+        'mid-tab': '650px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',

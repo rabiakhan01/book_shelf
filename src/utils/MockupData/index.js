@@ -590,4 +590,5 @@ const allReviewsData = [
 
 export {
     allBooksData,
+    allAuthorsData,
 }

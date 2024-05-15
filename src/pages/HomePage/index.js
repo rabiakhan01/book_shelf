@@ -2,6 +2,7 @@ import React from "react";
 import HeroSection from "../../components/HomePage/HeroSection";
 import BestSeller from "../../components/HomePage/BestSeller";
 import Recommendation from "../../components/HomePage/Recommendation";
+import PopularAuthors from "../../components/HomePage/PopularAuthors";
 
 const HomePage = () => {
     return (
@@ -9,6 +10,7 @@ const HomePage = () => {
             <HeroSection />
             <BestSeller />
             <Recommendation />
+            <PopularAuthors />
         </div>
     );
 }
