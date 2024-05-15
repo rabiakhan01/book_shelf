@@ -11,7 +11,7 @@ const PopularAuthors = () => {
                 {
                     allAuthorsData.filter((author, index) => index < 7).map((author, index) => {
                         return (
-                            <div key={index} className="flex bg-primaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-[9rem] overflow-hidden rounded-xl">
+                            <div key={index} className="flex bg-primaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-32 overflow-hidden rounded-xl">
                                 <div className="w-40">
                                     <img src={author.author_imgae} alt="author" className="object-cover w-full h-full grayscale" />
                                 </div>
@@ -30,7 +30,7 @@ const PopularAuthors = () => {
                         )
                     })
                 }
-                <button className="flex justify-center items-center font-medium text-xl bg-btnPrimaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-[9rem] rounded-xl uppercase">
+                <button className="flex justify-center items-center font-medium text-xl bg-btnPrimaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-32 rounded-xl uppercase">
                     See all
                 </button>
             </div>
