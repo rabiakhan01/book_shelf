@@ -23,10 +23,10 @@ const Navbar = () => {
         document.body.classList.remove('overflow-hidden')
     }
 
+
     window.addEventListener('resize', function () {
         if (window.innerWidth > 1023) {
             setDrawer(false)
-            setSearchField(false)
             return false;
         }
         if (window.innerWidth < 1023) {
@@ -39,7 +39,7 @@ const Navbar = () => {
         setSearchField(true);
     }
     return (
-        <nav className="sticky top-0 right-0 w-full bg-primaryColor z-10">
+        <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-4`}>
                 <div className="flex gap-2 xs:gap-3 h-10 items-center">
                     <img src={icons.logo} alt="logo" className="h-6 w-6 small-tab:w-8 small-tab:h-10 sm:w-full sm:h-full" />

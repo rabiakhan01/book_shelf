@@ -12,7 +12,7 @@ const Recommendation = () => {
                     <div className="w-full pr-4 sm:w-2/3 md:w-1/2">
                         <p className="text-textLightWhiteColor text-sm small-tab:text-base sm:text-md">You’re in the right place. Tell us what titles or genres you’ve enjoyed in the past, and we’ll give you surprisingly insightful recommendations.</p>
                     </div>
-                    <div className="">
+                    <div className="z-10">
                         <Button
                             variant="contained"
                             size="large"
