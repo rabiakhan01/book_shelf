@@ -2,7 +2,7 @@ import { Layout } from "../components/Shared";
 import Cart from "../pages/CartPage";
 import HomePage from "../pages/HomePage";
 import ShippingPage from "../pages/ShippingPage";
-import Signup from "../pages/Signup";
+import AllBooksPage from "../pages/AllBooksPage";
 
 //public routes
 const publicRoutes = [
@@ -11,8 +11,8 @@ const publicRoutes = [
         element: <Layout><HomePage /></Layout>
     },
     {
-        path: '/signup',
-        element: <Layout><Signup /></Layout>
+        path: '/all-books',
+        element: <Layout><AllBooksPage /></Layout>
     }
 ];
 
