@@ -9,7 +9,7 @@ const Button = ({ children, variant, size }) => {
         size = "h-10 w-28 sm:h-12 sm:w-32 sm:w-36 "
     }
     else if (size === "large") {
-        size = " h-24 w-24 sm:h-32 sm:w-32 md:h-40 md:w-48"
+        size = " h-14 w-16 small-tab:h-20 small-tab:w-20 sm:h-24 sm:w-28"
     }
     if (variant === 'contained') {
         variant = "bg-btnPrimaryColor";
