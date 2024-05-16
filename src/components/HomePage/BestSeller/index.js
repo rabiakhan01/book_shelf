@@ -6,11 +6,11 @@ import icons from "../../../assets/icons/icons";
 
 const BestSeller = () => {
     return (
-        <div className="flex flex-col bg-secondaryColor">
-            <div className="text-xl md:text-2xl xl:text-3xl font-medium p-4 uppercase text-textLightWhiteColor">
+        <div className="flex flex-col bg-secondaryColor py-4">
+            <div className="text-xl md:text-2xl xl:text-3xl font-medium px-4 uppercase text-textLightWhiteColor">
                 <h1>bestsellers</h1>
             </div>
-            <div className="flex flex-row-reverse flex-wrap justify-center gap-2 w-full p-2">
+            <div className="flex flex-row-reverse flex-wrap justify-center gap-2 w-full p-3">
                 {
                     allBooksData.filter((book, index) => index < 8).map((book, index) => {
                         return (
@@ -50,7 +50,7 @@ const BestSeller = () => {
                         )
                     })
                 }
-                <button className="flex w-full sm:w-[49%] lg:w-[32%] h-56 xl justify-center items-center bg-btnPrimaryColor uppercase font-normal text-2xl rounded-xl p-4 gap-2 small-tab:gap-4">
+                <button className="flex w-full sm:w-[49%] lg:w-[32%] h-56 justify-center items-center bg-btnPrimaryColor uppercase font-normal text-2xl rounded-xl gap-2 small-tab:gap-4">
                     See all
                 </button>
             </div>

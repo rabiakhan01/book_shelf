@@ -3,7 +3,7 @@ import icons from '../../../assets/icons/icons';
 import Button from "../../Shared/Button";
 const Recommendation = () => {
     return (
-        <div className="flex w-full bg-secondaryColor rounded-xl mb-4">
+        <div className="flex w-full bg-secondaryColor rounded-xl">
             <div className="flex flex-col gap-4 xl:gap-6 sm:w-1/2 p-4">
                 <h1 className="text-textSecondaryColor text-base small-tab:text-xl sm:text-2xl md:text-4xl uppercase -tracking-tight">Deciding what to read next?</h1>
                 <p className="text-textLightWhiteColor text-sm small-tab:text-base sm:text-lg ">You’re in the right place. Tell us what titles or genres you’ve enjoyed in the past, and we’ll give you surprisingly insightful recommendations.</p>

@@ -4,6 +4,7 @@ const icons = {
     arrow: require('./arrow.svg').default,
     blackSearch: require('./blackColorSearchIcon.svg').default,
     whiteSearch: require('./whiteColorSerachIcon.svg').default,
+    searchIcon: require('./search.png'),
     bookmark: require('./book.svg').default,
     cart: require('./Cart.svg').default,
     facebook: require('./fb.svg').default,
