@@ -21,8 +21,8 @@ const PromoSection = () => {
                 size="w-[60%]"
             >
                 <div>
-                    <img src={icons.plus} alt="" className="absolute top-2 left-24" />
-                    <img src={icons.plus} alt="" className="absolute bottom-2 left-[6rem] w-[4.5rem] h-[4.5rem]" />
+                    <img src={icons.plus} alt="" className="absolute top-0 sm:top-2 left-24" />
+                    <img src={icons.plus} alt="" className="absolute bottom-0 sm:bottom-2 left-[6rem] w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem]" />
                 </div>
             </PromoCard>
         </div>
