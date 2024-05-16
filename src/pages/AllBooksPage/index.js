@@ -4,7 +4,7 @@ import BooksListing from "../../components/AllBooksPage/BooksListing";
 
 const AllBooksPage = () => {
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
             <Headline />
             <BooksListing />
         </div>
