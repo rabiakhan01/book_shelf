@@ -2,6 +2,8 @@
 const primaryColor = "#F6F4F0";
 const secondaryColor = "#2A2C2E";
 const lightYellowColor = "#F4CE47";
+const lightGrayColor = "#F0F0F0";
+
 // button colors
 const btnPrimaryColor = "#F4CE47";
 const btnsecondaryColor = "#2A2C2E";
@@ -26,6 +28,7 @@ export {
     primaryColor,
     secondaryColor,
     lightYellowColor,
+    lightGrayColor,
     btnPrimaryColor,
     btnsecondaryColor,
     textPrimaryColor,

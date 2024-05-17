@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { AllProductsLayout, ProductCard } from "../../Shared";
 import { allBooksData } from '../../../utils/MockupData'
+import FilterSection from "../../Shared/FilterSection";
+import icons from "../../../assets/icons/icons";
 
 const BooksListing = () => {
+    const [filters, setFilter] = useState(false);
+
+    const handelFilters = () => {
+        setFilter(!filters)
+    }
+
+    window.addEventListener('resize', function (event) {
+        if (window.innerWidth > 1024) {
+            setFilter(false);
+            event.preventDefault();
+        }
+    })
     return (
-        <div className="flex flex-col bg-secondaryColor p-4">
-            <div className="py-4">
-                <p1>Filters</p1>
+        <div className="flex flex-col bg-secondaryColor p-6">
+            <div className="flex items-center gap-2 py-4 pl-0 extra-small:pl-4 small-tab:pl-0">
+                <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
+                <p1 className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p1>
             </div>
             <AllProductsLayout>
-                <div className="hidden lg:flex flex-col w-[32.5%] rounded-md h-[30rem] bg-primaryColor">
-                    filter
+                <div className={` ${filters ? 'absolute flex z-10 pr-4' : 'hidden lg:flex'} flex-col w-auto extra-small:w-[81vw] small-tab:w-80 lg:w-[32.5%] rounded-xl h-[30.1rem] bg-primaryColor `}>
+                    <FilterSection />
                 </div>
-                <div className="flex justify-center items-center flex-wrap w-full h-full gap-2">
+                <div className={` ${filters ? 'brightness-50' : ''} flex justify-center items-center flex-wrap w-full h-lvh overflow-auto gap-2`}>
                     {
                         allBooksData.filter((book, index) => index < 12).map((book, index) => {
                             return (

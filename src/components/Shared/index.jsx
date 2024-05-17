@@ -6,3 +6,4 @@ export { default as BtnBookMark } from './BtnBookMark';
 export { default as PromoCard } from './PromoCard';
 export { default as AllProductsLayout } from './AllProductsLayout';
 export { default as ProductCard } from './ProductCard';
+export { default as Filters } from './FilterSection';
