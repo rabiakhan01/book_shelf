@@ -7,34 +7,111 @@ const FilterSection = () => {
 
     const selectedFilters = useContext(filterContext);
 
-    //Categories array where all types of category are defined
-    const categories = ['Imaginative literature', 'Scientific literature', 'Bussines', 'Educational', 'Other'];
-
-    //define all the language in which books are availabe
-    const languages = ['English', 'Russian', 'Korean'];
-
     // filter all the book from which category it belongs
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState({});
 
     //filter all the book which are available in which language
-    const [language, setLanguage] = useState('');
+    const [language, setLanguage] = useState({});
+
 
     //store the values of the categories are selected
     const handelCategory = (event) => {
-        const selectedCategory = event.target.value;
+        const value = event.target.value;
         const { checked } = event.target;
-        console.log(checked)
-        if (checked) {
-            setCategory(selectedCategory);
-            selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item !== selectedCategory), selectedCategory]);
+
+        //filter all the book from which category it belongs
+        const filteredCategory = {
+            ...category,
+            name: value,
+            check: checked,
         }
 
+        //store the values of the categories are selected and make the cheked true
+        if (checked) {
+            setCategory(filteredCategory);
+            const updatedCategory = selectedFilters.categories.map((item) => {
+                if (item.name === filteredCategory.name) {
+                    return { ...item, check: true, }
+                }
+                else {
+                    return item;
+                }
+            });
+
+            selectedFilters.setCategories([...updatedCategory]);
+            // now update the filters array to show chips on the top 
+            selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item.name !== filteredCategory.name), filteredCategory]);
+        }
+
+        // now update the category checked if it true than false
+        else {
+            const updatedCategory = selectedFilters.categories.map((item) => {
+                if (item.name === filteredCategory.name) {
+                    return { ...item, check: false, }
+                }
+                else {
+                    return item;
+                }
+            });
+            //update the categories array
+            selectedFilters.setCategories([...updatedCategory]);
+
+            // find the index which you want to remove 
+            const index = selectedFilters.choice.findIndex((item) => item.name === filteredCategory.name);
+            selectedFilters.choice.splice(index, 1);
+            selectedFilters.setChoice([...selectedFilters.choice]);
+        }
     }
 
+    //handel the values of the language are selected
     const handelLanguage = (event) => {
-        const selectedLanguage = event.target.value;
-        setLanguage(selectedLanguage);
-        selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item !== selectedLanguage), selectedLanguage]);
+
+        const value = event.target.value;
+        const { checked } = event.target;
+
+        //filter all the book which are available in which language
+        const filteredLanguage = {
+            ...language,
+            name: value,
+            check: checked,
+        }
+
+        // check if the language is selected or not if it is selected then make the cheked true and the remain object and array remains same
+        if (checked) {
+            setLanguage(filteredLanguage);
+            const updatedLanguages = selectedFilters.categories.map((item) => {
+                if (item.name === filteredLanguage.name) {
+                    return { ...item, check: true, }
+                }
+                else {
+                    return item;
+                }
+            });
+
+            setLanguage([...updatedLanguages]);
+
+            selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item.name !== filteredLanguage.name), filteredLanguage]);
+        }
+
+        // if the language is not selected then make the cheked false and the remain object and array remains same
+        else {
+            const updatedLanguages = selectedFilters.languages.map((item) => {
+                if (item.name === filteredLanguage.name) {
+                    return { ...item, check: false, }
+                }
+                else {
+                    return item;
+                }
+            });
+
+            // set the updated language array
+            selectedFilters.setLanguages([...updatedLanguages]);
+
+            // filter the language which is selected and remove it from the array
+            const index = selectedFilters.choice.findIndex((item) => item.name === filteredLanguage.name);
+            selectedFilters.choice.splice(index, 1);
+            selectedFilters.setChoice([...selectedFilters.choice]);
+        }
     }
 
     return (
@@ -45,11 +122,11 @@ const FilterSection = () => {
                 </div>
                 <div className="flex flex-col">
                     {
-                        categories.map((category) => {
+                        selectedFilters.categories.map((category) => {
                             return (
-                                <div className="flex gap-2">
-                                    <input type="checkbox" value={category} onChange={handelCategory} />
-                                    <label>{category}</label>
+                                <div className="flex gap-2" key={category.id}>
+                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} />
+                                    <label>{category.name}</label>
                                 </div>
                             )
                         })
@@ -62,11 +139,11 @@ const FilterSection = () => {
                 </div>
                 <div className="flex flex-col">
                     {
-                        languages.map((language) => {
+                        selectedFilters.languages.map((language) => {
                             return (
-                                <div className="flex gap-2">
-                                    <input type="checkbox" value={language} onChange={handelLanguage} />
-                                    <label>{language}</label>
+                                <div className="flex gap-2" key={language.id}>
+                                    <input type="checkbox" checked={language.checked} value={language.name} onChange={handelLanguage} />
+                                    <label>{language.name}</label>
                                 </div>
                             )
                         })

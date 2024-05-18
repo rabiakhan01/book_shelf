@@ -10,6 +10,54 @@ const BooksListing = () => {
 
     const [choice, setChoice] = useState([]);
 
+    //Categories array where all types of category are defined
+    const [categories, setCategories] = useState([
+        {
+            id: 1,
+            name: 'Imaginative literature',
+            check: false,
+        },
+        {
+            id: 2,
+            name: 'Scientific literature',
+            check: false,
+        },
+        {
+            id: 3,
+            name: 'Business',
+            check: false,
+        },
+        {
+            id: 4,
+            name: 'Educational',
+            check: false,
+        },
+        {
+            id: 5,
+            name: 'Other',
+            check: false,
+        },
+    ]);
+
+    //define all the language in which books are availabe
+    const [languages, setLanguages] = useState([
+        {
+            id: 1,
+            name: 'English',
+            check: false,
+        },
+        {
+            id: 2,
+            name: 'Urdu',
+            check: false,
+        },
+        {
+            id: 3,
+            name: 'Korean',
+            check: false,
+        },
+    ]);
+
     // handel filter section opening and closing
     const [filters, setFilter] = useState(false);
     const handelFilters = () => {
@@ -27,7 +75,7 @@ const BooksListing = () => {
 
 
     return (
-        <filterContext.Provider value={{ choice, setChoice }}>
+        <filterContext.Provider value={{ choice, setChoice, categories, setCategories, languages, setLanguages }}>
             <div className="flex flex-col bg-secondaryColor p-6">
                 <div className="flex flex-col lg:flex-row w-full gap-4 py-4 pl-0 extra-small:pl-4 small-tab:pl-0">
                     <div className="flex gap-1 w-full lg:w-[32.5%]">
@@ -39,7 +87,7 @@ const BooksListing = () => {
                             choice.map((item, index) => {
                                 return (
                                     <FilteredChip
-                                        name={item}
+                                        name={item.name}
                                     />
                                 )
                             })
