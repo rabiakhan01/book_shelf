@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MultiRangeSlider from "../MultiRangeSlider";
 import { useContext } from "react";
 import { filterContext } from "../../AllBooksPage/BooksListing";
+import Button from "../Button";
 
 const FilterSection = () => {
 
@@ -159,6 +160,16 @@ const FilterSection = () => {
                     max={1000}
                     onChange={({ min, max }) => { }}
                 />
+            </div>
+            <div className="flex justify-between w-full pt-4">
+                <Button
+                    variant="outlined"
+                    size="extra-small"
+                >Reset</Button>
+                <Button
+                    variant="contained"
+                    size="extra-small"
+                >Apply</Button>
             </div>
         </div>
     )

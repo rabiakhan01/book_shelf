@@ -24,13 +24,15 @@ const Navbar = () => {
     }
 
 
-    window.addEventListener('resize', function () {
+    window.addEventListener('resize', function (event) {
         if (window.innerWidth > 1023) {
             setDrawer(false)
+            event.preventDefault();
 
         }
         if (window.innerWidth < 1023) {
             setSearchField(true)
+            event.preventDefault();
         }
 
     });
