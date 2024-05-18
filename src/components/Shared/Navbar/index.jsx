@@ -13,13 +13,13 @@ const Navbar = () => {
     const [searchField, setSearchField] = useState(calcWidth());
 
     const showMenu = () => {
-        setDrawer(false);
+        setDrawer(true);
         setSearchField(true)
         document.body.classList.add('overflow-hidden');
     }
     const hideMenu = () => {
         setSearchField(false)
-        setDrawer(true);
+        setDrawer(false);
         document.body.classList.remove('overflow-hidden')
     }
 
@@ -27,7 +27,7 @@ const Navbar = () => {
     window.addEventListener('resize', function () {
         if (window.innerWidth > 1023) {
             setDrawer(false)
-            return false;
+
         }
         if (window.innerWidth < 1023) {
             setSearchField(true)
