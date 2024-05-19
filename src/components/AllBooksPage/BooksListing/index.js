@@ -78,9 +78,16 @@ const BooksListing = () => {
         <filterContext.Provider value={{ choice, setChoice, categories, setCategories, languages, setLanguages }}>
             <div className="flex flex-col bg-secondaryColor p-6">
                 <div className="flex flex-col lg:flex-row w-full gap-4 py-4 pl-0 extra-small:pl-4 small-tab:pl-0">
-                    <div className="flex gap-1 w-full lg:w-[32.5%]">
-                        <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
-                        <p1 className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p1>
+                    <div className="flex justify-between w-full lg:w-[32.5%]">
+
+                        <div className="flex justify-center items-center gap-2">
+                            <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
+                            <p1 className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p1>
+                            <p className="text-textLightBlackColor">120 results</p>
+                        </div>
+                        <div className="flex">
+                            <button className="flex justify-center items-center p-3 w-24 bg-black rounded-full text-textLightWhiteColor">Reset all</button>
+                        </div>
                     </div>
                     <div className="flex gap-2 w-full overflow-auto">
                         {

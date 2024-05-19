@@ -6,7 +6,7 @@ const Button = ({ children, variant, size }) => {
     }
 
     if (size === "small") {
-        size = "h-7 w-12 small-tab:h-9 small-tab:w-14 sm:h-10 sm:w-20 lg:h-12 lg:w-20";
+        size = "h-7 w-12 small-tab:h-9 small-tab:w-14 sm:h-10 sm:w-20 lg:h-11 lg:w-20";
     }
     else if (size === "medium") {
         size = "h-10 w-28 sm:h-12 sm:w-32 sm:w-36 "

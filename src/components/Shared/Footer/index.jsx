@@ -6,8 +6,8 @@ const Footer = () => {
             <div className="flex flex-col">
                 <div className="flex justify-between items-center px-3 xs:px-4 h-[4.5rem]">
                     <div className="flex gap-2 xs:gap-3 h-10 items-center">
-                        <img src={icons.logo} alt="logo" />
-                        <h1 className="flex text-textSecondaryColor text-[13px] sm:text-sm xl:text-base font-medium uppercase">bookmooch</h1>
+                        <img src={icons.logo} alt="logo" className="h-6 w-6 small-tab:w-8 small-tab:h-10" />
+                        <h1 className="flex text-textSecondaryColor text-xs small-tab:text-sm sm:text-base font-medium uppercase">bookmooch</h1>
                     </div>
                     <div className="flex gap-2 sm:gap-6">
                         <img src={icons.insta} alt="insta" className="object-scale-down" />

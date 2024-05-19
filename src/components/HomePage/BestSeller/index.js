@@ -7,14 +7,14 @@ import icons from "../../../assets/icons/icons";
 const BestSeller = () => {
     return (
         <div className="flex flex-col bg-secondaryColor py-4">
-            <div className="text-xl md:text-2xl xl:text-3xl font-medium px-4 uppercase text-textLightWhiteColor">
+            <div className="text-xl md:text-2xl xl:text-3xl font-medium px-4 py-2 uppercase text-textLightWhiteColor">
                 <h1>bestsellers</h1>
             </div>
-            <div className="flex flex-row-reverse flex-wrap justify-center gap-2 w-full p-3">
+            <div className="flex flex-row-reverse flex-wrap justify-between gap-y-2 lg:gap-y-[13px] w-full p-3">
                 {
                     allBooksData.filter((book, index) => index < 8).map((book, index) => {
                         return (
-                            <div key={index} className="flex w-full sm:w-[49%] lg:w-[32.5%] h-56  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-4 xl:gap-6">
+                            <div key={index} className="flex w-full sm:w-[49.47%] lg:w-[32.57%] h-56  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-4 xl:gap-6">
                                 <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 rounded-xl overflow-hidden">
                                     <img src={book.book_img} alt="book_cover" className="object-cover w-full h-full " />
                                 </div>

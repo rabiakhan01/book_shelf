@@ -4,10 +4,10 @@ import BtnBookMark from "../../Shared/BtnBookMark";
 const PopularAuthors = () => {
     return (
         <div className="bg-secondaryColor p-4">
-            <div className="text-xl md:text-2xl xl:text-3xl font-medium uppercase text-textLightWhiteColor pb-4">
+            <div className="text-xl md:text-2xl xl:text-3xl font-medium uppercase text-textLightWhiteColor pb-5 pt-2">
                 <h1>Popular authors</h1>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pb-3">
                 {
                     allAuthorsData.filter((author, index) => index < 7).map((author, index) => {
                         return (
