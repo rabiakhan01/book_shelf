@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
+import { Link } from "react-router-dom";
+import PopularAuthors from "../../HomePage/PopularAuthors";
 const Navbar = () => {
 
 
@@ -23,18 +25,18 @@ const Navbar = () => {
     }
     return (
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
-            <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-2 sm:py-4`}>
+            <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
                 <div className="flex gap-2 xs:gap-3 h-10 items-center">
                     <img src={icons.logo} alt="logo" className="h-6 w-6 small-tab:w-8 small-tab:h-10 " />
                     <h1 className="flex text-textSecondaryColor text-xs small-tab:text-sm sm:text-base font-medium uppercase">bookmooch</h1>
                 </div>
                 <div className="hidden lg:flex">
                     <ul className="flex gap-8 text-sm xl:text-base text-textLightWhiteColor">
-                        <li>Books</li>
-                        <li>Authors</li>
-                        <li>Whats to Read</li>
-                        <li>Gift Ideas</li>
-                        <li>About Us</li>
+                        <Link to="/all-books" onClick={hideMenu}><li>Books</li></Link>
+                        <Link><li>Authors</li></Link>
+                        <Link><li>Whats to Read</li></Link>
+                        <Link><li>Gift Ideas</li></Link>
+                        <Link><li>About Us</li></Link>
                     </ul>
                 </div>
                 <div className="relative flex items-center gap-2 small-tab:gap-5 xl:gap-8 h-auto w-auto">
@@ -66,13 +68,13 @@ const Navbar = () => {
                 </div>
                 {
                     drawer &&
-                    <div className={`flex lg:hidden right-0 top-14 absolute text-base text-textLightWhiteColor font-medium w-full `}>
-                        <ul className="relative flex flex-col gap-4 h-[75vh] w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
-                            <li>Books</li>
-                            <li>Authors</li>
-                            <li>Whats to Read</li>
-                            <li>Gift Ideas</li>
-                            <li>About Us</li>
+                    <div className={`flex lg:hidden right-0 top-[50px] sm:top-14 absolute text-base text-textLightWhiteColor font-medium w-full `}>
+                        <ul className="relative flex flex-col gap-4 h-[85vh] w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
+                            <Link to="/all-books" onClick={hideMenu}><li>Books</li></Link>
+                            <Link><li>Authors</li></Link>
+                            <Link><li>Whats to Read</li></Link>
+                            <Link><li>Gift Ideas</li></Link>
+                            <Link><li>About Us</li></Link>
                         </ul>
                     </div>
                 }
