@@ -7,8 +7,6 @@ export const filterContext = createContext();
 
 
 const BooksListing = () => {
-    const sortedBooksData = allBooksData.sort((a, b) => b.rating.views - a.rating.views);
-    console.log("sorted data", sortedBooksData);
 
     console.log("hello")
 
@@ -68,6 +66,13 @@ const BooksListing = () => {
         setFilter(!filters)
     }
 
+    const handelResetFilters = () => {
+        setChoice([]);
+        const resetCategories = categories.map((category) => ({ ...category, check: false }))
+        setCategories(resetCategories);
+        const resetLanguages = languages.map((language) => ({ ...language, check: false }))
+        setLanguages(resetLanguages);
+    }
     // when window is resized then remove the opened filter drawer
     window.addEventListener('resize', function (event) {
         if (window.innerWidth > 1024) {
@@ -81,8 +86,8 @@ const BooksListing = () => {
     return (
         <filterContext.Provider value={{ choice, setChoice, categories, setCategories, languages, setLanguages }}>
             <div className="flex flex-col bg-secondaryColor p-4">
-                <div className="flex flex-col lg:flex-row w-full gap-4 pb-1 lg:pb-4  pl-0 extra-small:pl-4 small-tab:pl-0 ">
-                    <div className="flex justify-between w-[32.5%] ">
+                <div className="flex flex-col lg:flex-row w-full gap-4 pb-1 lg:pb-4  ">
+                    <div className="flex justify-between w-full lg:w-[32.5%] ">
 
                         <div className="flex justify-center items-center gap-2 ">
                             <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
@@ -90,10 +95,10 @@ const BooksListing = () => {
                             <p className="text-textLightBlackColor">120 results</p>
                         </div>
                         <div className="flex">
-                            <button className="flex justify-center items-center p-3 w-24 bg-black rounded-full text-textLightWhiteColor">Reset all</button>
+                            <button className="flex justify-center items-center p-2 sm:p-3 w-20 sm:w-24 bg-black rounded-full text-textLightWhiteColor text-sm" onClick={() => handelResetFilters()}>Reset all</button>
                         </div>
                     </div>
-                    <div className="flex gap-2 w-full overflow-auto">
+                    <div className={`flex gap-2 w-full overflow-auto`}>
                         {
                             choice.map((item, index) => {
                                 return (
@@ -106,15 +111,16 @@ const BooksListing = () => {
                         }
                     </div>
                 </div>
-                <div className="flex gap-2 w-full pb-4">
+                <div className="relative flex gap-2 w-full pb-4">
 
-                    <div className={` ${filters ? 'absolute flex z-10 pr-4' : 'hidden lg:flex'} flex-col w-auto extra-small:w-[81vw] small-tab:w-80 lg:w-[32.5%] rounded-xl h-[30.1rem] bg-primaryColor `}>
+                    <div className={` ${filters ? 'absolute flex z-10  pr-2' : 'hidden lg:flex'} ${choice.length > 0 ? '-top-14 sm:-top-16' : ''} flex-col w-full small-tab:w-80 lg:w-[32.5%] rounded-xl h-[30.1rem] bg-primaryColor `}>
+
                         <FilterSection />
                     </div>
 
                     <div className={` ${filters ? 'brightness-50' : ''} flex justify-center items-center flex-wrap w-full h-lvh overflow-auto gap-2`}>
                         {
-                            sortedBooksData.filter((book, index) => index < 12).map((book, index) => {
+                            allBooksData.filter((book, index) => index < 12).map((book, index) => {
                                 return (
                                     <ProductCard
                                         image={book.book_img}

@@ -17,12 +17,12 @@ const BestSeller = () => {
                     sortedBooksData.filter((book, index) => index < 8).map((book, index) => {
                         return (
                             <div key={index} className="flex w-full sm:w-[49.47%] lg:w-[32.57%] h-[220px]  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-2">
-                                <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 rounded-xl overflow-hidden">
+                                <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 xl:w-40 rounded-xl overflow-hidden">
                                     <img src={book.book_img} alt="book_cover" className="object-cover w-full h-full " />
                                 </div>
                                 <div className="flex flex-col h-48 w-[70vw] small-tab:w-full sm:w-[30vw] lg:w-[20vw] gap-2 ">
                                     <div className="flex justify-between w-full ">
-                                        <div className="w-[38vw] small-tab:w-full sm:w-[20vw] lg:w-[12vw]">
+                                        <div className="w-[38vw] small-tab:w-full sm:w-[20vw] lg:w-[12vw] xl:w-[14rem]">
                                             <p className="text-sm small-tab:text-[15px] md:text-base truncate">{book.author_name}</p>
                                             <p className="text-sm small-tab:text-[15px] md:text-base font-medium truncate">{book.book_name}</p>
                                         </div>

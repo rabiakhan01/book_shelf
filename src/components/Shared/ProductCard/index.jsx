@@ -4,11 +4,11 @@ import icons from "../../../assets/icons/icons";
 
 const ProductCard = ({ image, name, intro, review, rate, views, old_price, new_price }) => {
     return (
-        <div className="flex flex-col w-full extra-small:w-11/12 h-auto small-tab:w-[49%] md:w-[32.5%] bg-primaryColor rounded-xl gap-2 p-6">
+        <div className="flex flex-col w-full extra-small:w-full h-auto small-tab:w-[49%] md:w-[32.5%] bg-primaryColor rounded-xl gap-2 p-6">
 
             <div className="relative flex flex-col w-full justify-center items-center">
                 <div className="rounded-xl h-72 w-full overflow-hidden">
-                    <img src={image} alt="img" className="object-cover h-full w-full" />
+                    <img src={image} alt="img" className="object-fit sm:object-cover h-full w-full" />
                 </div>
                 <div className="absolute w-5 h-50 top-4 right-7">
                     <BtnBookMark />

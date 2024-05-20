@@ -70,7 +70,7 @@ const FilterSection = () => {
         const value = event.target.value;
         const { checked } = event.target;
 
-        //filter all the book which are available in which language
+        //filter all the book which are available in the spec\cified language
         const filteredLanguage = {
             ...language,
             name: value,
@@ -79,8 +79,8 @@ const FilterSection = () => {
 
         // check if the language is selected or not if it is selected then make the cheked true and the remain object and array remains same
         if (checked) {
-            setLanguage(filteredLanguage);
-            const updatedLanguages = selectedFilters.categories.map((item) => {
+            selectedFilters.setLanguages(filteredLanguage);
+            const updatedLanguages = selectedFilters.languages.map((item) => {
                 if (item.name === filteredLanguage.name) {
                     return { ...item, check: true, }
                 }
@@ -89,7 +89,7 @@ const FilterSection = () => {
                 }
             });
 
-            setLanguage([...updatedLanguages]);
+            selectedFilters.setLanguages([...updatedLanguages]);
 
             selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item.name !== filteredLanguage.name), filteredLanguage]);
         }
@@ -143,7 +143,7 @@ const FilterSection = () => {
                         selectedFilters.languages.map((language) => {
                             return (
                                 <div className="flex gap-2" key={language.id}>
-                                    <input type="checkbox" checked={language.checked} value={language.name} onChange={handelLanguage} />
+                                    <input type="checkbox" checked={language.check} value={language.name} onChange={handelLanguage} />
                                     <label>{language.name}</label>
                                 </div>
                             )
