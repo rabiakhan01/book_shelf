@@ -4,6 +4,7 @@ import FilterSection from "../../Shared/FilterSection";
 import icons from "../../../assets/icons/icons";
 import { filterContext } from "../../Shared/ContextProvider";
 import { allBooksData } from "../../../utils/MockupData";
+import PaginationSection from "../PaginationSection";
 
 const BooksListing = () => {
 
@@ -67,27 +68,26 @@ const BooksListing = () => {
                 <div className={` ${showFilterSection ? 'absolute flex z-10  pr-2' : 'hidden lg:flex'} flex-col w-full small-tab:w-80 lg:w-[32.5%] rounded-xl h-[30.1rem] bg-primaryColor `}>
                     <FilterSection />
                 </div>
-
-                <div className={` ${showFilterSection ? 'brightness-50' : ''} flex flex-row-reverse pr-3 flex-wrap w-full h-lvh overflow-auto gap-2`}>
-                    {
-                        validListing().map((book) => {
-                            return (
-                                <ProductCard
-                                    image={book.book_img}
-                                    name={book.book_name}
-                                    intro={book.author_name}
-                                    review={book.rating.reviews}
-                                    rate={book.rating.star}
-                                    views={book.rating.views}
-                                    old_price={book.old_price}
-                                    new_price={book.new_price}
-                                />
-                            )
-                        })
-                    }
-                    <div className="w-full flex items-center justify-center bg-orange-500 mt-4">
-                        <Pagination />
+                <div className={` ${showFilterSection ? 'brightness-50' : ''} w-full flex flex-col`}>
+                    <div className="flex flex-row-reverse pr-3 flex-wrap w-full h-lvh overflow-auto gap-2">
+                        {
+                            validListing().filter((item, index) => index > 10).map((book) => {
+                                return (
+                                    <ProductCard
+                                        image={book.book_img}
+                                        name={book.book_name}
+                                        intro={book.author_name}
+                                        review={book.rating.reviews}
+                                        rate={book.rating.star}
+                                        views={book.rating.views}
+                                        old_price={book.old_price}
+                                        new_price={book.new_price}
+                                    />
+                                )
+                            })
+                        }
                     </div>
+                    <PaginationSection />
                 </div>
             </div>
         </div>

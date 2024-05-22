@@ -4,6 +4,10 @@ const secondaryColor = "#2A2C2E";
 const lightYellowColor = "#F4CE47";
 const lightGrayColor = "#F0F0F0";
 const chipColor = "#FFFFFF1A";
+const lightBlackColor = "#00000061";
+const blackTaupeColor = "#00000033";
+const grayColor = "#FFFFFF99";
+const whiteColor = "#FFFFFF";
 
 // button colors
 const btnPrimaryColor = "#F4CE47";
@@ -18,11 +22,8 @@ const textLightBlackColor = "#2A2C2E";
 const textGrayColor = "#00000061";
 const textYellowColor = "#F4BA30";
 
-
-const whiteColor = "#FFFFFF";
 const blackColor60 = "#00000099";
 const yellowColor400 = "#F4D867";
-const grayColor = "#FFFFFF99";
 const blackColor = "#000000DE";
 
 export {
@@ -30,7 +31,9 @@ export {
     secondaryColor,
     lightYellowColor,
     lightGrayColor,
+    lightBlackColor,
     chipColor,
+    blackTaupeColor,
     btnPrimaryColor,
     btnsecondaryColor,
     textPrimaryColor,

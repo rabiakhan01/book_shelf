@@ -19,9 +19,8 @@ const icons = {
     rotatedPercentage: require('./rotatedPercentage.svg').default,
     plus: require('./plus.svg').default,
     vector: require('./Vector.png'),
-    yellow_star: require('./yellow-star.png'),
-    hamburger: require('./hamburger.png'),
-    cross: require('./cross.png'),
+    prevPageIcon: require('./prevIcon.svg').default,
+    nextPageIcon: require('./nextIcon.svg').default
 
 }
 
