@@ -16,6 +16,10 @@ const FilterSection = () => {
     const [language, setLanguage] = useState({});
     const [languages, setLanguages] = useState(languagesData)
 
+    let price = {
+        minValue: 0,
+        maxValue: 1000,
+    };
     //handel the category array
     const handelCategory = (event) => {
 
@@ -116,14 +120,16 @@ const FilterSection = () => {
         const filterData = [];
         const selectedCategory = categories.filter((item) => item.check);
         const selectedLanguage = languages.filter((item) => item.check);
+        const newFilters = selectedCategory.concat(selectedLanguage);
+        const allFilters = [...newFilters, price];
+        console.log("allFilters", allFilters);
+        const filters = { ...context.bookPageContext, bookFilters: allFilters }
 
-        const filters = { ...context.bookPageContext, bookFilters: selectedCategory.concat(selectedLanguage) }
-
-        if (selectedCategory.length > 0 || selectedLanguage.length > 0) {
+        if (selectedCategory.length > 0 || selectedLanguage.length > 0 || price.minValue > 1) {
 
             filters.bookFilters.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category == element.name || filterItem.language == element.name) {
+                    if (filterItem.category == element.name || filterItem.language == element.name || (filterItem.new_price >= element.minValue && filterItem.new_price <= element.maxValue)) {
                         filterData.push(filterItem);
                     }
                 })
@@ -136,6 +142,11 @@ const FilterSection = () => {
     }
 
     const resetAllFilters = () => {
+        price = {
+            minValue: 0,
+            maxValue: 1000,
+        }
+        console.log("price", price)
         context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] })
     }
 
@@ -158,6 +169,7 @@ const FilterSection = () => {
 
     }, [context.bookPageContext.bookFilters])
 
+
     return (
         <div className="flex flex-col justify-between p-4 gap-4">
             <div className="flex flex-col gap-2">
@@ -169,7 +181,7 @@ const FilterSection = () => {
                         categories.map((category) => {
                             return (
                                 <div className="flex gap-2" key={category.id}>
-                                    <input type="checkbox" checked={category.check} value={category.name} onClick={handelCategory} />
+                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} onClick={handelCategory} />
                                     <label>{category.name}</label>
                                 </div>
                             )
@@ -199,9 +211,12 @@ const FilterSection = () => {
                     <h1>price</h1>
                 </div>
                 <MultiRangeSlider
-                    min={0}
-                    max={1000}
-                    onChange={({ min, max }) => { }}
+                    min={price.minValue}
+                    max={price.maxValue}
+                    onChange={(event) => {
+                        //console.log(min + ' ' + max)
+                        console.log(event);
+                    }}
                 />
             </div>
             <div className="flex justify-between w-full pt-4">

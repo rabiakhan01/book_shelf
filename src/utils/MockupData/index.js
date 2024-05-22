@@ -22,7 +22,7 @@ const allBooksData = [
         type: 'Hardcover',
         publisher: 'Harvill Secker',
         old_price: 15.50,
-        new_price: 10.50,
+        new_price: 500,
         plot_summary: 'In a hard-boiled city of crooks, grifts, and rackets lurk a pair of toughs: Box and They’re the kind of men capable of extracting apologies and reparations, of teaching you a chilling lesson. They seldom think twice, and ask very few questions. Until one night over the poker table, they encounter a pulp writer with wild ideas and an unscrupulous private detective, leading them into what is either a classic mystery or a senseless maze of corpses.',
         book_img: images.book_1
 
@@ -44,7 +44,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'G.P. Putnam\'s Sons',
         old_price: 0,
-        new_price: 14.50,
+        new_price: 500,
         plot_summary: 'The Godfather is a crime novel written by American _name Mario Puzo. Originally published in 1969, the novel details the story of a fictional Mafia family based in New York City (and Long Beach, New York), headed by Vito Corleone.',
         book_img: images.book_2
     },
@@ -65,7 +65,7 @@ const allBooksData = [
         type: 'Hardcover',
         publisher: 'Knopf',
         old_price: 19.50,
-        new_price: 15.00,
+        new_price: 500,
         plot_summary: 'She Beyond Sun is a captivating Scientific literature novel that explores the possibilities of life beyond our solar system. With intricate world-building and compelling characters, Daniel Cargallo takes readers on an unforgettable journey through space and time.',
         book_img: images.book_3
     },
@@ -86,7 +86,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'Random House',
         old_price: 15.50,
-        new_price: 10.50,
+        new_price: 500,
         plot_summary: 'Hello, I am Erik is a fascinating Scientific literature of one of the most influential designers of our time, Erik Spiekermann. From his early years to his groundbreaking work in typography and graphic design, this book offers insight into the life and career of a true visionary.',
         book_img: images.book_4
     },
@@ -107,7 +107,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'Candlewick Press',
         old_price: 0,
-        new_price: 20.00,
+        new_price: 500,
         plot_summary: 'More Than This is a gripping young adult novel that delves into themes of identity, reality, and survival. When Seth drowns, he wakes up alone, naked, and starving on the desolate English suburb where he grew up. As he navigates this strange new world, Seth must confront his past and unravel the mysteries of his existence.',
         book_img: images.book_5
     },
@@ -128,7 +128,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'Dial Press',
         old_price: 0,
-        new_price: 16.50,
+        new_price: 500,
         plot_summary: 'From the Memoirs of a Non-Enemy Combatant is a darkly comedic novel that follows the misadventures of Boyet Hernandez, a Filipino fashion designer turned Guantanamo Bay detainee. Through Boyet’s witty narration, readers are treated to a satirical exploration of America’s War on Terror and the absurdity of modern warfare.',
         book_img: images.book_6
     },
@@ -149,7 +149,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'Vintage Books',
         old_price: 0,
-        new_price: 10.50,
+        new_price: 500,
         plot_summary: 'The Master & Margarita is a surreal and satirical novel set in Soviet Russia. With its blend of fantasy, philosophy, and political commentary, Mikhail Bulgakov’s masterpiece has captivated readers around the world since its publication in 1967.',
         book_img: images.book_7
     },
@@ -170,7 +170,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'Basic Books',
         old_price: 0,
-        new_price: 9.50,
+        new_price: 500,
         plot_summary: 'The Design of Everyday Things is a seminal work in the field of design psychology. In this groundbreaking book, Donald Norman explores the principles of user-centered design and the psychology of human interaction with everyday objects. From doors to smartphones, Norman reveals the hidden secrets behind good design and offers practical advice for creating products that are intuitive, enjoyable, and user-friendly.',
         book_img: images.book_8
     },
@@ -192,7 +192,7 @@ const allBooksData = [
         type: 'Paperback',
         publisher: 'Thomas Egerton',
         old_price: 12.99,
-        new_price: 8.99,
+        new_price: 500,
         plot_summary: 'Pride and Prejudice is a classic romantic novel by Jane Austen. Set in early 19th-century England, the story follows the emotional development of Elizabeth Bennet, one of five sisters, as she navigates issues of manners, upbringing, morality, education, and marriage in the society of the landed gentry of the British Regency.',
         book_img: images.book_9
     },
@@ -214,7 +214,7 @@ const allBooksData = [
         type: 'Hardcover',
         publisher: 'The Russian Messenger',
         old_price: 20.00,
-        new_price: 15.00,
+        new_price: 500,
         plot_summary: 'War and Peace is a historical novel by Leo Tolstoy, first published serially in 1865–69. It depicts relationships between the Rostov, Bolkonsky, Bezukhov, and Kuragin families and follows their members as they fight in the Napoleonic Wars.',
         book_img: images.book_10
     },
