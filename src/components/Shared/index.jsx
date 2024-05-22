@@ -8,3 +8,4 @@ export { default as ProductCard } from './ProductCard';
 export { default as Filters } from './FilterSection';
 export { default as MultiRangeSlider } from './MultiRangeSlider';
 export { default as FilteredChip } from './FilteredChip';
+export { default as ContextProvider } from './ContextProvider';

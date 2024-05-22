@@ -1,37 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MultiRangeSlider from "../MultiRangeSlider";
-import { useContext } from "react";
-import { filterContext } from "../../AllBooksPage/BooksListing";
 import Button from "../Button";
-
+import { filterContext } from "../ContextProvider";
+import { allBooksData } from "../../../utils/MockupData";
+import { languagesData, categoriesData } from "../../../utils/MockupData";
 const FilterSection = () => {
 
-    const selectedFilters = useContext(filterContext);
-
+    const context = useContext(filterContext);
     // filter all the book from which category it belongs
+
     const [category, setCategory] = useState({});
+    const [categories, setCategories] = useState(categoriesData);
 
     //filter all the book which are available in which language
     const [language, setLanguage] = useState({});
+    const [languages, setLanguages] = useState(languagesData)
 
-
-    //store the values of the categories are selected
+    //handel the category array
     const handelCategory = (event) => {
+
         const value = event.target.value;
         const { checked } = event.target;
 
         //filter all the book from which category it belongs
-        const filteredCategory = {
+        const selectedCategory = {
             ...category,
             name: value,
             check: checked,
         }
 
-        //store the values of the categories are selected and make the cheked true
+        // //store the values of the categories are selected and make the cheked true
         if (checked) {
-            setCategory(filteredCategory);
-            const updatedCategory = selectedFilters.categories.map((item) => {
-                if (item.name === filteredCategory.name) {
+
+            setCategory(selectedCategory);
+
+            const updatedCategory = categories.map((item) => {
+                if (item.name === selectedCategory.name) {
                     return { ...item, check: true, }
                 }
                 else {
@@ -39,15 +43,15 @@ const FilterSection = () => {
                 }
             });
 
-            selectedFilters.setCategories([...updatedCategory]);
-            // now update the filters array to show chips on the top 
-            selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item.name !== filteredCategory.name), filteredCategory]);
+            setCategories([...updatedCategory]);
+            context.bookPageContext.bookFilters.push(selectedCategory);
+            // update the array which contains the selcted values by user 
         }
 
-        // now update the category checked if it true than false
+        // when user uncheck the checkbox
         else {
-            const updatedCategory = selectedFilters.categories.map((item) => {
-                if (item.name === filteredCategory.name) {
+            const updatedCategory = categories.map((item) => {
+                if (item.name === selectedCategory.name) {
                     return { ...item, check: false, }
                 }
                 else {
@@ -55,33 +59,30 @@ const FilterSection = () => {
                 }
             });
             //update the categories array
-            selectedFilters.setCategories([...updatedCategory]);
-
-            // find the index which you want to remove 
-            const index = selectedFilters.choice.findIndex((item) => item.name === filteredCategory.name);
-            selectedFilters.choice.splice(index, 1);
-            selectedFilters.setChoice([...selectedFilters.choice]);
+            setCategories([...updatedCategory]);
         }
+
     }
 
-    //handel the values of the language are selected
+    // //handel the values of the language are selected
     const handelLanguage = (event) => {
-
         const value = event.target.value;
         const { checked } = event.target;
 
-        //filter all the book which are available in the spec\cified language
-        const filteredLanguage = {
+        //filter all the book from which category it belongs
+        const selectedLanguage = {
             ...language,
             name: value,
             check: checked,
         }
 
-        // check if the language is selected or not if it is selected then make the cheked true and the remain object and array remains same
+        //store the values of the languages are selected and make the cheked true
         if (checked) {
-            selectedFilters.setLanguages(filteredLanguage);
-            const updatedLanguages = selectedFilters.languages.map((item) => {
-                if (item.name === filteredLanguage.name) {
+
+            setLanguage(selectedLanguage);
+
+            const updatedLanguage = languages.map((item) => {
+                if (item.name === selectedLanguage.name) {
                     return { ...item, check: true, }
                 }
                 else {
@@ -89,15 +90,13 @@ const FilterSection = () => {
                 }
             });
 
-            selectedFilters.setLanguages([...updatedLanguages]);
-
-            selectedFilters.setChoice([...selectedFilters.choice.filter((item) => item.name !== filteredLanguage.name), filteredLanguage]);
+            setLanguages([...updatedLanguage]);
         }
 
-        // if the language is not selected then make the cheked false and the remain object and array remains same
+        // when user uncheck the checkbox
         else {
-            const updatedLanguages = selectedFilters.languages.map((item) => {
-                if (item.name === filteredLanguage.name) {
+            const updatedLanguage = languages.map((item) => {
+                if (item.name === selectedLanguage.name) {
                     return { ...item, check: false, }
                 }
                 else {
@@ -105,15 +104,59 @@ const FilterSection = () => {
                 }
             });
 
-            // set the updated language array
-            selectedFilters.setLanguages([...updatedLanguages]);
+            //update the categories array
+            setLanguages([...updatedLanguage]);
 
-            // filter the language which is selected and remove it from the array
-            const index = selectedFilters.choice.findIndex((item) => item.name === filteredLanguage.name);
-            selectedFilters.choice.splice(index, 1);
-            selectedFilters.setChoice([...selectedFilters.choice]);
+        }
+
+    }
+
+    const applyFilter = () => {
+
+        const filterData = [];
+        const selectedCategory = categories.filter((item) => item.check);
+        const selectedLanguage = languages.filter((item) => item.check);
+
+        const filters = { ...context.bookPageContext, bookFilters: selectedCategory.concat(selectedLanguage) }
+
+        if (selectedCategory.length > 0 || selectedLanguage.length > 0) {
+
+            filters.bookFilters.map(element => {
+                allBooksData.filter((filterItem) => {
+                    if (filterItem.category == element.name || filterItem.language == element.name) {
+                        filterData.push(filterItem);
+                    }
+                })
+            });
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
+        }
+        else {
+            return;
         }
     }
+
+    const resetAllFilters = () => {
+        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] })
+    }
+
+    useEffect(() => {
+
+        const filters = context.bookPageContext.bookFilters;
+        if (filters.length >= 0) {
+
+            const filterLanguages = languages.map((item) => {
+                const matchingLanguage = filters.find((filterItem) => filterItem.name === item.name);
+                return matchingLanguage ? item : { ...item, check: false };
+            })
+            const filterCategories = categories.map((item) => {
+                const matchingCategory = filters.find((filterItem) => filterItem.name === item.name);
+                return matchingCategory ? item : { ...item, check: false };
+            })
+            setCategories([...filterCategories])
+            setLanguages([...filterLanguages])
+        }
+
+    }, [context.bookPageContext.bookFilters])
 
     return (
         <div className="flex flex-col justify-between p-4 gap-4">
@@ -123,10 +166,10 @@ const FilterSection = () => {
                 </div>
                 <div className="flex flex-col">
                     {
-                        selectedFilters.categories.map((category) => {
+                        categories.map((category) => {
                             return (
                                 <div className="flex gap-2" key={category.id}>
-                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} />
+                                    <input type="checkbox" checked={category.check} value={category.name} onClick={handelCategory} />
                                     <label>{category.name}</label>
                                 </div>
                             )
@@ -140,7 +183,7 @@ const FilterSection = () => {
                 </div>
                 <div className="flex flex-col">
                     {
-                        selectedFilters.languages.map((language) => {
+                        languages.map((language) => {
                             return (
                                 <div className="flex gap-2" key={language.id}>
                                     <input type="checkbox" checked={language.check} value={language.name} onChange={handelLanguage} />
@@ -165,10 +208,12 @@ const FilterSection = () => {
                 <Button
                     variant="outlined"
                     size="extra-small"
+                    onClick={resetAllFilters}
                 >Reset</Button>
                 <Button
                     variant="contained"
                     size="extra-small"
+                    onClick={applyFilter}
                 >Apply</Button>
             </div>
         </div>

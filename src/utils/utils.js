@@ -3,3 +3,4 @@ const isAuthentication = () => {
 }
 
 exports.isAuthentication = isAuthentication;
+

@@ -57,7 +57,7 @@ const allBooksData = [
             views: 165,
             reviews: 14
         },
-        category: 'Science Fiction',
+        category: 'Scientific literature',
         publish_date: 'June 2019',
         language: 'English',
         pages: 320,
@@ -66,7 +66,7 @@ const allBooksData = [
         publisher: 'Knopf',
         old_price: 19.50,
         new_price: 15.00,
-        plot_summary: 'She Beyond Sun is a captivating science fiction novel that explores the possibilities of life beyond our solar system. With intricate world-building and compelling characters, Daniel Cargallo takes readers on an unforgettable journey through space and time.',
+        plot_summary: 'She Beyond Sun is a captivating Scientific literature novel that explores the possibilities of life beyond our solar system. With intricate world-building and compelling characters, Daniel Cargallo takes readers on an unforgettable journey through space and time.',
         book_img: images.book_3
     },
     {
@@ -78,7 +78,7 @@ const allBooksData = [
             views: 120,
             reviews: 25
         },
-        category: 'Biography',
+        category: 'Scientific literature',
         publish_date: 'September 2020',
         language: 'English',
         pages: 256,
@@ -87,7 +87,7 @@ const allBooksData = [
         publisher: 'Random House',
         old_price: 15.50,
         new_price: 10.50,
-        plot_summary: 'Hello, I am Erik is a fascinating biography of one of the most influential designers of our time, Erik Spiekermann. From his early years to his groundbreaking work in typography and graphic design, this book offers insight into the life and career of a true visionary.',
+        plot_summary: 'Hello, I am Erik is a fascinating Scientific literature of one of the most influential designers of our time, Erik Spiekermann. From his early years to his groundbreaking work in typography and graphic design, this book offers insight into the life and career of a true visionary.',
         book_img: images.book_4
     },
     {
@@ -99,7 +99,7 @@ const allBooksData = [
             views: 48,
             reviews: 42
         },
-        category: 'Young Adult',
+        category: 'Scientific literature',
         publish_date: 'September 2013',
         language: 'English',
         pages: 480,
@@ -141,7 +141,7 @@ const allBooksData = [
             views: 30,
             reviews: 35
         },
-        category: 'Fantasy',
+        category: 'Novel',
         publish_date: '1967',
         language: 'Russian',
         pages: 384,
@@ -162,7 +162,7 @@ const allBooksData = [
             views: 20,
             reviews: 28
         },
-        category: 'Non-fiction',
+        category: 'Business',
         publish_date: 'November 1988',
         language: 'English',
         pages: 368,
@@ -206,7 +206,7 @@ const allBooksData = [
             views: 150,
             reviews: 45
         },
-        category: 'Historical Fiction',
+        category: 'Novel',
         publish_date: '1869',
         language: 'Russian',
         pages: 1225,
@@ -227,7 +227,7 @@ const allBooksData = [
             views: 80,
             reviews: 18
         },
-        category: 'Fiction',
+        category: 'Business',
         publish_date: '1982',
         language: 'English',
         pages: 326,
@@ -250,7 +250,7 @@ const allBooksData = [
         },
         category: 'Biography',
         publish_date: '2005',
-        language: 'English',
+        language: 'Urdu',
         pages: 384,
         read_time: '7-9 hours',
         type: 'Paperback',
@@ -271,7 +271,7 @@ const allBooksData = [
         },
         category: 'Literary Fiction',
         publish_date: '2013',
-        language: 'English',
+        language: 'Korean',
         pages: 864,
         read_time: '15-18 hours',
         type: 'Hardcover',
@@ -290,9 +290,9 @@ const allBooksData = [
             views: 500,
             reviews: 150
         },
-        category: 'Epic Poetry',
+        category: 'Educational',
         publish_date: '14th century',
-        language: 'Italian',
+        language: 'Korean',
         pages: 928,
         read_time: '20-25 hours',
         type: 'Paperback',
@@ -313,7 +313,7 @@ const allBooksData = [
         },
         category: 'Literary Fiction',
         publish_date: '2013',
-        language: 'English',
+        language: 'Korean',
         pages: 384,
         read_time: '7-9 hours',
         type: 'Paperback',
@@ -334,9 +334,9 @@ const allBooksData = [
             views: 400,
             reviews: 90
         },
-        category: 'Philosophical Fiction',
+        category: 'Educational',
         publish_date: '1880',
-        language: 'Russian',
+        language: 'Korean',
         pages: 796,
         read_time: '20-25 hours',
         type: 'Paperback',
@@ -378,9 +378,9 @@ const allBooksData = [
             views: 600,
             reviews: 120
         },
-        category: 'Tragedy',
+        category: 'Imaginative literature',
         publish_date: '1597',
-        language: 'English',
+        language: 'Urdu',
         pages: 368,
         read_time: '10-12 hours',
         type: 'Paperback',
@@ -400,9 +400,9 @@ const allBooksData = [
             views: 350,
             reviews: 80
         },
-        category: 'Adventure',
+        category: 'Business',
         publish_date: '1876',
-        language: 'English',
+        language: 'Urdu',
         pages: 224,
         read_time: '6-8 hours',
         type: 'Paperback',
@@ -422,7 +422,7 @@ const allBooksData = [
             views: 300,
             reviews: 75
         },
-        category: 'Mystery',
+        category: 'Imaginative literature',
         publish_date: 'January 1934',
         language: 'English',
         pages: 256,
@@ -588,7 +588,57 @@ const allReviewsData = [
     },
 ];
 
+//categories data
+const categoriesData = [
+    {
+        id: 1,
+        name: 'Imaginative literature',
+        check: false,
+    },
+    {
+        id: 2,
+        name: 'Scientific literature',
+        check: false,
+    },
+    {
+        id: 3,
+        name: 'Business',
+        check: false,
+    },
+    {
+        id: 4,
+        name: 'Educational',
+        check: false,
+    },
+    {
+        id: 5,
+        name: 'Other',
+        check: false,
+    },
+]
+
+//language data
+const languagesData = [
+    {
+        id: 1,
+        name: 'English',
+        check: false,
+    },
+    {
+        id: 2,
+        name: 'Urdu',
+        check: false,
+    },
+    {
+        id: 3,
+        name: 'Korean',
+        check: false,
+    },
+]
 export {
     allBooksData,
     allAuthorsData,
+    categoriesData,
+    languagesData
+
 }
