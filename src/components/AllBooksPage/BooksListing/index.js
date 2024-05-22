@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FilteredChip, ProductCard, } from "../../Shared";
+import { FilteredChip, Pagination, ProductCard, } from "../../Shared";
 import FilterSection from "../../Shared/FilterSection";
 import icons from "../../../assets/icons/icons";
 import { filterContext } from "../../Shared/ContextProvider";
@@ -85,6 +85,9 @@ const BooksListing = () => {
                             )
                         })
                     }
+                    <div className="w-full flex items-center justify-center bg-orange-500 mt-4">
+                        <Pagination />
+                    </div>
                 </div>
             </div>
         </div>
