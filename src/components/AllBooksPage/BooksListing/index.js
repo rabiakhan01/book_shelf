@@ -8,7 +8,7 @@ import { allBooksData } from "../../../utils/MockupData";
 const BooksListing = () => {
 
     const context = useContext(filterContext);
-    console.log(context.bookPageContext.bookFilters)
+    console.log(context.bookPageContext.bookFilters);
     const validListing = () => {
         if (context.bookPageContext.bookFilters.length > 0) {
             return context.bookPageContext.bookListing;
