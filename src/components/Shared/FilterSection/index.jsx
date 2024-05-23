@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import MultiRangeSlider from "../MultiRangeSlider";
 import Button from "../Button";
-import { filterContext } from "../ContextProvider";
+import { bookListingContext } from "../ContextProvider";
 import { allBooksData } from "../../../utils/MockupData";
 import { languagesData, categoriesData } from "../../../utils/MockupData";
 const FilterSection = () => {
 
-    const context = useContext(filterContext);
+    const context = useContext(bookListingContext);
     // filter all the book from which category it belongs
 
     const [category, setCategory] = useState({});
@@ -131,7 +131,7 @@ const FilterSection = () => {
             context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
         }
         else {
-            return;
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData })
         }
     }
 

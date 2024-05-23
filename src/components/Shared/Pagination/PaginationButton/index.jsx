@@ -8,15 +8,16 @@ const PaginationButton = ({ name, Icon, onClick }) => {
     else {
         size = "w-10 h-10 bg-blackTaupeColor";
     }
+
     return (
-        <div className={`flex gap-2 ${size} justify-center items-center rounded-full ${name == 'prev' ? 'flex-row' : 'flex-row-reverse'}`}>
+        <div className={`cursor-pointer flex gap-2 ${size} justify-center items-center rounded-full ${name == 'prev' ? 'flex-row' : 'flex-row-reverse'}`} onClick={onClick}>
             {
                 Icon ?
                     <img src={Icon} alt="" />
                     :
                     ''
             }
-            <button onClick={onClick} className="uppercase text-textLightWhiteColor text-base">{name}</button>
+            <button className="uppercase text-textLightWhiteColor text-base">{name}</button>
         </div>
     )
 }

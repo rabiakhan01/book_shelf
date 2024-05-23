@@ -1,23 +1,12 @@
 import React, { useContext, useState } from "react";
-import { FilteredChip, Pagination, ProductCard, } from "../../Shared";
+import { FilteredChip, Pagination, ProductCard } from "../../Shared";
 import FilterSection from "../../Shared/FilterSection";
 import icons from "../../../assets/icons/icons";
-import { filterContext } from "../../Shared/ContextProvider";
-import { allBooksData } from "../../../utils/MockupData";
-import PaginationSection from "../PaginationSection";
+import { bookListingContext } from "../../Shared/ContextProvider";
 
 const BooksListing = () => {
 
-    const context = useContext(filterContext);
-
-    const validListing = () => {
-        if (context.bookPageContext.bookFilters.length > 0) {
-            return context.bookPageContext.bookListing;
-        }
-        else {
-            return allBooksData;
-        }
-    }
+    const context = useContext(bookListingContext);
 
     const [showFilterSection, setShowFilterSection] = useState(false);
 
@@ -56,6 +45,7 @@ const BooksListing = () => {
                         context.bookPageContext.bookFilters.map((item, index) => {
                             return (
                                 <FilteredChip
+                                    key={index}
                                     name={item.name}
                                 />
                             )
@@ -71,9 +61,10 @@ const BooksListing = () => {
                 <div className={` ${showFilterSection ? 'brightness-50' : ''} w-full flex flex-col`}>
                     <div className="flex flex-row-reverse pr-3 flex-wrap w-full h-lvh overflow-auto gap-2">
                         {
-                            validListing().filter((item, index) => index > 10).map((book) => {
+                            context.bookPageContext.bookListing.map((book, index) => {
                                 return (
                                     <ProductCard
+                                        key={index}
                                         image={book.book_img}
                                         name={book.book_name}
                                         intro={book.author_name}
@@ -87,7 +78,9 @@ const BooksListing = () => {
                             })
                         }
                     </div>
-                    <PaginationSection />
+                    <Pagination
+                        maxRecordsPerPage={4}
+                    />
                 </div>
             </div>
         </div>
