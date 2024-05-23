@@ -2,7 +2,7 @@ import React from "react";
 
 const Button = ({ children, variant, size, onClick, disabled }) => {
     if (size === "extra-small") {
-        size = "h-6 w-12 small-tab:h-7 small-tab:w-12 sm:h-8 sm:w-16";
+        size = "h-6 w-12 small-tab:h-7 small-tab:w-12 sm:h-8 sm:w-16 font-normal text-sm";
     }
 
     if (size === "small") {

@@ -1,23 +1,23 @@
 import React from "react";
 
-const PaginationButton = ({ name, Icon, onClick }) => {
+const PaginationButton = ({ name, Icon, onClick, disabled, activeButton }) => {
     let size
     if (Icon) {
-        size = "w-24 h-10 bg-lightBlackColor";
+        size = `w-16 small-tab:w-20 h-8 sm:w-24 sm:h-10 bg-lightBlackColor`;
     }
     else {
-        size = "w-10 h-10 bg-blackTaupeColor";
+        size = ` ${activeButton ? 'bg-black' : 'bg-blackTaupeColor'} w-7 h-7 sm:w-10 sm:h-10 `;
     }
 
     return (
-        <div className={`cursor-pointer flex gap-2 ${size} justify-center items-center rounded-full ${name == 'prev' ? 'flex-row' : 'flex-row-reverse'}`} onClick={onClick}>
+        <div className={`${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} flex gap-1 sm:gap-2 ${size} justify-center items-center rounded-full ${name == 'prev' ? 'flex-row' : 'flex-row-reverse'}`} onClick={onClick}>
             {
                 Icon ?
-                    <img src={Icon} alt="" />
+                    <img src={Icon} alt="" className="" />
                     :
                     ''
             }
-            <button className="uppercase text-textLightWhiteColor text-base">{name}</button>
+            <button className={` ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} uppercase text-textLightWhiteColor text-xs small-tab:text-sm sm:text-base`} disabled={disabled}>{name}</button>
         </div>
     )
 }

@@ -9,10 +9,35 @@ const Pagination = ({ maxRecordsPerPage }) => {
 
     const [maxPage, setMaxPage] = useState(Math.ceil(allBooksData.length / maxRecordsPerPage));
     const [filterData, setFilterData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [prevButton, setPrevButton] = useState(true);
+    const [nextButton, setNextButton] = useState(false);
+    const [activePage, setActivePage] = useState(false);
+    const [pageArray, setPageArray] = useState([]);
+    const totalPage = [];
+    for (let i = 0; i < maxPage; i++) {
+        totalPage.push(
+            {
+                name: i + 1,
+                active: false,
+            }
+        );
+    }
 
+    const handelPageChange = (pageNo) => {
 
-    const handelPagination = (pageNo) => {
+        //change color of active button
+        const newArray = pageArray.map((page, index) => {
+            if (index + 1 === pageNo) {
+                return { ...page, active: true }
+            }
+            else {
+                return { ...page, active: false }
+            }
+        })
+        setPageArray([...newArray]);
 
+        setCurrentPage(pageNo);
         const lastIndexOfPage = pageNo * maxRecordsPerPage;
         const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
 
@@ -29,36 +54,82 @@ const Pagination = ({ maxRecordsPerPage }) => {
 
     }
 
+    const nextPage = () => {
+        handelPageChange(currentPage + 1);
+    }
+
+    const prevPage = () => {
+        handelPageChange(currentPage - 1);
+    }
+
     useEffect(() => {
         if (context.bookPageContext.bookFilters.length > 0) {
+
             //store the listing data after every time filter changes
             const filteredListing = context.bookPageContext.bookListing;
             setFilterData([...filteredListing]);
             // console.log("filter listing", filteredListing);
 
             //calculate number of pages required 
-            setMaxPage(Math.ceil(filteredListing.length / maxRecordsPerPage));
+            const pages = Math.ceil(filteredListing.length / maxRecordsPerPage);
+            setMaxPage(pages);
 
             const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
             console.log("currentPageData", currentPageData)
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            if (pages <= 1) {
+                setNextButton(true);
+            }
+            else {
+                setNextButton(false)
+            }
+
         }
         else {
-            console.log("empty")
+
             //calculate number of pages required 
-            setMaxPage(Math.ceil(allBooksData.length / maxRecordsPerPage));
+            const pages = Math.ceil(allBooksData.length / maxRecordsPerPage)
+            setMaxPage(pages);
             const currentPageData = allBooksData.slice(0, maxRecordsPerPage)
             console.log("currentPageData", currentPageData)
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            if (pages <= 1) {
+                setNextButton(true);
+            }
+            else {
+                setNextButton(false)
+            }
         }
 
     }, [context.bookPageContext.bookFilters]);
 
+    useEffect(() => {
+        if (currentPage <= 1) {
+            setPrevButton(true);
+            setNextButton(false);
+        }
+        else if (currentPage == maxPage) {
+            setPrevButton(false);
+            setNextButton(true);
+        }
+        else {
+            setPrevButton(false);
+            setNextButton(false);
+        }
+    }, [currentPage])
 
-    const totalPaginationPage = [];
-    for (let i = 0; i < maxPage; i++) {
-        totalPaginationPage.push(i + 1);
-    }
+    useEffect(() => {
+        const newArray = totalPage.map((page, index) => {
+            if (index == 0) {
+                return { ...page, active: true }
+            }
+            else {
+                return page;
+            }
+        })
+        setPageArray([...newArray])
+
+    }, [maxPage])
 
     return (
         <div className="w-full flex items-center justify-center mt-6">
@@ -68,17 +139,19 @@ const Pagination = ({ maxRecordsPerPage }) => {
                         name="prev"
                         Icon={icons.prevPageIcon}
                         onChange={() => { }}
-                        onClick={() => { console.log("previous") }}
+                        onClick={() => prevPage()}
+                        disabled={prevButton}
                     />
                 </div>
                 <div className="flex justify-center items-center gap-1">
                     {
-                        totalPaginationPage.map((pageNo, index) => {
+                        pageArray.map((page, index) => {
                             return (
                                 <PaginationButton
                                     key={index}
-                                    name={pageNo}
-                                    onClick={() => handelPagination(pageNo)}
+                                    name={page.name}
+                                    activeButton={page.active}
+                                    onClick={() => handelPageChange(page.name)}
                                 />
                             )
                         })
@@ -89,7 +162,8 @@ const Pagination = ({ maxRecordsPerPage }) => {
                         name="next"
                         Icon={icons.nextPageIcon}
                         onChange={() => { }}
-                        onClick={() => { console.log("next") }}
+                        onClick={() => nextPage()}
+                        disabled={nextButton}
                     />
                 </div>
             </div>

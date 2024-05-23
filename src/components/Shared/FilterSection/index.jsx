@@ -126,6 +126,11 @@ const FilterSection = () => {
                     if (filterItem.category == element.name || filterItem.language == element.name) {
                         filterData.push(filterItem);
                     }
+                    if (element.name == 'Other') {
+                        if (filterItem.category !== 'Imaginative literature' && filterData.category !== 'Scientific literature' && filterItem.category !== 'Business' && filterItem.category !== 'Educational') {
+                            filterData.push(filterItem);
+                        }
+                    }
                 })
             });
             context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
