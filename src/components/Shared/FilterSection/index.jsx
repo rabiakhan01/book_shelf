@@ -18,7 +18,6 @@ const FilterSection = () => {
 
     const [minVal, setMinVal] = useState(0);
     const [maxVal, setMaxVal] = useState(500);
-
     //handel the category array
     const handelCategory = (event) => {
 
@@ -127,7 +126,6 @@ const FilterSection = () => {
         const filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
 
         if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal > 0) {
-
             filters.bookFilters.map(element => {
                 allBooksData.filter((filterItem) => {
 
@@ -230,7 +228,6 @@ const FilterSection = () => {
                     setMinVal={setMinVal}
                     setMaxVal={setMaxVal}
                     onChange={({ min, max }) => { }}
-
                 />
             </div>
             <div className="flex justify-between w-full pt-4">
