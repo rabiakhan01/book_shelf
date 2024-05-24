@@ -10,15 +10,6 @@ const BooksListing = () => {
 
     const [showFilterSection, setShowFilterSection] = useState(false);
 
-    if (showFilterSection) {
-        const element = document.getElementById('cards');
-        element.classList.add('overflow-hidden');
-
-    }
-    if (!showFilterSection) {
-        const element = document.getElementById('cards');
-        element.classList.remove('overflow-hidden');
-    }
 
     const handelFilters = () => {
         setShowFilterSection(!showFilterSection)
@@ -41,6 +32,17 @@ const BooksListing = () => {
 
     }, [context.bookPageContext.bookFilters])
 
+    useEffect(() => {
+        if (showFilterSection) {
+            const element = document.getElementById('cards');
+            element.classList.add('overflow-hidden');
+
+        }
+        if (!showFilterSection) {
+            const element = document.getElementById('cards');
+            element.classList.remove('overflow-hidden');
+        }
+    }, [showFilterSection])
     return (
 
         <div className="flex flex-col bg-secondaryColor p-4">

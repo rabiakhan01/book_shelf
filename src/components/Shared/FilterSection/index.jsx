@@ -123,7 +123,15 @@ const FilterSection = () => {
 
             filters.bookFilters.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category == element.name || filterItem.language == element.name) {
+                    if (filterItem.category === element.name) {
+                        if (filterItem.language === element.name) {
+                            filterData.push(filterItem);
+                        }
+                    }
+                    if (filterItem.category === element.name) {
+                        filterData.push(filterItem);
+                    }
+                    if (filterItem.language === element.name) {
                         filterData.push(filterItem);
                     }
                     if (element.name == 'Other') {
