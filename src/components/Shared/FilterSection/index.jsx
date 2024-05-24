@@ -18,7 +18,6 @@ const FilterSection = () => {
 
     const [minVal, setMinVal] = useState(0);
     const [maxVal, setMaxVal] = useState(500);
-
     //handel the category array
     const handelCategory = (event) => {
 
@@ -127,7 +126,6 @@ const FilterSection = () => {
         const filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
 
         if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal > 0) {
-
             filters.bookFilters.map(element => {
                 allBooksData.filter((filterItem) => {
 
@@ -181,6 +179,7 @@ const FilterSection = () => {
 
     }, [context.bookPageContext.bookFilters])
 
+
     return (
         <div className="flex flex-col justify-between p-4 gap-4">
             <div className="flex flex-col gap-2">
@@ -192,7 +191,7 @@ const FilterSection = () => {
                         categories.map((category) => {
                             return (
                                 <div className="flex gap-2" key={category.id}>
-                                    <input type="checkbox" checked={category.check} value={category.name} onClick={handelCategory} />
+                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} onClick={handelCategory} />
                                     <label>{category.name}</label>
                                 </div>
                             )
@@ -229,7 +228,6 @@ const FilterSection = () => {
                     setMinVal={setMinVal}
                     setMaxVal={setMaxVal}
                     onChange={({ min, max }) => { }}
-
                 />
             </div>
             <div className="flex justify-between w-full pt-4">

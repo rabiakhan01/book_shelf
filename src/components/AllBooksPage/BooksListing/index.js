@@ -52,12 +52,12 @@ const BooksListing = () => {
                     <div className="flex justify-center items-center gap-2">
                         <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
                         <p className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p>
-                        <p className="text-textLightBlackColor">120 results</p>
+                        <p className="text-grayColor text-xl">{context.bookPageContext.bookFilters.length}</p>
                     </div>
                     <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'}`}>
                         <button className="flex justify-center items-center p-2 sm:p-3 w-20 sm:w-24 bg-black rounded-full text-textLightWhiteColor text-sm" onClick={resetAllFilters} disabled={showFilterSection}>Reset all</button>
-                    </div>
-                </div>
+                    </div >
+                </div >
                 <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'} gap-2 w-full overflow-auto`}>
                     {
                         context.bookPageContext.bookFilters.map((item, index) => {
@@ -70,7 +70,7 @@ const BooksListing = () => {
                         })
                     }
                 </div>
-            </div>
+            </div >
             <div className="relative flex gap-2 w-full pb-4">
 
                 <div className={` ${showFilterSection ? 'absolute top-2 flex z-10  pr-2' : 'hidden lg:flex'} ${context.bookPageContext.bookFilters.length > 0 ? '-top-16 sm:-top-[70px]' : ''} flex-col w-full small-tab:w-80 lg:w-[32.5%] rounded-xl h-[30.1rem] bg-primaryColor `}>
@@ -101,7 +101,7 @@ const BooksListing = () => {
                     />
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }

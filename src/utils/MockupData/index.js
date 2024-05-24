@@ -171,6 +171,7 @@ const allBooksData = [
         publisher: 'Basic Books',
         old_price: 0,
         new_price: 9,
+
         plot_summary: 'The Design of Everyday Things is a seminal work in the field of design psychology. In this groundbreaking book, Donald Norman explores the principles of user-centered design and the psychology of human interaction with everyday objects. From doors to smartphones, Norman reveals the hidden secrets behind good design and offers practical advice for creating products that are intuitive, enjoyable, and user-friendly.',
         book_img: images.book_8
     },
