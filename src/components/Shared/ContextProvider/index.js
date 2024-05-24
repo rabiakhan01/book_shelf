@@ -1,20 +1,20 @@
 import React, { createContext, useState } from "react";
 import { allBooksData } from "../../../utils/MockupData";
 
-export const filterContext = createContext();
+export const bookListingContext = createContext();
 
 const ContextProvider = ({ children }) => {
 
     const [bookPageContext, setBookPageContext] = useState({
         bookFilters: [],
-        bookListing: [],
+        bookListing: allBooksData,
     })
 
 
     return (
-        <filterContext.Provider value={{ bookPageContext, setBookPageContext }}>
+        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext }}>
             {children}
-        </filterContext.Provider>
+        </bookListingContext.Provider>
     )
 
 }

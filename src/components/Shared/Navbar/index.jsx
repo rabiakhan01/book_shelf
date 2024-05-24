@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
 import { Link } from "react-router-dom";
-import PopularAuthors from "../../HomePage/PopularAuthors";
 const Navbar = () => {
 
 

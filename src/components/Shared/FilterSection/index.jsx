@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import MultiRangeSlider from "../MultiRangeSlider";
 import Button from "../Button";
-import { filterContext } from "../ContextProvider";
+import { bookListingContext } from "../ContextProvider";
 import { allBooksData } from "../../../utils/MockupData";
 import { languagesData, categoriesData } from "../../../utils/MockupData";
 const FilterSection = () => {
 
-    const context = useContext(filterContext);
+    const context = useContext(bookListingContext);
     // filter all the book from which category it belongs
 
     const [category, setCategory] = useState({});
@@ -129,15 +129,28 @@ const FilterSection = () => {
 
             filters.bookFilters.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category == element.name || filterItem.language == element.name || (filterItem.new_price >= element.minValue && filterItem.new_price <= element.maxValue)) {
+                    if (filterItem.category === element.name) {
+                        if (filterItem.language === element.name) {
+                            filterData.push(filterItem);
+                        }
+                    }
+                    if (filterItem.category === element.name) {
                         filterData.push(filterItem);
+                    }
+                    if (filterItem.language === element.name) {
+                        filterData.push(filterItem);
+                    }
+                    if (element.name == 'Other') {
+                        if (filterItem.category !== 'Imaginative literature' && filterData.category !== 'Scientific literature' && filterItem.category !== 'Business' && filterItem.category !== 'Educational') {
+                            filterData.push(filterItem);
+                        }
                     }
                 })
             });
             context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
         }
         else {
-            return;
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData })
         }
     }
 

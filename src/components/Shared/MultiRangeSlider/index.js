@@ -1,9 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef, useContext } from "react";
 import "./multiRangeSlider.css";
-import { filterContext } from "../ContextProvider";
 const MultiRangeSlider = ({ min, max, onChange }) => {
-
-    const context = useContext(filterContext);
 
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
