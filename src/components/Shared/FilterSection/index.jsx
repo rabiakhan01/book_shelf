@@ -16,6 +16,9 @@ const FilterSection = () => {
     const [language, setLanguage] = useState({});
     const [languages, setLanguages] = useState(languagesData)
 
+    const [minVal, setMinVal] = useState(0);
+    const [maxVal, setMaxVal] = useState(500);
+
     //handel the category array
     const handelCategory = (event) => {
 
@@ -116,23 +119,26 @@ const FilterSection = () => {
         const filterData = [];
         const selectedCategory = categories.filter((item) => item.check);
         const selectedLanguage = languages.filter((item) => item.check);
+        const selectedFilters = selectedCategory.concat(selectedLanguage)
+        const selectedPrice = {
+            minPrice: minVal,
+            maxPrice: maxVal,
+        }
+        const filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
 
-        const filters = { ...context.bookPageContext, bookFilters: selectedCategory.concat(selectedLanguage) }
-
-        if (selectedCategory.length > 0 || selectedLanguage.length > 0) {
+        if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal > 0) {
 
             filters.bookFilters.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category === element.name) {
-                        if (filterItem.language === element.name) {
+
+                    if (filterItem.category === element.name || filterItem.language === element.name) {
+                        filterData.push(filterItem);
+                    }
+                    else if (element.minPrice > 0 && element.maxPrice) {
+                        if (filterItem.new_price > element.minPrice && filterItem.new_price < element.maxPrice) {
+                            console.log("hello")
                             filterData.push(filterItem);
                         }
-                    }
-                    if (filterItem.category === element.name) {
-                        filterData.push(filterItem);
-                    }
-                    if (filterItem.language === element.name) {
-                        filterData.push(filterItem);
                     }
                     if (element.name == 'Other') {
                         if (filterItem.category !== 'Imaginative literature' && filterData.category !== 'Scientific literature' && filterItem.category !== 'Business' && filterItem.category !== 'Educational') {
@@ -141,15 +147,19 @@ const FilterSection = () => {
                     }
                 })
             });
+
             context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
         }
+
         else {
             context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData })
         }
     }
 
     const resetAllFilters = () => {
-        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] })
+        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] });
+        setMinVal(0);
+        setMaxVal(500);
     }
 
     useEffect(() => {
@@ -213,8 +223,13 @@ const FilterSection = () => {
                 </div>
                 <MultiRangeSlider
                     min={0}
-                    max={1000}
+                    max={500}
+                    minVal={minVal}
+                    maxVal={maxVal}
+                    setMinVal={setMinVal}
+                    setMaxVal={setMaxVal}
                     onChange={({ min, max }) => { }}
+
                 />
             </div>
             <div className="flex justify-between w-full pt-4">
