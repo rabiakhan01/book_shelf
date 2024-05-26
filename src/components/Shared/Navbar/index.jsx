@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 
+    const navigate = useNavigate();
+    const handelNavigate = () => {
+        navigate('/login');
+    }
 
     const [drawer, setDrawer] = useState(false);
     const [searchField, setSearchField] = useState(true);
@@ -52,6 +57,7 @@ const Navbar = () => {
 
                             variant="contained"
                             size="small"
+                            onClick={handelNavigate}
                         >
                             Login
                         </Button>

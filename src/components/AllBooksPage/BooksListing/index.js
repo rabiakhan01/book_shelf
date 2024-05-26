@@ -52,7 +52,7 @@ const BooksListing = () => {
                     <div className="flex justify-center items-center gap-2">
                         <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
                         <p className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p>
-                        <p className="text-grayColor text-xl">{context.bookPageContext.bookFilters.length}</p>
+                        <p className={`text-grayColor text-xl ${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'}`}>{context.bookPageContext.bookFilters.length}</p>
                     </div>
                     <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'}`}>
                         <button className="flex justify-center items-center p-2 sm:p-3 w-20 sm:w-24 bg-black rounded-full text-textLightWhiteColor text-sm" onClick={resetAllFilters} disabled={showFilterSection}>Reset all</button>

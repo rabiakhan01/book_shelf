@@ -23,17 +23,17 @@ const FilteredChip = ({ name }) => {
             context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter, bookListing: filterData });
         }
         else {
-            return;
+            context.setBookPageContext({ bookFilters: [], bookListing: allBooksData });
         }
     }
-    if (name) {
-        return (
-            <div className="flex justify-center items-center gap-2 bg-chipColor w-auto p-2 rounded-full mb-3 lg:mb-0">
-                <p className="text-sm text-textLightWhiteColor text-nowrap">{name}</p>
-                <button className="flex justify-center items-center h-6 w-6 sm:h-8 sm:w-8 bg-secondaryColor rounded-full" ><img src={icons.cross} className="w-3 h-3" onClick={() => removeFilter(name)} /></button>
-            </div>
-        )
-    }
+
+    return (
+        <div className="flex justify-center items-center gap-2 bg-chipColor w-auto p-2 rounded-full mb-3 lg:mb-0">
+            <p className="text-sm text-textLightWhiteColor text-nowrap">{name}</p>
+            <button className="flex justify-center items-center h-6 w-6 sm:h-8 sm:w-8 bg-secondaryColor rounded-full" ><img src={icons.cross} className="w-3 h-3" onClick={() => removeFilter(name)} /></button>
+        </div>
+    )
+
 }
 
 export default FilteredChip;

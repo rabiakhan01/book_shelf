@@ -2,7 +2,15 @@ import React from "react";
 import images from '../../../assets/images/images';
 import icons from '../../../assets/icons/icons';
 import Button from "../../Shared/Button";
+import { useNavigate } from "react-router-dom";
+
 const HeroSection = () => {
+
+    const navigate = useNavigate();
+
+    const handelNavigate = () => {
+        navigate('./all-books')
+    }
     return (
         <div>
             <div className="flex justify-center items-center mb-2 md:mb-0 lg:mt-2">
@@ -19,6 +27,7 @@ const HeroSection = () => {
                         <Button
                             variant="outlined"
                             size="medium"
+                            onClick={handelNavigate}
                         >
                             Browese Now
                         </Button>

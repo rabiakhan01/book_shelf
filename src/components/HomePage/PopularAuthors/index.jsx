@@ -1,7 +1,13 @@
 import React from "react";
 import { allAuthorsData } from "../../../utils/MockupData";
 import BtnBookMark from "../../Shared/BtnBookMark";
+import { useNavigate } from "react-router-dom";
+
 const PopularAuthors = () => {
+    const navigate = useNavigate();
+    const handelNavigate = () => {
+        navigate('/all-authors')
+    }
     return (
         <div className="bg-secondaryColor p-4">
             <div className="text-xl md:text-2xl xl:text-3xl font-medium uppercase text-textLightWhiteColor pb-5 pt-2">
@@ -30,7 +36,7 @@ const PopularAuthors = () => {
                         )
                     })
                 }
-                <button className="flex justify-center items-center font-medium text-xl bg-btnPrimaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-32 rounded-xl uppercase">
+                <button className="flex justify-center items-center font-medium text-xl bg-btnPrimaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-32 rounded-xl uppercase" onClick={handelNavigate}>
                     See all
                 </button>
             </div>

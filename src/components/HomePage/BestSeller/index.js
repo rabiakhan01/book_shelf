@@ -2,9 +2,15 @@ import React from "react";
 import { allBooksData } from "../../../utils/MockupData";
 import BtnBookMark from "../../Shared/BtnBookMark";
 import icons from "../../../assets/icons/icons";
-
+import { useNavigate } from "react-router-dom";
 
 const BestSeller = () => {
+
+    const navigate = useNavigate();
+
+    const handelNaviagte = () => {
+        navigate('/all-books')
+    }
 
     const sortedBooksData = allBooksData.sort((a, b) => b.rating.views - a.rating.views);
     return (
@@ -52,7 +58,7 @@ const BestSeller = () => {
                         )
                     })
                 }
-                <button className="flex w-full sm:w-[49%] lg:w-[32%] h-56 justify-center items-center bg-btnPrimaryColor uppercase font-normal text-2xl rounded-xl gap-2 small-tab:gap-4">
+                <button className="flex w-full sm:w-[49%] lg:w-[32%] h-56 justify-center items-center bg-btnPrimaryColor uppercase font-normal text-2xl rounded-xl gap-2 small-tab:gap-4" onClick={handelNaviagte}>
                     See all
                 </button>
             </div>

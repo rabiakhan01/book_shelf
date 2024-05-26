@@ -18,6 +18,7 @@ const FilterSection = () => {
 
     const [minVal, setMinVal] = useState(0);
     const [maxVal, setMaxVal] = useState(500);
+
     //handel the category array
     const handelCategory = (event) => {
 
@@ -116,6 +117,9 @@ const FilterSection = () => {
     const applyFilter = () => {
 
         const filterData = [];
+        const filterLanguageData = [];
+        const filterCategoryData = [];
+
         const selectedCategory = categories.filter((item) => item.check);
         const selectedLanguage = languages.filter((item) => item.check);
         const selectedFilters = selectedCategory.concat(selectedLanguage)
@@ -125,33 +129,73 @@ const FilterSection = () => {
         }
         const filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
 
-        if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal > 0) {
-            filters.bookFilters.map(element => {
-                allBooksData.filter((filterItem) => {
+        const filterLanguages = languages.map((item) => {
+            const matchingLanguage = filters.bookFilters.find((filterItem) => filterItem.name === item.name);
+            if (matchingLanguage) {
+                return matchingLanguage
+            }
 
-                    if (filterItem.category === element.name || filterItem.language === element.name) {
-                        filterData.push(filterItem);
+        }).filter((r) => r !== undefined);
+
+        const filterCategories = categories.map((item) => {
+            const matchingCategory = filters.bookFilters.find((filterItem) => filterItem.name === item.name);
+            if (matchingCategory) {
+                return matchingCategory
+            }
+
+        }).filter((r) => r !== undefined);
+
+        if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal > 0) {
+
+            filterCategories.map(element => {
+                allBooksData.filter((filterItem) => {
+                    if (filterItem.category === element.name) {
+                        filterCategoryData.push(filterItem);
                     }
-                    else if (element.minPrice > 0 && element.maxPrice) {
-                        if (filterItem.new_price > element.minPrice && filterItem.new_price < element.maxPrice) {
-                            console.log("hello")
-                            filterData.push(filterItem);
-                        }
-                    }
-                    if (element.name == 'Other') {
-                        if (filterItem.category !== 'Imaginative literature' && filterData.category !== 'Scientific literature' && filterItem.category !== 'Business' && filterItem.category !== 'Educational') {
-                            filterData.push(filterItem);
-                        }
+                })
+            });
+            filterLanguages.map(element => {
+                allBooksData.filter((filterItem) => {
+                    if (filterItem.language === element.name) {
+                        filterLanguageData.push(filterItem);
                     }
                 })
             });
 
-            context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
+            if (filterLanguages.length > 0 && filterCategories.length > 0) {
+                filterLanguages.map((item) => {
+                    filterCategoryData.filter((filterItem) => {
+                        if (filterItem.language === item.name) {
+                            filterData.push(filterItem);
+                        }
+                    })
+                })
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
+            }
+
+            else if (filterLanguages.length > 0) {
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterLanguageData });
+
+            }
+
+            else if (filterCategories.length > 0) {
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
+
+            }
+            else if (minVal > 0 && maxVal < 500) {
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
+
+            }
         }
 
         else {
-            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData })
+            context.setBookPageContext({ bookFilters: [], bookListing: allBooksData })
         }
+
+        console.log("🚀 ~ applyFilter ~ filterCategoryData:", filterCategoryData)
+        console.log("🚀 ~ applyFilter ~ filterLanguageData:", filterLanguageData)
+        console.log("🚀 ~ applyFilter ~ filterData:", filterData);
+
     }
 
     const resetAllFilters = () => {
@@ -228,6 +272,7 @@ const FilterSection = () => {
                     setMinVal={setMinVal}
                     setMaxVal={setMaxVal}
                     onChange={({ min, max }) => { }}
+
                 />
             </div>
             <div className="flex justify-between w-full pt-4">
