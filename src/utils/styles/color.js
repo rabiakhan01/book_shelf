@@ -21,6 +21,7 @@ const textLightWhiteColor = "#F6F4F0";
 const textLightBlackColor = "#2A2C2E";
 const textGrayColor = "#00000061";
 const textYellowColor = "#F4BA30";
+const textLightGrayColor = "#FFFFFF61";
 
 const blackColor60 = "#00000099";
 const yellowColor400 = "#F4D867";
@@ -41,6 +42,7 @@ export {
     textLightWhiteColor,
     textLightBlackColor,
     textYellowColor,
+    textLightGrayColor,
     blackColor60,
     whiteColor,
     yellowColor400,

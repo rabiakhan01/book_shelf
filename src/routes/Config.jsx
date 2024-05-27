@@ -5,6 +5,7 @@ import ShippingPage from "../pages/ShippingPage";
 import LoginPage from "../pages/LoginPage";
 import AllBooksPage from "../pages/AllBooksPage";
 import AllAuthorPage from "../pages/AllAuthorsPage";
+import BookDetailPage from "../pages/BookDetailPage";
 //public routes
 const publicRoutes = [
     {
@@ -20,8 +21,8 @@ const publicRoutes = [
         element: <Layout><LoginPage /></Layout>
     },
     {
-        path: '/all-authors',
-        element: <Layout><AllAuthorPage /></Layout>
+        path: '/book-detail',
+        element: <Layout><BookDetailPage /></Layout>
     },
 ];
 

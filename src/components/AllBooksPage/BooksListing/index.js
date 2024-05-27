@@ -3,9 +3,11 @@ import { FilteredChip, Pagination, ProductCard } from "../../Shared";
 import FilterSection from "../../Shared/FilterSection";
 import icons from "../../../assets/icons/icons";
 import { bookListingContext } from "../../Shared/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const BooksListing = () => {
 
+    const navigate = useNavigate();
     const context = useContext(bookListingContext);
 
     const [showFilterSection, setShowFilterSection] = useState(false);
@@ -17,6 +19,10 @@ const BooksListing = () => {
 
     const resetAllFilters = () => {
         context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] })
+    }
+
+    const navigateToDetailPage = (bookId) => {
+        navigate(`book-detail/${bookId}`)
     }
 
     // when window is resized then remove the opened filter drawer
@@ -43,6 +49,8 @@ const BooksListing = () => {
             element.classList.remove('overflow-hidden');
         }
     }, [showFilterSection])
+
+
     return (
 
         <div className="flex flex-col bg-secondaryColor p-4">
@@ -96,6 +104,7 @@ const BooksListing = () => {
                                         views={book.rating.views}
                                         old_price={book.old_price}
                                         new_price={book.new_price}
+                                        onClick={() => navigateToDetailPage(book.id)}
                                     />
                                 )
                             })
