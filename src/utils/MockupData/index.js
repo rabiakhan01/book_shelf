@@ -574,7 +574,7 @@ const allReviewsData = [
     {
         id: 3,
         viewer_name: 'Florencio Dorrance',
-        viewer_img: images.viewer_4,
+        viewer_img: images.viewer_3,
         date: '10 october 2022',
         review: 'This is fantastic, and could have been written just for me. Grimly funny absurdist-existentialist noir that incorporates pulp sci-fi as well as hardboiled crime fiction elements to become a surprisingly powerful examination of the lasting impact of male violence in its many forms.It also does one of my favourite things, which is to recount other fictional stories within its own pages, a Vonnegut-style technique I never seem to tire of. The ending, too, which some have complained about, I think works perfectly.Phenomenally entertaining and sneakily profound.',
         star: 5,
@@ -583,6 +583,7 @@ const allReviewsData = [
         id: 4,
         viewer_name: 'Geoffrey Mott',
         date: '10 october 2022',
+        viewer_img: images.viewer_4,
         review: 'Read a great review in the Guardian and took a chance. I should have paid more attention to the comparison with The New York Trilogy, my least favourite Auster experience.This does noir tropes really well with women always called “twists” or “frails”, but I wasn’t really on board for the final section where it all gets a bit meta. I’m down for literary noir, but this was no Motherless Brooklyn.',
         star: 3,
     },
@@ -638,6 +639,7 @@ const languagesData = [
 export {
     allBooksData,
     allAuthorsData,
+    allReviewsData,
     categoriesData,
     languagesData
 

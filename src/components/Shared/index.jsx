@@ -11,3 +11,4 @@ export { default as FilteredChip } from './FilteredChip';
 export { default as ContextProvider } from './ContextProvider';
 export { default as Pagination } from './Pagination';
 export { default as Scroll } from './Scroll';
+export { default as Review } from './ReviewCard';

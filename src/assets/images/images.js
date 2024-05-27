@@ -37,6 +37,7 @@ const images = {
     viewer_1: require('./viewer_1.png'),
     viewer_2: require('./viewer_2.png'),
     viewer_3: require('./viewer_3.png'),
+    viewer_4: require('./viewer_4.png'),
 
 }
 
