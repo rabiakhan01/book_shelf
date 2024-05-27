@@ -5,17 +5,18 @@ import ReviewCard from "../../Shared/ReviewCard";
 
 const ReviewSection = () => {
     return (
-        <div>
-            <div>
-                <h1>readers reviews</h1>
+        <div className="">
+            <div className="flex justify-between mb-4">
+                <h1 className="text-2xl uppercase font-medium">readers reviews</h1>
                 <Button
                     variant="outlined"
                     size="medium"
+                    color="secondaryColor"
                 >
                     add review
                 </Button>
             </div>
-            <div>
+            <div className="flex gap-2 w-full flex-wrap">
                 {
                     allReviewsData.map((review, index) => {
                         return (

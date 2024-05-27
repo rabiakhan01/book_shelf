@@ -5,7 +5,7 @@ import icons from "../../../assets/icons/icons";
 
 const SingleBookDetail = () => {
     return (
-        <div className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-8">
+        <div className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-10">
             <div>
                 bread crumbs
             </div>

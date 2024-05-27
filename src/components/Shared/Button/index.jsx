@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ children, variant, size, onClick, disabled }) => {
+const Button = ({ children, variant, size, color, onClick, disabled }) => {
     if (size === "extra-small") {
         size = "h-6 w-12 small-tab:h-7 small-tab:w-12 sm:h-8 sm:w-16 font-normal text-sm";
     }
@@ -18,7 +18,7 @@ const Button = ({ children, variant, size, onClick, disabled }) => {
         variant = "bg-btnPrimaryColor";
     }
     else if (variant === 'outlined') {
-        variant = "bg-transparent border-2 border-btnPrimaryColor text-btnPrimaryColor";
+        variant = `bg-transparent border-2 ${color ? `border-${color} text-${color}` : 'border-lightYellowColor text-textYellowColor'}`;
     }
     return (
         <button
