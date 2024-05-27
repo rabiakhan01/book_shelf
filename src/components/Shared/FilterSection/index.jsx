@@ -14,10 +14,11 @@ const FilterSection = () => {
 
     //filter all the book which are available in which language
     const [language, setLanguage] = useState({});
-    const [languages, setLanguages] = useState(languagesData)
-
-    const [minVal, setMinVal] = useState(0);
-    const [maxVal, setMaxVal] = useState(500);
+    const [languages, setLanguages] = useState(languagesData);
+    const min = Math.min(...allBooksData.map((item) => item.new_price));
+    const max = Math.max(...allBooksData.map((item) => item.new_price))
+    const [minVal, setMinVal] = useState(min);
+    const [maxVal, setMaxVal] = useState(max);
 
     //handel the category array
     const handelCategory = (event) => {
@@ -145,18 +146,18 @@ const FilterSection = () => {
 
         }).filter((r) => r !== undefined);
 
-        if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal > 0) {
+        if (selectedCategory.length > 0 || selectedLanguage.length > 0 || minVal) {
 
             filterCategories.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category === element.name) {
+                    if (filterItem.category === element.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
                         filterCategoryData.push(filterItem);
                     }
                 })
             });
             filterLanguages.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.language === element.name) {
+                    if (filterItem.language === element.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
                         filterLanguageData.push(filterItem);
                     }
                 })
@@ -165,26 +166,32 @@ const FilterSection = () => {
             if (filterLanguages.length > 0 && filterCategories.length > 0) {
                 filterLanguages.map((item) => {
                     filterCategoryData.filter((filterItem) => {
-                        if (filterItem.language === item.name) {
+                        if (filterItem.language === item.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
                             filterData.push(filterItem);
                         }
                     })
-                })
+                });
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
+                console.log("hello from both");
             }
 
             else if (filterLanguages.length > 0) {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterLanguageData });
-
+                console.log("hello from 1st 1");
             }
 
             else if (filterCategories.length > 0) {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
-
+                console.log("hello from second 1");
             }
-            else if (minVal > 0 && maxVal < 500) {
-                context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
-
+            else {
+                allBooksData.map((item) => {
+                    if (item.new_price >= minVal && item.new_price <= maxVal) {
+                        filterData.push(item);
+                    }
+                })
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
+                console.log("hello from last");
             }
         }
 
@@ -192,16 +199,12 @@ const FilterSection = () => {
             context.setBookPageContext({ bookFilters: [], bookListing: allBooksData })
         }
 
-        console.log("🚀 ~ applyFilter ~ filterCategoryData:", filterCategoryData)
-        console.log("🚀 ~ applyFilter ~ filterLanguageData:", filterLanguageData)
-        console.log("🚀 ~ applyFilter ~ filterData:", filterData);
-
     }
 
     const resetAllFilters = () => {
         context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] });
-        setMinVal(0);
-        setMaxVal(500);
+        setMinVal(min);
+        setMaxVal(max);
     }
 
     useEffect(() => {
@@ -265,8 +268,8 @@ const FilterSection = () => {
                     <h1>price</h1>
                 </div>
                 <MultiRangeSlider
-                    min={0}
-                    max={500}
+                    min={min}
+                    max={max}
                     minVal={minVal}
                     maxVal={maxVal}
                     setMinVal={setMinVal}

@@ -61,12 +61,17 @@ const BooksListing = () => {
                 <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'} gap-2 w-full overflow-auto`}>
                     {
                         context.bookPageContext.bookFilters.map((item, index) => {
-                            return (
-                                <FilteredChip
-                                    key={index}
-                                    name={item.name}
-                                />
-                            )
+                            if (item.name) {
+                                return (
+                                    <FilteredChip
+                                        key={index}
+                                        name={item.name}
+                                    />
+                                )
+                            }
+                            else {
+                                return false;
+                            }
                         })
                     }
                 </div>

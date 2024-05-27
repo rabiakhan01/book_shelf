@@ -10,7 +10,7 @@ const PaginationButton = ({ name, Icon, onClick, disabled, activeButton }) => {
     }
 
     return (
-        <div className={`${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} flex gap-1 sm:gap-2 ${size} justify-center items-center rounded-full ${name == 'prev' ? 'flex-row' : 'flex-row-reverse'}`} onClick={onClick}>
+        <div className={`${disabled ? 'cursor-not-allowed bg-zinc-700' : 'cursor-pointer'} flex gap-1 sm:gap-2 ${size} justify-center items-center rounded-full ${name == 'prev' ? 'flex-row' : 'flex-row-reverse'}`} onClick={onClick}>
             {
                 Icon ?
                     <img src={Icon} alt="" className="" />

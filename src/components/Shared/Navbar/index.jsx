@@ -4,11 +4,7 @@ import { Button } from '../index'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
-
     const navigate = useNavigate();
-    const handelNavigate = () => {
-        navigate('/login');
-    }
 
     const [drawer, setDrawer] = useState(false);
     const [searchField, setSearchField] = useState(true);
@@ -27,11 +23,15 @@ const Navbar = () => {
     const handelSearchClick = () => {
         setSearchField(true);
     }
+
+    const handelNavigate = (path) => {
+        navigate(`${path}`)
+    }
     return (
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
                 <div className="flex gap-2 xs:gap-3 h-10 items-center">
-                    <img src={icons.logo} alt="logo" className="h-6 w-6 small-tab:w-8 small-tab:h-10 " />
+                    <img src={icons.logo} alt="logo" className="h-6 w-6 small-tab:w-8 small-tab:h-10 cursor-pointer" onClick={() => handelNavigate('/')} />
                     <h1 className="flex text-textSecondaryColor text-xs small-tab:text-sm sm:text-base font-medium uppercase">bookmooch</h1>
                 </div>
                 <div className="hidden lg:flex">
@@ -57,7 +57,7 @@ const Navbar = () => {
 
                             variant="contained"
                             size="small"
-                            onClick={handelNavigate}
+                            onClick={() => handelNavigate('/login')}
                         >
                             Login
                         </Button>
