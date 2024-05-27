@@ -2,13 +2,12 @@ import React from "react";
 import images from "../../../assets/images/images";
 import { Button } from "../../Shared";
 import icons from "../../../assets/icons/icons";
+import NavigationCrumb from "../NavigationCrumb";
 
 const SingleBookDetail = () => {
     return (
         <div className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-10">
-            <div>
-                bread crumbs
-            </div>
+            <NavigationCrumb />
             <div className="flex p-4 justify-between">
                 <div className="flex gap-x-4 ">
                     <div className="h-96 w-64 rounded-2xl overflow-hidden">
