@@ -10,6 +10,7 @@ const BookDetailPage = () => {
         <div className="flex flex-col gap-6">
             <SingleBookDetail />
             <RecommendationSection />
+            <ReviewSection />
         </div>
     )
 }

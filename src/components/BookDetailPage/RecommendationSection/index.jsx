@@ -10,7 +10,7 @@ const RecommendationSection = () => {
 
     return (
         <div className="flex flex-col gap-2">
-            <div className="text-2xl uppercase font-medium">
+            <div className="text-base md:text-xl lg:text-2xl uppercase font-medium">
                 <h1>you may also like</h1>
             </div>
             <div className="flex w-full">
@@ -47,7 +47,7 @@ const RecommendationSection = () => {
                     grabCursor={true}
                     modules={[Pagination]}
                     pagination={{ clickable: true }}
-                    className={`w-full`}
+                    className={`w-full h-96 xl:h-auto`}
                 >
 
                     {
