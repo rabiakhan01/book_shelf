@@ -4,11 +4,11 @@ import icons from "../../../assets/icons/icons";
 
 const ProductCard = ({ image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon }) => {
     return (
-        <div className={`flex flex-col ${isIcon ? 'w-60 bg-whiteColor p-4' : 'w-full extra-small:w-full h-[30.3rem] small-tab:w-[49%] md:w-[32.5%] bg-primaryColor p-6'}  rounded-xl gap-2  cursor-pointer`} onClick={onClick}>
+        <div className={`flex flex-col ${isIcon ? 'w-full xl:w-52 bg-whiteColor p-4' : 'w-full extra-small:w-full h-[30.3rem] small-tab:w-[49%] md:w-[32.5%] bg-primaryColor p-6'}  rounded-xl gap-2  cursor-pointer`} onClick={onClick}>
 
             <div className="relative flex flex-col w-full justify-center items-center">
-                <div className={`rounded-xl ${isIcon ? 'h-60' : 'h-72'} w-full overflow-hidden`}>
-                    <img src={image} alt="img" className="object-fit sm:object-cover h-full w-full" />
+                <div className={`rounded-xl ${isIcon ? '!h-60' : '!h-72'} !w-full overflow-hidden`}>
+                    <img src={image} alt="img" className="object-cover h-full w-full" />
                 </div>
                 <div className="absolute w-5 h-50 top-4 right-7">
                     <BtnBookMark />
