@@ -4,8 +4,8 @@ import HomePage from "../pages/HomePage";
 import ShippingPage from "../pages/ShippingPage";
 import LoginPage from "../pages/LoginPage";
 import AllBooksPage from "../pages/AllBooksPage";
-import AllAuthorPage from "../pages/AllAuthorsPage";
 import BookDetailPage from "../pages/BookDetailPage";
+import CartPage from "../pages/CartPage";
 //public routes
 const publicRoutes = [
     {
@@ -24,14 +24,14 @@ const publicRoutes = [
         path: 'all-books/book-detail/:bookId',
         element: <Layout><BookDetailPage /></Layout>
     },
+    {
+        path: '/cart',
+        element: <Layout><CartPage /></Layout>
+    }
 ];
 
 //protected routes
 const protectedRoutes = [
-    {
-        path: '/cart',
-        element: <Layout><Cart /></Layout>
-    },
     {
         path: '/shipping',
         element: <Layout><ShippingPage /></Layout>

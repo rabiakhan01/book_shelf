@@ -46,11 +46,24 @@ const Navbar = () => {
                 <div className="relative flex items-center gap-2 small-tab:gap-5 xl:gap-8 h-auto w-auto">
 
                     <div className="flex items-center gap-2 sm:gap-3 xl:gap-4">
-                        <button onClick={handelSearchClick} className="h-full w-full">
-                            <img src={icons.whiteSearch} alt="search" className={`hidden lg:flex`} />
-                        </button>
-                        <img src={icons.bookmark} alt="bookmark" className="h-5 w-5 small-tab:h-full small-tab:w-full" />
-                        <img src={icons.cart} alt="cart" className="h-5 w-5 small-tab:h-full small-tab:w-full" />
+                        <div className="h-6 w-6 ">
+                            <button onClick={handelSearchClick} className="h-full w-full">
+                                <img src={icons.whiteSearch} alt="search" className={`hidden lg:flex`} />
+                            </button>
+                        </div>
+                        <div className="relative h-6 w-6 ">
+                            <img src={icons.bookmark} alt="bookmark" className="h-full w-full" />
+                            <div className="absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full flex justify-center items-center">
+                                <p className="text-blackColor font-semibold text-sm">1</p>
+                            </div>
+                        </div>
+                        <div className="relative h-6 w-6 ">
+                            <img src={icons.cart} alt="cart" className="w-full h-full" />
+                            <div className="absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full flex justify-center items-center">
+                                <p className="text-blackColor font-semibold text-sm">1</p>
+                            </div>
+                        </div>
+
                     </div>
                     <div>
                         <Button

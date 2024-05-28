@@ -9,6 +9,10 @@ import { allBooksData } from "../../../utils/MockupData";
 const SingleBookDetail = () => {
     const { bookId } = useParams();
 
+    const handelCart = () => {
+
+    }
+
     return (
         <React.Fragment>
             {
@@ -76,6 +80,7 @@ const SingleBookDetail = () => {
                                                 <Button
                                                     size="medium"
                                                     variant="outlined"
+                                                    onClick={handelCart}
                                                 >
                                                     add to bag
                                                 </Button>
