@@ -15,22 +15,22 @@ const SingleBookDetail = () => {
                 allBooksData.map((item) => {
                     if (item.id === +bookId) {
                         return (
-                            <div className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-10">
+                            <div key={item.id} className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-4 lg:mt-10">
                                 <NavigationCrumb
                                     author_name={item.author_name}
                                     book_name={item.book_name}
                                 />
-                                <div className="flex p-4 justify-between">
-                                    <div className="flex gap-x-4 ">
-                                        <div className="!h-96 w-64 rounded-2xl ">
+                                <div className="flex flex-col gap-4 md:flex-row lg:gap-0 p-4 justify-between">
+                                    <div className="flex flex-col small-tab:flex-row gap-4 small-tab:gap-x-4 ">
+                                        <div className="!h-80 lg:!h-96 w-full small-tab:w-48 lg:w-64 rounded-2xl ">
                                             <img src={item.book_img} alt="" className="object-cover rounded-2xl w-full h-full" />
                                         </div>
-                                        <div className="flex flex-col justify-between">
+                                        <div className="flex flex-col gap-2 small-tab:gap-0 justify-between">
                                             <div className="flex flex-col gap-1">
-                                                <p className="text-xl">{item.author_name}</p>
-                                                <p className="uppercase text-2xl font-normal">{item.book_name}</p>
+                                                <p className="text-base lg:text-xl">{item.author_name}</p>
+                                                <p className="uppercase text-lg sm:text-xl lg:text-2xl font-normal">{item.book_name}</p>
                                             </div>
-                                            <div className="flex text-sm gap-4">
+                                            <div className="flex text-xs extra-small:text-sm gap-6 small-tab:gap-2 sm:gap-4">
                                                 <div>
                                                     <ul>
                                                         <li className="flex mb-2">
@@ -60,7 +60,7 @@ const SingleBookDetail = () => {
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div className="flex gap-2 text-2xl">
+                                            <div className="flex gap-2 text-xl lg:text-2xl">
                                                 {
                                                     item.old_price > 0 ? <p className="text-textLightGrayColor">${item.old_price}</p> : ''
                                                 }
@@ -83,21 +83,21 @@ const SingleBookDetail = () => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-2 text-textPrimaryColor">
-                                        <div className="flex flex-col w-[22rem] bg-primaryColor rounded-xl p-4">
+                                        <div className="flex flex-col gap-2 lg:gap-0 w-full md:w-[34vw] lg:w-[22rem] bg-primaryColor rounded-xl h-auto p-4">
                                             <div className="flex justify-between pb-1">
-                                                <h1 className="uppercase text-lg font-medium">plot summary</h1>
-                                                <img src={icons.arrow} alt="" className="w-5 h-5 -rotate-45 cursor-pointer" />
+                                                <h1 className="uppercase text-base lg:text-lg font-medium">plot summary</h1>
+                                                <img src={icons.arrow} alt="" className="h-4 w-4 lg:w-5 lg:h-5 -rotate-45 cursor-pointer" />
                                             </div>
                                             <div className="w-full">
-                                                <p className="line-clamp-[9] text-sm">{item.plot_summary}</p>
+                                                <p className="line-clamp-[8] lg:line-clamp-[9] text-sm">{item.plot_summary}</p>
                                             </div>
                                             <div>
-                                                <button className="flex uppercase  text-[15px] underline pt-1 font-medium">Read preview</button>
+                                                <button className="flex uppercase text-xs sm:text-[15px] underline pt-1 font-medium">Read preview</button>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between w-[22rem] h-16 rounded-xl bg-primaryColor p-3 uppercase">
-                                            <p className="font-medium">reception</p>
-                                            <img src={icons.arrow} alt="" className="w-5 h-5 cursor-pointer" />
+                                        <div className="flex items-center justify-between w-full lg:w-[22rem] h-auto lg:h-16 rounded-xl bg-primaryColor p-3 uppercase">
+                                            <p className="font-medium text-sm small-tab:text-base">reception</p>
+                                            <img src={icons.arrow} alt="" className="h-4 w-4 lg:w-5 lg:h-5 cursor-pointer" />
                                         </div>
 
                                     </div>
