@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import images from "../../../assets/images/images";
 import { Button } from "../../Shared";
 import icons from "../../../assets/icons/icons";
 import NavigationCrumb from "../NavigationCrumb";
 import { useParams } from "react-router-dom";
 import { allBooksData } from "../../../utils/MockupData";
+import { bookListingContext } from "../../Shared/ContextProvider";
 
 const SingleBookDetail = () => {
+
+    const context = useContext(bookListingContext);
     const { bookId } = useParams();
 
-    const handelCart = () => {
+    const handelCart = (book_id) => {
 
+        const alreadyExists = context.favouritBookContext.cartBooksIds?.find((bookID) => bookID == +book_id);
+        if (!alreadyExists) {
+            const cartDataIds = [...context.favouritBookContext.cartBooksIds, book_id];
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooksIds: cartDataIds })
+        }
     }
 
+    const handelBookMark = () => {
+
+    }
     return (
         <React.Fragment>
             {
@@ -80,7 +91,7 @@ const SingleBookDetail = () => {
                                                 <Button
                                                     size="medium"
                                                     variant="outlined"
-                                                    onClick={handelCart}
+                                                    onClick={() => handelCart(item.id)}
                                                 >
                                                     add to bag
                                                 </Button>

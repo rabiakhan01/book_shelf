@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { bookListingContext } from "../ContextProvider";
 const Navbar = () => {
+    const context = useContext(bookListingContext);
     const navigate = useNavigate();
 
     const [drawer, setDrawer] = useState(false);
@@ -53,14 +55,14 @@ const Navbar = () => {
                         </div>
                         <div className="relative h-6 w-6 ">
                             <img src={icons.bookmark} alt="bookmark" className="h-full w-full" />
-                            <div className="absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full flex justify-center items-center">
-                                <p className="text-blackColor font-semibold text-sm">1</p>
+                            <div className={`${context.favouritBookContext.favouritBooksIds.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                                <p className={`text-blackColor font-semibold text-sm`}>{context.favouritBookContext.favouritBooksIds.length}</p>
                             </div>
                         </div>
                         <div className="relative h-6 w-6 ">
                             <img src={icons.cart} alt="cart" className="w-full h-full" />
-                            <div className="absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full flex justify-center items-center">
-                                <p className="text-blackColor font-semibold text-sm">1</p>
+                            <div className={`${context.favouritBookContext.cartBooksIds.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                                <p className="text-blackColor font-semibold text-sm">{context.favouritBookContext.cartBooksIds.length}</p>
                             </div>
                         </div>
 
@@ -96,7 +98,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                 }
-            </div>
+            </div >
             {
                 searchField &&
                 <div className="flex lg:hidden relative pb-2">
@@ -106,7 +108,7 @@ const Navbar = () => {
                     </button>
                 </div>
             }
-        </nav>
+        </nav >
     )
 }
 
