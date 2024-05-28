@@ -2,7 +2,7 @@ import React from "react";
 import { BreadCrumb } from "../../Shared";
 import { useNavigate } from "react-router-dom";
 
-const NavigationCrumb = () => {
+const NavigationCrumb = ({ author_name, book_name }) => {
 
     const navigate = useNavigate();
     const breadArray = [
@@ -20,7 +20,7 @@ const NavigationCrumb = () => {
         },
         {
             id: 3,
-            name: 'Muscle, Alan Trotter',
+            name: `${book_name}, ${author_name}`,
             path: '/book-detail',
             isActive: true,
         },

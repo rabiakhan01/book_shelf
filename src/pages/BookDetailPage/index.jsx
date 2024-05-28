@@ -4,6 +4,8 @@ import RecommendationSection from "../../components/BookDetailPage/Recommendatio
 import ReviewSection from "../../components/BookDetailPage/ReviewSection";
 
 const BookDetailPage = () => {
+
+
     return (
         <div className="flex flex-col gap-6">
             <SingleBookDetail />
