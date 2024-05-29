@@ -29,6 +29,13 @@ const Navbar = () => {
     const handelNavigate = (path) => {
         navigate(`${path}`)
     }
+
+    const navigateToCart = () => {
+        navigate('/cart')
+    }
+    const navigateToBookMark = () => {
+        navigate('/cart')
+    }
     return (
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
@@ -53,16 +60,16 @@ const Navbar = () => {
                                 <img src={icons.whiteSearch} alt="search" className={`hidden lg:flex`} />
                             </button>
                         </div>
-                        <div className="relative h-6 w-6 ">
+                        <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToBookMark}>
                             <img src={icons.bookmark} alt="bookmark" className="h-full w-full" />
                             <div className={`${context.favouritBookContext.favouritBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
                                 <p className={`text-blackColor font-semibold text-sm`}>{context.favouritBookContext.favouritBooks.length}</p>
                             </div>
                         </div>
-                        <div className="relative h-6 w-6 ">
+                        <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToCart}>
                             <img src={icons.cart} alt="cart" className="w-full h-full" />
                             <div className={`${context.favouritBookContext.cartBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
-                                <p className="text-blackColor font-semibold text-sm">{context.favouritBookContext.cartBooks.length}</p>
+                                <p className="text-blackColor font-semibold text-sm">{context.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0)}</p>
                             </div>
                         </div>
 
