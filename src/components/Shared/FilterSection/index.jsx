@@ -172,17 +172,14 @@ const FilterSection = () => {
                     })
                 });
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
-                console.log("hello from both");
             }
 
             else if (filterLanguages.length > 0) {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterLanguageData });
-                console.log("hello from 1st 1");
             }
 
             else if (filterCategories.length > 0) {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
-                console.log("hello from second 1");
             }
             else {
                 allBooksData.map((item) => {
@@ -191,7 +188,6 @@ const FilterSection = () => {
                     }
                 })
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterData });
-                console.log("hello from last");
             }
         }
 

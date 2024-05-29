@@ -60,6 +60,7 @@ const RecommendationSection = () => {
                                         name={book.book_name}
                                         intro={book.author_name}
                                         isIcon={true}
+                                        book_id={book.id}
                                     />
                                 </SwiperSlide>
                             );

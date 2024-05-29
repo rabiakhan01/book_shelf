@@ -64,8 +64,8 @@ const BooksListing = () => {
                     </div>
                     <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'}`}>
                         <button className="flex justify-center items-center p-2 sm:p-3 w-20 sm:w-24 bg-black rounded-full text-textLightWhiteColor text-sm" onClick={resetAllFilters} disabled={showFilterSection}>Reset all</button>
-                    </div >
-                </div >
+                    </div>
+                </div>
                 <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'} gap-2 w-full overflow-auto`}>
                     {
                         context.bookPageContext.bookFilters.map((item, index) => {
@@ -96,6 +96,7 @@ const BooksListing = () => {
                                 return (
                                     <ProductCard
                                         key={index}
+                                        book_id={book.id}
                                         image={book.book_img}
                                         name={book.book_name}
                                         intro={book.author_name}

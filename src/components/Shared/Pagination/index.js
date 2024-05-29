@@ -75,7 +75,6 @@ const Pagination = ({ maxRecordsPerPage }) => {
             setMaxPage(pages);
 
             const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
-            //console.log("currentPageData", currentPageData)
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
             if (pages <= 1) {
                 setNextButton(true);

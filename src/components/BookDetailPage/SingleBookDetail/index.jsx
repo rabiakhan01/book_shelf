@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import images from "../../../assets/images/images";
 import { BtnBookMark, Button } from "../../Shared";
 import icons from "../../../assets/icons/icons";
 import NavigationCrumb from "../NavigationCrumb";
@@ -22,21 +21,21 @@ const SingleBookDetail = () => {
     }
 
     const handelFavouritBook = (book_id) => {
-        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book.bookID == +book_id);
-        console.log("🚀 ~ handelFavouritBook ~ alreadyExists:", alreadyExists)
+        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +book_id);
+
         if (!alreadyExists) {
-            const favouritBooks = [...context.favouritBookContext.favouritBooks, { bookID: book_id, isAdded: true }];
-            console.log("🚀 ~ handelFavouritBook ~ favouritBooks:", favouritBooks)
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBooks })
+            const favouritBook = [...context.favouritBookContext.favouritBooks, book_id];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
         }
         else {
-            const removeExistedBooks = context.favouritBookContext.favouritBooks.filter((book) => book.bookID !== +alreadyExists.bookID)
-            const favouritBooks = [...context.favouritBookContext.favouritBooks, [...removeExistedBooks]];
-            console.log("🚀 ~ handelFavouritBook ~ favouritBooks:", favouritBooks)
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBooks })
+            const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
+            const favouritBook = [...updatedBooks];
+            console.log("🚀 ~ handelFavouritBook ~ updatedBooks:", favouritBook)
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
         }
 
     }
+
     return (
         <React.Fragment>
             {
@@ -55,6 +54,7 @@ const SingleBookDetail = () => {
                                             <div className="absolute top-4 right-4 z-10  h-8 w-8 rounded-full">
                                                 <BtnBookMark
                                                     onClick={() => handelFavouritBook(book.id)}
+                                                    bookID={book.id}
                                                 />
                                             </div>
                                         </div>

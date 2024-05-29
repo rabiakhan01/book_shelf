@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import BtnBookMark from "../BtnBookMark";
 import icons from "../../../assets/icons/icons";
+import { bookListingContext } from "../ContextProvider";
 
-const ProductCard = ({ image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon }) => {
+const ProductCard = ({ book_id, image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon }) => {
+
+    const context = useContext(bookListingContext);
+
+    const handelFavouritBook = (event) => {
+        event.stopPropagation();
+        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +book_id);
+
+        if (!alreadyExists) {
+            const favouritBook = [...context.favouritBookContext.favouritBooks, book_id];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
+        }
+        else {
+            const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
+            const favouritBook = [...updatedBooks];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
+        }
+    }
     return (
         <div className={`flex flex-col ${isIcon ? 'w-full xl:w-52 bg-whiteColor p-4' : 'w-full extra-small:w-full h-[30.3rem] small-tab:w-[49%] md:w-[32.5%] bg-primaryColor p-6'}  rounded-xl gap-2  cursor-pointer`} onClick={onClick}>
 
@@ -10,8 +28,11 @@ const ProductCard = ({ image, name, intro, review, rate, views, old_price, new_p
                 <div className={`rounded-xl ${isIcon ? '!h-60' : '!h-72'} !w-full overflow-hidden`}>
                     <img src={image} alt="img" className="object-cover h-full w-full" />
                 </div>
-                <div className="absolute w-5 h-50 top-4 right-7">
-                    <BtnBookMark />
+                <div className="absolute w-5 h-50 top-4 right-7 z-20">
+                    <BtnBookMark
+                        onClick={handelFavouritBook}
+                        bookID={book_id}
+                    />
                 </div>
             </div>
 
