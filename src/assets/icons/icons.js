@@ -8,6 +8,7 @@ const icons = {
     filterIcon: require('./filterIcon.png'),
     searchIcon: require('./search.png'),
     bookmark: require('./book.svg').default,
+    blackBook: require('./black-bookmark.svg').default,
     cart: require('./Cart.svg').default,
     facebook: require('./fb.svg').default,
     insta: require('./insta.svg').default,

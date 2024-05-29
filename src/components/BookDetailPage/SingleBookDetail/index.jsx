@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import images from "../../../assets/images/images";
-import { Button } from "../../Shared";
+import { BtnBookMark, Button } from "../../Shared";
 import icons from "../../../assets/icons/icons";
 import NavigationCrumb from "../NavigationCrumb";
 import { useParams } from "react-router-dom";
@@ -14,44 +14,62 @@ const SingleBookDetail = () => {
 
     const handelCart = (book_id) => {
 
-        const alreadyExists = context.favouritBookContext.cartBooksIds?.find((bookID) => bookID == +book_id);
+        const alreadyExists = context.favouritBookContext.cartBooks?.find((bookID) => bookID == +book_id);
         if (!alreadyExists) {
-            const cartDataIds = [...context.favouritBookContext.cartBooksIds, book_id];
-            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooksIds: cartDataIds })
+            const cartBooks = [...context.favouritBookContext.cartBooks, book_id];
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: cartBooks })
         }
     }
 
-    const handelBookMark = () => {
+    const handelFavouritBook = (book_id) => {
+        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book.bookID == +book_id);
+        console.log("🚀 ~ handelFavouritBook ~ alreadyExists:", alreadyExists)
+        if (!alreadyExists) {
+            const favouritBooks = [...context.favouritBookContext.favouritBooks, { bookID: book_id, isAdded: true }];
+            console.log("🚀 ~ handelFavouritBook ~ favouritBooks:", favouritBooks)
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBooks })
+        }
+        else {
+            const removeExistedBooks = context.favouritBookContext.favouritBooks.filter((book) => book.bookID !== +alreadyExists.bookID)
+            const favouritBooks = [...context.favouritBookContext.favouritBooks, [...removeExistedBooks]];
+            console.log("🚀 ~ handelFavouritBook ~ favouritBooks:", favouritBooks)
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBooks })
+        }
 
     }
     return (
         <React.Fragment>
             {
-                allBooksData.map((item) => {
-                    if (item.id === +bookId) {
+                allBooksData.map((book) => {
+                    if (book.id === +bookId) {
                         return (
-                            <div key={item.id} className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-4 lg:mt-10">
+                            <div key={book.id} className="flex flex-col text-textSecondaryColor gap-2 bg-secondaryColor w-full rounded-xl h-auto mt-4 lg:mt-10">
                                 <NavigationCrumb
-                                    author_name={item.author_name}
-                                    book_name={item.book_name}
+                                    author_name={book.author_name}
+                                    book_name={book.book_name}
                                 />
                                 <div className="flex flex-col gap-4 md:flex-row lg:gap-0 p-4 justify-between">
                                     <div className="flex flex-col small-tab:flex-row gap-4 small-tab:gap-x-4 ">
-                                        <div className="!h-80 lg:!h-96 w-full small-tab:w-48 lg:w-64 rounded-2xl ">
-                                            <img src={item.book_img} alt="" className="object-cover rounded-2xl w-full h-full" />
+                                        <div className="relative !h-80 lg:!h-96 w-full small-tab:w-48 lg:w-64 rounded-2xl ">
+                                            <img src={book.book_img} alt="" className="object-cover rounded-2xl w-full h-full" />
+                                            <div className="absolute top-4 right-4 z-10  h-8 w-8 rounded-full">
+                                                <BtnBookMark
+                                                    onClick={() => handelFavouritBook(book.id)}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="flex flex-col gap-2 small-tab:gap-0 justify-between">
                                             <div className="flex flex-col gap-1">
-                                                <p className="text-base lg:text-xl">{item.author_name}</p>
-                                                <p className="uppercase text-lg sm:text-xl lg:text-2xl font-normal">{item.book_name}</p>
+                                                <p className="text-base lg:text-xl">{book.author_name}</p>
+                                                <p className="uppercase text-lg sm:text-xl lg:text-2xl font-normal">{book.book_name}</p>
                                             </div>
                                             <div className="flex text-xs extra-small:text-sm gap-6 small-tab:gap-2 sm:gap-4">
                                                 <div>
                                                     <ul>
                                                         <li className="flex mb-2">
                                                             <img src="" alt="" />
-                                                            <p>{item.rating.star}</p>
-                                                            <p className="pl-1">({item.rating.views})</p>
+                                                            <p>{book.rating.star}</p>
+                                                            <p className="pl-1">({book.rating.views})</p>
                                                         </li>
                                                         <li>Category</li>
                                                         <li>Publish date</li>
@@ -64,22 +82,22 @@ const SingleBookDetail = () => {
                                                 </div>
                                                 <div>
                                                     <ul>
-                                                        <li><button className="underline mb-2">{item.rating.reviews} reviews</button></li>
-                                                        <li>{item.category}</li>
-                                                        <li>{item.publish_date}</li>
-                                                        <li>{item.language}</li>
-                                                        <li>{item.pages}</li>
-                                                        <li>{item.read_time}</li>
-                                                        <li>{item.type}</li>
-                                                        <li>{item.publisher}</li>
+                                                        <li><button className="underline mb-2">{book.rating.reviews} reviews</button></li>
+                                                        <li>{book.category}</li>
+                                                        <li>{book.publish_date}</li>
+                                                        <li>{book.language}</li>
+                                                        <li>{book.pages}</li>
+                                                        <li>{book.read_time}</li>
+                                                        <li>{book.type}</li>
+                                                        <li>{book.publisher}</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                             <div className="flex gap-2 text-xl lg:text-2xl">
                                                 {
-                                                    item.old_price > 0 ? <p className="text-textLightGrayColor">${item.old_price}</p> : ''
+                                                    book.old_price > 0 ? <p className="text-textLightGrayColor">${book.old_price}</p> : ''
                                                 }
-                                                <p>${item.new_price}</p>
+                                                <p>${book.new_price}</p>
                                             </div>
                                             <div className="flex gap-2">
                                                 <Button
@@ -91,7 +109,7 @@ const SingleBookDetail = () => {
                                                 <Button
                                                     size="medium"
                                                     variant="outlined"
-                                                    onClick={() => handelCart(item.id)}
+                                                    onClick={() => handelCart(book.id)}
                                                 >
                                                     add to bag
                                                 </Button>
@@ -105,7 +123,7 @@ const SingleBookDetail = () => {
                                                 <img src={icons.arrow} alt="" className="h-4 w-4 lg:w-5 lg:h-5 -rotate-45 cursor-pointer" />
                                             </div>
                                             <div className="w-full">
-                                                <p className="line-clamp-[8] lg:line-clamp-[9] text-sm">{item.plot_summary}</p>
+                                                <p className="line-clamp-[8] lg:line-clamp-[9] text-sm">{book.plot_summary}</p>
                                             </div>
                                             <div>
                                                 <button className="flex uppercase text-xs sm:text-[15px] underline pt-1 font-medium">Read preview</button>

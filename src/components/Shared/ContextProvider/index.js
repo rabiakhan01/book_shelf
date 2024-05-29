@@ -10,8 +10,8 @@ const ContextProvider = ({ children }) => {
         bookListing: allBooksData,
     })
     const [favouritBookContext, setFavouritBookContext] = useState({
-        favouritBooksIds: [],
-        cartBooksIds: [],
+        favouritBooks: [],
+        cartBooks: [],
     })
 
 
