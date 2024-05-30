@@ -105,7 +105,7 @@ const BooksListing = () => {
                                         views={book.rating.views}
                                         old_price={book.old_price}
                                         new_price={book.new_price}
-                                        onClick={() => navigateToDetailPage(book.id, book)}
+                                        onClick={() => navigateToDetailPage(book.id)}
                                     />
                                 )
                             })

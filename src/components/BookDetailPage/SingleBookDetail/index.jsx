@@ -50,7 +50,7 @@ const SingleBookDetail = () => {
                 return book
             }
         })
-        console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
+        //console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
 
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedData })
     }
@@ -63,7 +63,7 @@ const SingleBookDetail = () => {
                 return book;
             }
         })
-        console.log("🚀 ~ updatedArray ~ updatedArray:", updatedArray)
+        //console.log("🚀 ~ updatedArray ~ updatedArray:", updatedArray)
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedArray });
         const array = updatedArray.filter((item) => item.quantity > 0);
 

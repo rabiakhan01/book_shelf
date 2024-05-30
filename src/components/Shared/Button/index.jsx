@@ -14,6 +14,9 @@ const Button = ({ children, variant, size, color, onClick, disabled }) => {
     else if (size === "large") {
         size = " h-14 w-16 small-tab:h-20 small-tab:w-20 sm:h-24 sm:w-28 text-blackColor"
     }
+    else if (size == "extra-large") {
+        size = "h-10 w-auto text-blackColor text-base"
+    }
     if (variant === 'contained') {
         variant = "bg-btnPrimaryColor";
     }

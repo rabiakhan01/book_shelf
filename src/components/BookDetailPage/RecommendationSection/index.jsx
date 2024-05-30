@@ -5,8 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css/pagination';
-
+import { useNavigate } from "react-router-dom";
 const RecommendationSection = () => {
+    const navigate = useNavigate();
+    const navigateToDetailPage = (book_id) => {
+        navigate(`/all-books/book-detail/${book_id}`)
+    }
 
     return (
         <div className="flex flex-col gap-2">
@@ -61,6 +65,7 @@ const RecommendationSection = () => {
                                         intro={book.author_name}
                                         isIcon={true}
                                         book_id={book.id}
+                                        onClick={() => navigateToDetailPage(book.id)}
                                     />
                                 </SwiperSlide>
                             );

@@ -24,7 +24,9 @@ const allBooksData = [
         old_price: 15,
         new_price: 10,
         plot_summary: 'In a hard-boiled city of crooks, grifts, and rackets lurk a pair of toughs: Box and They’re the kind of men capable of extracting apologies and reparations, of teaching you a chilling lesson. They seldom think twice, and ask very few questions. Until one night over the poker table, they encounter a pulp writer with wild ideas and an unscrupulous private detective, leading them into what is either a classic mystery or a senseless maze of corpses.',
-        book_img: images.book_1
+        book_img: images.book_1,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
 
     },
     {
@@ -46,7 +48,9 @@ const allBooksData = [
         old_price: 0,
         new_price: 14,
         plot_summary: 'The Godfather is a crime novel written by American _name Mario Puzo. Originally published in 1969, the novel details the story of a fictional Mafia family based in New York City (and Long Beach, New York), headed by Vito Corleone.',
-        book_img: images.book_2
+        book_img: images.book_2,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 3,
@@ -67,7 +71,9 @@ const allBooksData = [
         old_price: 19,
         new_price: 15,
         plot_summary: 'She Beyond Sun is a captivating Scientific literature novel that explores the possibilities of life beyond our solar system. With intricate world-building and compelling characters, Daniel Cargallo takes readers on an unforgettable journey through space and time.',
-        book_img: images.book_3
+        book_img: images.book_3,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 4,
@@ -88,7 +94,9 @@ const allBooksData = [
         old_price: 15,
         new_price: 10,
         plot_summary: 'Hello, I am Erik is a fascinating Scientific literature of one of the most influential designers of our time, Erik Spiekermann. From his early years to his groundbreaking work in typography and graphic design, this book offers insight into the life and career of a true visionary.',
-        book_img: images.book_4
+        book_img: images.book_4,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 5,
@@ -109,7 +117,9 @@ const allBooksData = [
         old_price: 0,
         new_price: 200,
         plot_summary: 'More Than This is a gripping young adult novel that delves into themes of identity, reality, and survival. When Seth drowns, he wakes up alone, naked, and starving on the desolate English suburb where he grew up. As he navigates this strange new world, Seth must confront his past and unravel the mysteries of his existence.',
-        book_img: images.book_5
+        book_img: images.book_5,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 6,
@@ -130,7 +140,9 @@ const allBooksData = [
         old_price: 0,
         new_price: 166,
         plot_summary: 'From the Memoirs of a Non-Enemy Combatant is a darkly comedic novel that follows the misadventures of Boyet Hernandez, a Filipino fashion designer turned Guantanamo Bay detainee. Through Boyet’s witty narration, readers are treated to a satirical exploration of America’s War on Terror and the absurdity of modern warfare.',
-        book_img: images.book_6
+        book_img: images.book_6,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 7,
@@ -151,7 +163,9 @@ const allBooksData = [
         old_price: 0,
         new_price: 100,
         plot_summary: 'The Master & Margarita is a surreal and satirical novel set in Soviet Russia. With its blend of fantasy, philosophy, and political commentary, Mikhail Bulgakov’s masterpiece has captivated readers around the world since its publication in 1967.',
-        book_img: images.book_7
+        book_img: images.book_7,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 8,
@@ -172,7 +186,9 @@ const allBooksData = [
         old_price: 0,
         new_price: 9,
         plot_summary: 'The Design of Everyday Things is a seminal work in the field of design psychology. In this groundbreaking book, Donald Norman explores the principles of user-centered design and the psychology of human interaction with everyday objects. From doors to smartphones, Norman reveals the hidden secrets behind good design and offers practical advice for creating products that are intuitive, enjoyable, and user-friendly.',
-        book_img: images.book_8
+        book_img: images.book_8,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 9,
@@ -194,7 +210,9 @@ const allBooksData = [
         old_price: 12.99,
         new_price: 140,
         plot_summary: 'Pride and Prejudice is a classic romantic novel by Jane Austen. Set in early 19th-century England, the story follows the emotional development of Elizabeth Bennet, one of five sisters, as she navigates issues of manners, upbringing, morality, education, and marriage in the society of the landed gentry of the British Regency.',
-        book_img: images.book_9
+        book_img: images.book_9,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 10,
@@ -216,7 +234,9 @@ const allBooksData = [
         old_price: 20,
         new_price: 15,
         plot_summary: 'War and Peace is a historical novel by Leo Tolstoy, first published serially in 1865–69. It depicts relationships between the Rostov, Bolkonsky, Bezukhov, and Kuragin families and follows their members as they fight in the Napoleonic Wars.',
-        book_img: images.book_10
+        book_img: images.book_10,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 11,
@@ -238,6 +258,7 @@ const allBooksData = [
         new_price: 190,
         plot_summary: 'The Names is a novel by Don DeLillo, published in 1982. The story follows a man named James Axton as he travels across various international locations while investigating a mysterious cult. Through Axton\'s journey, DeLillo explores themes of language, identity, and globalization.',
         book_img: images.book_11,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
     },
     {
         id: 12,
@@ -258,7 +279,8 @@ const allBooksData = [
         old_price: 16,
         new_price: 12,
         plot_summary: 'One Bullet Away is a memoir by Nathaniel Fick, a former United States Marine Corps officer. In the book, Fick provides a first-hand account of his experiences during the early years of the Iraq War, offering insights into the challenges and complexities of modern warfare.',
-        book_img: images.book_12
+        book_img: images.book_12,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
     },
     {
         id: 13,
@@ -279,7 +301,8 @@ const allBooksData = [
         old_price: 29.99,
         new_price: 240,
         plot_summary: 'The Goldfinch is a novel by Donna Tartt, which won the Pulitzer Prize for Fiction in 2014. The story follows a young boy named Theo Decker, who survives a terrorist attack at the Metropolitan Museum of Art in New York City. As Theo navigates the aftermath of the tragedy, he becomes entangled in the world of art forgery and crime.',
-        book_img: images.book_13
+        book_img: images.book_13,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
     },
     {
         id: 14,
@@ -300,7 +323,8 @@ const allBooksData = [
         old_price: 12,
         new_price: 100,
         plot_summary: 'The Divine Comedy is an epic poem by Dante Alighieri, composed in the 14th century. Divided into three parts—Inferno, Purgatorio, and Paradiso—the poem follows Dante\'s journey through Hell, Purgatory, and Heaven, guided by the poet Virgil and his beloved Beatrice. The Divine Comedy is widely considered one of the greatest works of world literature.',
-        book_img: images.book_14
+        book_img: images.book_14,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
     },
     {
         id: 15,
@@ -321,7 +345,9 @@ const allBooksData = [
         old_price: 14.99,
         new_price: 120,
         plot_summary: 'A Teaspoon of Earth and Sea is a novel by Dina Nayeri, published in 2013. Set in Iran during the 1980s, the story follows a young girl named Saba as she navigates the complexities of family, love, and identity in the aftermath of the Iranian Revolution. Through Saba\'s eyes, Nayeri offers a poignant exploration of the immigrant experience and the search for belonging.',
-        book_img: images.book_15
+        book_img: images.book_15,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
 
     {
@@ -344,7 +370,9 @@ const allBooksData = [
         old_price: 30,
         new_price: 240,
         plot_summary: 'The Brothers Karamazov is the final novel by Fyodor Dostoevsky, first published in 1880. It is a passionate philosophical novel that explores profound questions of morality, faith, and the existence of God through the tumultuous lives of three brothers: Dmitry, Ivan, and Alyosha Karamazov.',
-        book_img: images.book_15
+        book_img: images.book_15,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 17,
@@ -366,7 +394,9 @@ const allBooksData = [
         old_price: 18.99,
         new_price: 140,
         plot_summary: 'Great Expectations is a novel by Charles Dickens, first published in 1861. It is one of Dickens\'s most popular works and is now considered a classic of English literature. The story follows the life of an orphan named Pip, from his childhood through adulthood, as he navigates love, wealth, and social class in Victorian England.',
-        book_img: images.book_14
+        book_img: images.book_14,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 18,
@@ -388,7 +418,9 @@ const allBooksData = [
         old_price: 9.99,
         new_price: 100,
         plot_summary: 'Romeo and Juliet is a tragedy by William Shakespeare, written early in his career. It tells the story of two young star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare\'s most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed plays.',
-        book_img: images.book_13
+        book_img: images.book_13,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 19,
@@ -410,7 +442,9 @@ const allBooksData = [
         old_price: 10,
         new_price: 100,
         plot_summary: 'The Adventures of Tom Sawyer is an adventure novel by Mark Twain, published in 1876. It tells the story of a young boy named Tom Sawyer and his adventures in the fictional town of St. Petersburg, inspired by Twain\'s own experiences growing up in Hannibal, Missouri.',
-        book_img: images.book_14
+        book_img: images.book_14,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     },
     {
         id: 20,
@@ -432,7 +466,9 @@ const allBooksData = [
         old_price: 12.99,
         new_price: 250,
         plot_summary: 'Murder on the Orient Express is a detective novel by Agatha Christie, featuring her detective Hercule Poirot. It was first published in the United Kingdom in 1934. The novel takes place on the luxurious Orient Express train, where Poirot investigates the murder of an American businessman.',
-        book_img: images.book_12
+        book_img: images.book_12,
+        description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
+
     }
 
 
