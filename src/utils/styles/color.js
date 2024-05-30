@@ -22,8 +22,8 @@ const textLightBlackColor = "#2A2C2E";
 const textGrayColor = "#00000061";
 const textYellowColor = "#F4BA30";
 const textLightGrayColor = "#FFFFFF61";
+const placeholderTextColor = "#00000099";
 
-const blackColor60 = "#00000099";
 const yellowColor400 = "#F4D867";
 const blackColor = "#000000DE";
 
@@ -43,7 +43,7 @@ export {
     textLightBlackColor,
     textYellowColor,
     textLightGrayColor,
-    blackColor60,
+    placeholderTextColor,
     whiteColor,
     yellowColor400,
     grayColor,

@@ -6,6 +6,7 @@ import LoginPage from "../pages/LoginPage";
 import AllBooksPage from "../pages/AllBooksPage";
 import BookDetailPage from "../pages/BookDetailPage";
 import CartPage from "../pages/CartPage";
+import ContactPage from "../pages/ContactPage";
 //public routes
 const publicRoutes = [
     {
@@ -27,6 +28,10 @@ const publicRoutes = [
     {
         path: '/cart',
         element: <Layout><CartPage /></Layout>
+    },
+    {
+        path: '/contact',
+        element: <Layout><ContactPage /></Layout>
     }
 ];
 
