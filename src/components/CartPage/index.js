@@ -60,25 +60,25 @@ const Cart = () => {
     // true when at least one item is present in the cart
     if (context.favouritBookContext.cartBooks.length > 0) {
         return (
-            <div className="flex gap-2 w-full">
-                <div className="flex flex-col w-4/5 gap-2">
+            <div className="flex flex-col md:flex-row gap-2 w-full">
+                <div className="flex flex-col w-full md:w-[70%] lg:w-4/5 gap-2">
                     {
                         allBooksData.map((book) => {
                             const matchingBook = context.favouritBookContext.cartBooks.find((item) => item.bookID == book.id);
                             return matchingBook ?
-                                <div key={book.id} className="flex gap-4 bg-whiteColor w-full h-72 p-4">
-                                    <div className="h-64 w-44">
+                                <div key={book.id} className="grid grid-flow-col gap-2 small-tab:gap-3 p-2 small-tab:p-4 bg-whiteColor text-sm md:text-base">
+                                    <div className="h-48 small-tab:h-56 sm:h-72 w-32 small-tab:w-40 sm:!w-48">
                                         <img src={book.book_img} alt="book" className="object-cover w-full h-full rounded-2xl" />
                                     </div>
-                                    <div className="flex flex-col gap-3">
-                                        <div className="">
-                                            <p>{book.book_name}</p>
-                                            <p className="text-xl font-medium">{book.author_name}</p>
+                                    <div className="flex flex-col gap-2 small-tab:gap-3 ">
+                                        <div>
+                                            <p >{book.book_name}</p>
+                                            <p className="text-base sm:text-xl font-medium">{book.author_name}</p>
                                             <p>{ }</p>
                                             <p>{book.language}</p>
                                         </div>
                                         <div>
-                                            <p>{book.description}</p>
+                                            <p className="line-clamp-2 small-tab:line-clamp-3">{book.description}</p>
                                         </div>
                                         <BtnCartQuantity
                                             quantity={
@@ -92,7 +92,7 @@ const Cart = () => {
                                             decrementQuantity={() => decrementQuantity(book.id)}
                                         />
                                         <div className="flex gap-2">
-                                            <p className="font-medium">Total Price:</p>
+                                            <p className="text-base sm:text-xl font-medium">Total Price:</p>
                                             <p>${
                                                 totalPrice?.map((item) => {
                                                     if (item.bookID === +book.id) {
@@ -107,14 +107,14 @@ const Cart = () => {
                         }).filter((item) => item !== undefined)
                     }
                 </div>
-                <div className="flex flex-col justify-between bg-whiteColor h-40 w-1/5 p-4">
+                <div className="flex flex-col justify-between bg-whiteColor h-36 w-full md:w-[30%] lg:w-[25%] xl:w-1/5 p-4">
 
                     <div className="flex gap-6">
-                        <div className="font-medium text-lg">
+                        <div className="font-medium text-base sm:text-lg">
                             <p>Total Books :</p>
                             <p>SubTotal:</p>
                         </div>
-                        <div className="text-lg">
+                        <div className="text-base sm:text-lg">
                             <p>{totalPrice?.length}</p>
                             <p>${subTotal}</p>
                         </div>
