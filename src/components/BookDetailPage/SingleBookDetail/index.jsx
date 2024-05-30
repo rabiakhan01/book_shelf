@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BtnBookMark, Button } from "../../Shared";
+import { BtnBookMark, BtnCartQuantity, Button } from "../../Shared";
 import icons from "../../../assets/icons/icons";
 import NavigationCrumb from "../NavigationCrumb";
 import { useParams } from "react-router-dom";
@@ -50,30 +50,26 @@ const SingleBookDetail = () => {
                 return book
             }
         })
-        //console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
+        console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
 
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedData })
     }
     const decrementQuantity = (book_id) => {
-        if (quantity > 0) {
-            const findBook = context.favouritBookContext.cartBooks.find((book) => book.bookID === book_id);
-            const updatedData = context.favouritBookContext.cartBooks.map((book) => {
-                if (book.bookID == findBook.bookID) {
-                    return { ...book, quantity: quantity - 1 }
-                }
-                else {
-                    return book
-                }
-            })
-            //console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
+        const updatedArray = context.favouritBookContext.cartBooks.map((book) => {
+            if (book.bookID == + book_id) {
+                return { ...book, quantity: quantity - 1 }
+            }
+            else {
+                return book;
+            }
+        })
+        console.log("🚀 ~ updatedArray ~ updatedArray:", updatedArray)
+        context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedArray });
+        const array = updatedArray.filter((item) => item.quantity > 0);
 
-            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedData })
+        if (array.length < 1) {
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: array });
         }
-        else {
-            setCartButton(false);
-            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] })
-        }
-
     }
 
     useEffect(() => {
@@ -168,11 +164,11 @@ const SingleBookDetail = () => {
                                                             add to bag
                                                         </Button>
                                                         :
-                                                        <div className="flex gap-2 justify-center items-center w-24 h-10 sm:w-28 sm:h-12 border border-lightYellowColor rounded-lg sm:rounded-xl">
-                                                            <button className="flex justify-center items-center  border border-y-transparent border-l-transparent border-r-lightYellowColor h-full w-full text-3xl" onClick={() => decrementQuantity(book.id)}>-</button>
-                                                            <p className="flex justify-center items-center w-20 text-base sm:text-xl">{quantity}</p>
-                                                            <button className="flex justify-center items-center border border-y-transparent border-r-transparent border-l-lightYellowColor h-full w-full text-2xl" onClick={() => incrementQuantity(book.id)}>+</button>
-                                                        </div>
+                                                        <BtnCartQuantity
+                                                            quantity={quantity}
+                                                            incrementQuantity={() => incrementQuantity(book.id)}
+                                                            decrementQuantity={() => decrementQuantity(book.id)}
+                                                        />
                                                 }
                                             </div>
                                         </div>

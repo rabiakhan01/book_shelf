@@ -13,3 +13,4 @@ export { default as Pagination } from './Pagination';
 export { default as Scroll } from './Scroll';
 export { default as Review } from './ReviewCard';
 export { default as BreadCrumb } from './BreadCrumb';
+export { default as BtnCartQuantity } from './BtnCartQuantity';

@@ -39,12 +39,12 @@ const Navbar = () => {
     }
     useEffect(() => {
         const cartQuantity = context.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0);
+        //console.log("🚀 ~ useEffect ~ cartQuantity:", cartQuantity)
         if (cartQuantity > 0) {
             setCartValue(cartQuantity)
-
         }
         else {
-            setCartValue(0)
+            setCartValue(0);
         }
     }, [context.favouritBookContext.cartBooks])
     return (

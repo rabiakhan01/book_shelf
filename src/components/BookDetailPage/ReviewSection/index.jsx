@@ -5,7 +5,7 @@ import ReviewCard from "../../Shared/ReviewCard";
 
 const ReviewSection = () => {
     return (
-        <div className="">
+        <div className="mb-6">
             <div className="flex justify-between items-center mb-4">
                 <h1 className="text-base md:text-xl lg:text-2xl uppercase font-medium">readers reviews</h1>
                 <Button
