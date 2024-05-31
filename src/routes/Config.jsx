@@ -7,6 +7,7 @@ import AllBooksPage from "../pages/AllBooksPage";
 import BookDetailPage from "../pages/BookDetailPage";
 import CartPage from "../pages/CartPage";
 import ContactPage from "../pages/ContactPage";
+import CheckoutPage from "../pages/CheckoutPage";
 //public routes
 const publicRoutes = [
     {
@@ -40,7 +41,11 @@ const protectedRoutes = [
     {
         path: '/shipping',
         element: <Layout><ShippingPage /></Layout>
-    }
+    },
+    {
+        path: '/checkout',
+        element: <Layout><CheckoutPage /></Layout>
+    },
 ]
 
 export {

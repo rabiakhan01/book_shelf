@@ -16,3 +16,4 @@ export { default as BreadCrumb } from './BreadCrumb';
 export { default as BtnCartQuantity } from './BtnCartQuantity';
 export { default as InputField } from './InputField';
 export { default as CheckoutLayout } from './CheckoutLayout';
+export { default as PrevInformation } from './PrevInformation';
