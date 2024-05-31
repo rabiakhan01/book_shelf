@@ -1,9 +1,10 @@
 import React from "react";
+import Shipping from "../../components/ShippingPage";
 
 const ShippingPage = () => {
     return (
         <div>
-            Shipping page
+            <Shipping />
         </div>
     )
 }

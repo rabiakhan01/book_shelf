@@ -1,7 +1,14 @@
 import React from "react";
 import { Button, CheckoutLayout, InputField } from "../../Shared";
+import { useNavigate } from "react-router-dom";
 
 const ContactInfo = () => {
+
+    const navigate = useNavigate();
+
+    const handelNavigate = () => {
+        navigate('/shipping')
+    }
     return (
         <CheckoutLayout>
             <div className="flex justify-between ">
@@ -15,7 +22,7 @@ const ContactInfo = () => {
                 <form className="flex flex-col gap-4">
                     <InputField placeholder="Name Surname" />
                     <InputField placeholder="Mobile" />
-                    <Button variant="contained" size="extra-large">continue to shipping method</Button>
+                    <Button variant="contained" size="extra-large" onClick={handelNavigate}>continue to shipping method</Button>
                 </form>
             </div>
         </CheckoutLayout>

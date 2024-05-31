@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { bookListingContext } from "../Shared/ContextProvider";
 import { BtnCartQuantity } from "../Shared";
 import { allAuthorsData, allBooksData } from "../../utils/MockupData";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from '../Shared';
 
 
@@ -11,6 +11,7 @@ const Cart = () => {
     const context = useContext(bookListingContext);
     const [totalPrice, setTotalPrice] = useState();
     const [subTotal, setSubTotal] = useState();
+    const navigate = useNavigate();
 
     const incrementQuantity = (book_id) => {
         const findBook = context.favouritBookContext.cartBooks.find((book) => book.bookID === +book_id);
@@ -44,6 +45,9 @@ const Cart = () => {
         }
     }
 
+    const handelNavigate = () => {
+        navigate('/contact')
+    }
     //everytime when any change happens in the cart array
     useEffect(() => {
         const updatedPrice = context.favouritBookContext.cartBooks.map((item) => {
@@ -122,6 +126,7 @@ const Cart = () => {
                     <Button
                         variant="contained"
                         size="extra-large"
+                        onClick={handelNavigate}
                     >
                         Proceed To Checkout
                     </Button>
