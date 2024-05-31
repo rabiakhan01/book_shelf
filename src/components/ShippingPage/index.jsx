@@ -1,15 +1,22 @@
 import React from "react";
 import { Button, PrevInformation } from '../Shared';
 import { CheckoutLayout, InputField } from "../Shared";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { isCursorAtEnd } from "@testing-library/user-event/dist/utils";
 const Shipping = () => {
     const naviagte = useNavigate();
 
     const handelNavigate = () => {
-        naviagte('/checkout')
+        naviagte('/checkout', {
+            state: {
+                id: 3,
+                isActive: true,
+            }
+        })
     }
     return (
-        <CheckoutLayout>
+        <CheckoutLayout
+        >
             <div>
                 <PrevInformation
                     heading="contact information"

@@ -5,9 +5,13 @@ import { useNavigate } from "react-router-dom";
 const ContactInfo = () => {
 
     const navigate = useNavigate();
-
     const handelNavigate = () => {
-        navigate('/shipping')
+        navigate('/shipping', {
+            state: {
+                id: 2,
+                isActive: true
+            }
+        });
     }
     return (
         <CheckoutLayout>

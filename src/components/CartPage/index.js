@@ -46,7 +46,12 @@ const Cart = () => {
     }
 
     const handelNavigate = () => {
-        navigate('/contact')
+        navigate('/contact', {
+            state: {
+                id: 1,
+                isActive: true,
+            }
+        })
     }
     //everytime when any change happens in the cart array
     useEffect(() => {

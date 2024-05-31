@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, CheckoutLayout, InputField, PrevInformation } from "../Shared";
+import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
     return (
