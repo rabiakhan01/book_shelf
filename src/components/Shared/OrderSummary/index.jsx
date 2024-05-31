@@ -1,42 +1,69 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputField from '../InputField';
-
+import { bookListingContext } from "../ContextProvider";
+import { allBooksData } from "../../../utils/MockupData";
+import { useNavigate } from "react-router-dom";
 const OrderSummary = () => {
+    const context = useContext(bookListingContext);
+    const navigate = useNavigate();
+    const [totalquantity, setTotalQuantity] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
+
+    //navigate to the cart when edit is clicked
+    const handelNavigate = () => {
+        navigate('/cart');
+    }
+    // total the price and quantity every time any item is added in the cart
+    useEffect(() => {
+        const updatedQuantity = context.favouritBookContext.cartBooks.reduce((a, b) => (a + b.quantity), 0);
+
+        const priceArray = allBooksData.map((book) => {
+            const matchingBook = context.favouritBookContext.cartBooks.find((item) => item.bookID === book.id);
+            return matchingBook && book.new_price * matchingBook.quantity;
+        }).filter((item) => item !== undefined)
+        const totalPrice = priceArray.reduce((a, b) => (a + b), 0);
+        setTotalQuantity(updatedQuantity);
+        setSubTotal(totalPrice);
+    }, [context.favouritBookContext.cartBooks]);
+
     return (
-        <div className="flex flex-col gap-4 text-textSecondaryColor w-1/2">
+        <div className="flex flex-col gap-4 text-textSecondaryColor w-[60%]">
             <div className="flex flex-col gap-3 bg-lightBlackColor rounded-xl p-4">
                 <div className="flex justify-between ">
                     <p className="uppercase text-xl">order summary</p>
-                    <button className="border-y-transparent border-t-transparent border-b-2 border-b-primaryColor uppercase">edit</button>
+                    <button className="border-y-transparent border-t-transparent border-b-2 border-b-primaryColor uppercase" onClick={handelNavigate}>edit</button>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between text-sm uppercase font-medium w-full gap-1">
+                    <p className="w-[33%]">books</p>
+                    <p className="w-[33%] text-center">qty</p>
+                    <p className="w-[33%] text-end">price</p>
+                </div>
+                <div className="flex flex-col gap-3">
+                    {
+                        allBooksData.map((book, index) => {
+                            const matchingBook = context.favouritBookContext.cartBooks.find((item) => item.bookID === book.id);
+                            return matchingBook &&
 
-                </div>
-                <div className="flex justify-between">
-                    <div className="flex flex-col justify-between gap-2">
-                        <p className="uppercase font-medium">books</p>
-                        <p>Hello I am erik</p>
-                        <p>Muscle</p>
-                        <p className="font-medium">Subtotal</p>
+                                <div key={index} className="flex justify-between w-full gap-1 text-sm">
+                                    <p className="w-[33%] line-clamp-1">{book.book_name}</p>
+                                    <p className="w-[33%] text-center">{matchingBook.quantity}</p>
+                                    <p className="w-[33%] text-end">${matchingBook.quantity * book.new_price}</p>
+                                </div>
+                        })
+                    }
+                    <div className="flex justify-between w-full gap-1">
+                        <p className="w-[33%] font-medium">Subtotal</p>
+                        <p className="w-[33%] text-center">{totalquantity}</p>
+                        <p className="w-[33%] text-end">${subTotal}</p>
+                    </div>
+                    <div className="flex justify-between">
                         <p className="font-medium">Shipping</p>
-                    </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <p className="uppercase font-medium">qty</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>2</p>
-                    </div>
-                    <div className="flex flex-col items-end gap-2">
-                        <p className="uppercase font-medium">price</p>
-                        <p>$10</p>
-                        <p>$22</p>
-                        <p>$33</p>
-                        <p className="uppercase">free</p>
+                        <p className="uppercase">Free</p>
                     </div>
                 </div>
                 <div className="flex justify-between text-xl font-medium">
                     <p className="uppercase">total</p>
-                    <p>$33</p>
+                    <p>${subTotal}</p>
                 </div>
             </div>
             <div className="flex gap-4">

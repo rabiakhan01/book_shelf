@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, CheckoutLayout, InputField } from "../../Shared";
 import { useNavigate } from "react-router-dom";
+import { bookListingContext } from "../../Shared/ContextProvider";
 
 const ContactInfo = () => {
 
     const navigate = useNavigate();
-    const handelNavigate = () => {
+    const context = useContext(bookListingContext);
+    const [customerInfo, setCustomerInfo] = useState({
+        customerName: '',
+        mobileNo: '',
+    });
+
+    const handelChange = (event) => {
+        const { value, name } = event.target;
+        setCustomerInfo((prev) => ({ ...prev, [name]: value }))
+    }
+
+    const handelCustomerInfo = () => {
+
         navigate('/shipping', {
             state: {
                 id: 2,
@@ -13,6 +26,7 @@ const ContactInfo = () => {
             }
         });
     }
+
     return (
         <CheckoutLayout>
             <div className="flex justify-between ">
@@ -24,9 +38,9 @@ const ContactInfo = () => {
             </div>
             <div className="">
                 <form className="flex flex-col gap-4">
-                    <InputField placeholder="Name Surname" />
-                    <InputField placeholder="Mobile" />
-                    <Button variant="contained" size="extra-large" onClick={handelNavigate}>continue to shipping method</Button>
+                    <InputField placeholder="Name Surname" name="customerName" value={customerInfo.name} onChange={handelChange} />
+                    <InputField placeholder="Mobile" name="mobileNo" value={customerInfo.mobileNo} onChange={handelChange} />
+                    <Button variant="contained" size="extra-large" onClick={handelCustomerInfo}>continue to shipping method</Button>
                 </form>
             </div>
         </CheckoutLayout>
