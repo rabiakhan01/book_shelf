@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ children, variant, size, color, onClick, disabled }) => {
+const Button = ({ children, variant, size, color, onClick, disabled, type }) => {
     if (size === "extra-small") {
         size = "h-6 w-12 small-tab:h-7 small-tab:w-12 sm:h-8 sm:w-16 font-normal text-sm text-blackColor";
     }
@@ -25,7 +25,7 @@ const Button = ({ children, variant, size, color, onClick, disabled }) => {
     }
     return (
         <button
-            className={`flex relative ${variant} ${size} rounded-lg sm:rounded-xl justify-center items-center text-xs sm:text-sm lg:text-base font-medium uppercase`} onClick={onClick} disabled={disabled}>
+            className={`flex relative ${variant} ${size} rounded-lg sm:rounded-xl justify-center items-center text-xs sm:text-sm lg:text-base font-medium uppercase`} onClick={onClick} disabled={disabled} type={type}>
             {children}
         </button>
     )

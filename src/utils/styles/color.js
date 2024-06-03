@@ -8,6 +8,8 @@ const lightBlackColor = "#00000061";
 const blackTaupeColor = "#00000033";
 const grayColor = "#FFFFFF99";
 const whiteColor = "#FFFFFF";
+const errorColor = '#E50404';
+const errorBgColor = "#fecaca";
 
 // button colors
 const btnPrimaryColor = "#F4CE47";
@@ -34,6 +36,8 @@ export {
     lightGrayColor,
     lightBlackColor,
     chipColor,
+    errorColor,
+    errorBgColor,
     blackTaupeColor,
     btnPrimaryColor,
     btnsecondaryColor,

@@ -3,7 +3,7 @@ import CrumbNavigation from "../CrumbNavigation";
 import OrderSummary from "../OrderSummary";
 const CheckoutLayout = ({ children }) => {
     return (
-        <div className="bg-secondaryColor h-auto rounded-2xl p-4 text-textSecondaryColor">
+        <div className="bg-secondaryColor mb-6 mt-8 h-auto rounded-2xl p-4 text-textSecondaryColor">
             <div className="py-6">
                 <CrumbNavigation
                 />

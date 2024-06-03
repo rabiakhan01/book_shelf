@@ -11,20 +11,52 @@ const ContactInfo = () => {
         customerName: '',
         mobileNo: '',
     });
+    const [errorMessage, setErrorMessage] = useState({
+        customerNameError: '',
+        mobileNoError: '',
+    });
 
     const handelChange = (event) => {
         const { value, name } = event.target;
-        setCustomerInfo((prev) => ({ ...prev, [name]: value }))
+        if (name === 'customerName') {
+            setErrorMessage((prev) => ({
+                ...prev,
+                customerNameError: "",
+            }));
+        }
+
+        if (name === 'mobileNo') {
+            setErrorMessage((prev) => ({
+                ...prev,
+                mobileNoError: "",
+            }));
+        }
+
+        setCustomerInfo((prev) => ({
+            ...prev,
+            [name]: value
+        }));
+
     }
 
-    const handelCustomerInfo = () => {
+    const handelCustomerInfo = (event) => {
 
-        navigate('/shipping', {
-            state: {
-                id: 2,
-                isActive: true
-            }
-        });
+        if (customerInfo.customerName === '') {
+            setErrorMessage((error) => ({ ...error, customerNameError: 'username is required' }));
+        }
+        if (customerInfo.mobileNo === '') {
+            setErrorMessage((error) => ({ ...error, mobileNoError: 'mobile number is required' }));
+        }
+
+        if (customerInfo.customerName !== '' && customerInfo.mobileNo !== '') {
+            navigate('/shipping', {
+                state: {
+                    id: 2,
+                    isActcive: true
+                }
+            });
+        }
+        event.preventDefault();
     }
 
     return (
@@ -37,10 +69,20 @@ const ContactInfo = () => {
                 </div>
             </div>
             <div className="">
-                <form className="flex flex-col gap-4">
-                    <InputField placeholder="Name Surname" name="customerName" value={customerInfo.name} onChange={handelChange} />
-                    <InputField placeholder="Mobile" name="mobileNo" value={customerInfo.mobileNo} onChange={handelChange} />
-                    <Button variant="contained" size="extra-large" onClick={handelCustomerInfo}>continue to shipping method</Button>
+                <form className="flex flex-col gap-3">
+                    <div className="flex flex-col h-auto gap-1">
+                        <InputField placeholder="Name Surname" type="text" name="customerName" value={customerInfo.customerName} onChange={handelChange} errorMessage={errorMessage.customerNameError} />
+                        {
+                            errorMessage.customerNameError ? <p className="text-errorColor text-base">{errorMessage.customerNameError}</p> : ''
+                        }
+                    </div>
+                    <div className="flex flex-col gap-1 h-auto">
+                        <InputField placeholder="Mobile" name="mobileNo" type="number" value={customerInfo.mobileNo} onChange={handelChange} errorMessage={errorMessage.mobileNoError} />
+                        {
+                            errorMessage.mobileNoError ? <p className="text-errorColor text-base">{errorMessage.mobileNoError}</p> : ''
+                        }
+                    </div>
+                    <Button variant="contained" size="extra-large" type="button" onClick={handelCustomerInfo}>continue to shipping method</Button>
                 </form>
             </div>
         </CheckoutLayout>
