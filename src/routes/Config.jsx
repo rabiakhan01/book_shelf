@@ -30,14 +30,16 @@ const publicRoutes = [
         path: '/cart',
         element: <Layout><CartPage /></Layout>
     },
-    {
-        path: '/contact',
-        element: <Layout><ContactPage /></Layout>
-    }
+
 ];
 
 //protected routes
 const protectedRoutes = [
+
+    {
+        path: '/contact',
+        element: <Layout><ContactPage /></Layout>
+    },
     {
         path: '/shipping',
         element: <Layout><ShippingPage /></Layout>
