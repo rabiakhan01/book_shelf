@@ -8,6 +8,7 @@ const ContactInfo = () => {
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
     const [customerInfo, setCustomerInfo] = useState({
+        customerId: 0,
         customerName: '',
         mobileNo: '',
     });
@@ -49,6 +50,14 @@ const ContactInfo = () => {
         }
 
         if (customerInfo.customerName !== '' && customerInfo.mobileNo !== '') {
+            const contactData =
+            {
+                ...context.orderSummary,
+                orderId: Math.floor(Math.random() * 100),
+                customerName: customerInfo.customerName,
+                customerNumber: customerInfo.mobileNo,
+            };
+            context.setOrderSummary(contactData);
             navigate('/shipping', {
                 state: {
                     id: 2,
@@ -58,6 +67,7 @@ const ContactInfo = () => {
         }
         event.preventDefault();
     }
+    // console.log("🚀 ~ handelCustomerInfo ~ context.orderSummary.contactInformation:", context.orderSummary)
 
     return (
         <CheckoutLayout>

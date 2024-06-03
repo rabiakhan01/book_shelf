@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, PrevInformation } from '../Shared';
 import { CheckoutLayout, InputField } from "../Shared";
 import { useNavigate } from "react-router-dom";
+import { bookListingContext } from "../Shared/ContextProvider";
 const Shipping = () => {
     const naviagte = useNavigate();
+    const context = useContext(bookListingContext);
     const [shippingInfo, setShippingInfo] = useState({
         date: '',
         time: '',
@@ -43,6 +45,15 @@ const Shipping = () => {
         }
 
         if (shippingInfo.date !== '' && shippingInfo.time !== '' && shippingInfo.adress !== '') {
+            const shippingData = {
+                ...context.orderSummary,
+                shippingMethod:
+                {
+                    ...shippingInfo
+                }
+
+            }
+            context.setOrderSummary(shippingData);
             naviagte('/checkout', {
                 state: {
                     id: 3,
@@ -52,7 +63,7 @@ const Shipping = () => {
         }
         event.preventDefault();
     }
-
+    console.log("order summary", context.orderSummary)
     return (
         <CheckoutLayout
         >
@@ -61,8 +72,8 @@ const Shipping = () => {
                     heading="contact information"
                     key1="Name"
                     key2="Contact"
-                    value1="Bahruz Akhundov"
-                    value2="+994 51850 00 23"
+                    value1={context.orderSummary.customerName}
+                    value2={context.orderSummary.customerNumber}
                 />
             </div>
             <div>

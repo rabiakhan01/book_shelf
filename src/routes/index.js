@@ -8,7 +8,6 @@ import RedirectPage from "../pages/RedirectPage";
 
 const Routing = () => {
     const context = useContext(bookListingContext);
-    console.log("🚀 ~ Routing ~ context:", context.favouritBookContext.cartBooks.length)
     return (
         <Routes>
             <Route element={<PublicRoutes />}>

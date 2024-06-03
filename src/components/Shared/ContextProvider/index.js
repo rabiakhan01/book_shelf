@@ -13,12 +13,22 @@ const ContextProvider = ({ children }) => {
         favouritBooks: [],
         cartBooks: [],
     });
-    const [customerInformation, setCustomerInformation] = useState({
-        contactInformation: [],
-        shippingInformation: []
+    const [orderSummary, setOrderSummary] = useState({
+        orderId: 0,
+        customerName: '',
+        customerNumber: '',
+        shippingMethod:
+        {
+            date: '',
+            time: '',
+            adress: '',
+            note: '',
+        },
+        cardDetail: {},
+
     })
     return (
-        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, customerInformation, setCustomerInformation }}>
+        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary }}>
             {children}
         </bookListingContext.Provider>
     )
