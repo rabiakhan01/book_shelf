@@ -23,6 +23,9 @@ const BooksListing = () => {
 
     const navigateToDetailPage = (bookId) => {
         navigate(`book-detail/${bookId}`);
+        window.scroll({
+            top: 0,
+        })
     }
 
     // when window is resized then remove the opened filter drawer
