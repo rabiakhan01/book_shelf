@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../ContextProvider";
 const Navbar = () => {
@@ -56,8 +56,8 @@ const Navbar = () => {
                 </div>
                 <div className="hidden lg:flex">
                     <ul className="flex gap-8 text-sm xl:text-base text-textLightWhiteColor">
-                        <Link to="/all-books" onClick={hideMenu}><li>Books</li></Link>
-                        <Link><li>Authors</li></Link>
+                        <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
+                        <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
                         <Link><li>Whats to Read</li></Link>
                         <Link><li>Gift Ideas</li></Link>
                         <Link><li>About Us</li></Link>
