@@ -1,5 +1,4 @@
 import { Layout } from "../components/Shared";
-import Cart from "../pages/CartPage";
 import HomePage from "../pages/HomePage";
 import ShippingPage from "../pages/ShippingPage";
 import LoginPage from "../pages/LoginPage";
