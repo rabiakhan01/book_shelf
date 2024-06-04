@@ -9,14 +9,13 @@ const ContactInfo = () => {
     const context = useContext(bookListingContext);
     const [customerInfo, setCustomerInfo] = useState({
         customerId: 0,
-        customerName: '',
-        mobileNo: '',
+        customerName: context.orderSummary.customerName,
+        mobileNo: context.orderSummary.customerNumber,
     });
     const [errorMessage, setErrorMessage] = useState({
         customerNameError: '',
         mobileNoError: '',
     });
-
     const handelChange = (event) => {
         const { value, name } = event.target;
         if (name === 'customerName') {

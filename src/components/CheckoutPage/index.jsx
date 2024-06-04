@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Button, CheckoutLayout, InputField, PrevInformation } from "../Shared";
 import { bookListingContext } from "../Shared/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+    const navigate = useNavigate();
     const context = useContext(bookListingContext);
     const [paymentdetail, setPaymentDetail] = useState({
         cardNo: '',
@@ -73,7 +75,25 @@ const Checkout = () => {
 
         event.preventDefault();
     }
-    //console.log("formdata", context.orderSummary)
+
+    const editInformation = (path) => {
+        if (path == '/contact') {
+            navigate(`${path}`, {
+                state: {
+                    id: 1,
+                    isActive: true,
+                }
+            })
+        }
+        if (path == '/shipping') {
+            navigate(`${path}`, {
+                state: {
+                    id: 2,
+                    isActive: true
+                }
+            })
+        }
+    }
     return (
         <CheckoutLayout>
             <div className="flex flex-col gap-6">
@@ -84,6 +104,7 @@ const Checkout = () => {
                         key2="Contact"
                         value1={context.orderSummary.customerName}
                         value2={context.orderSummary.customerNumber}
+                        onClick={() => editInformation('/contact')}
                     />
                     <PrevInformation
                         heading="shipping method"
@@ -91,6 +112,7 @@ const Checkout = () => {
                         key2="Adress"
                         value1={context.orderSummary.shippingMethod.date}
                         value2={context.orderSummary.shippingMethod.adress}
+                        onClick={() => editInformation('/shipping')}
                     />
                 </div>
                 <div className="flex flex-col gap-6">

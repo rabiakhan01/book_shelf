@@ -7,10 +7,10 @@ const Shipping = () => {
     const naviagte = useNavigate();
     const context = useContext(bookListingContext);
     const [shippingInfo, setShippingInfo] = useState({
-        date: '',
-        time: '',
-        adress: '',
-        note: '',
+        date: context.orderSummary.shippingMethod.date,
+        time: context.orderSummary.shippingMethod.time,
+        adress: context.orderSummary.shippingMethod.adress,
+        note: context.orderSummary.shippingMethod.note,
     });
     const [errorMessage, setErrorMessage] = useState({
         dateError: '',
@@ -63,7 +63,15 @@ const Shipping = () => {
         }
         event.preventDefault();
     }
-    //console.log("order summary", context.orderSummary)
+
+    const editInformation = () => {
+        naviagte('/contact', {
+            state: {
+                id: 1,
+                isActcive: true,
+            }
+        })
+    }
     return (
         <CheckoutLayout
         >
@@ -74,6 +82,7 @@ const Shipping = () => {
                     key2="Contact"
                     value1={context.orderSummary.customerName}
                     value2={context.orderSummary.customerNumber}
+                    onClick={editInformation}
                 />
             </div>
             <div>
