@@ -108,8 +108,8 @@ const Navbar = () => {
                     drawer &&
                     <div className={`flex lg:hidden right-0 top-[50px] sm:top-14 absolute text-base text-textLightWhiteColor font-medium w-full `}>
                         <ul className="relative flex flex-col gap-4 h-[85vh] w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
-                            <Link to="/all-books" onClick={hideMenu}><li>Books</li></Link>
-                            <Link><li>Authors</li></Link>
+                            <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
+                            <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
                             <Link><li>Whats to Read</li></Link>
                             <Link><li>Gift Ideas</li></Link>
                             <Link><li>About Us</li></Link>
