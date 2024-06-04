@@ -39,7 +39,7 @@ const protectedRoutes = [
 
     {
         path: '/contact',
-        element: <Layout><ContactPage /></Layout>
+        element: <Layout id="homepage"><ContactPage /></Layout>
     },
     {
         path: '/shipping',

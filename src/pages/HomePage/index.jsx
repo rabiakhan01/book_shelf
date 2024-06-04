@@ -7,7 +7,7 @@ import PromoSection from "../../components/HomePage/PromoSection";
 
 const HomePage = () => {
     return (
-        <div className="flex flex-col gap-4" id="homePage">
+        <div className="flex flex-col gap-4" id="homepage">
             <HeroSection />
             <BestSeller />
             <Recommendation />
