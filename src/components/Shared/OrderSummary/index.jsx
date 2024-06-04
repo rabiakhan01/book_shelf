@@ -27,11 +27,11 @@ const OrderSummary = () => {
     }, [context.favouritBookContext.cartBooks]);
 
     return (
-        <div className="flex flex-col gap-4 text-textSecondaryColor w-[60%]">
+        <div className="flex flex-col gap-4 text-textSecondaryColor w-full lg:w-[60%]">
             <div className="flex flex-col gap-3 bg-lightBlackColor rounded-xl p-4">
                 <div className="flex justify-between ">
-                    <p className="uppercase text-xl">order summary</p>
-                    <button className="border-y-transparent border-t-transparent border-b-2 border-b-primaryColor uppercase" onClick={handelNavigate}>edit</button>
+                    <p className="uppercase text-base lg:text-xl">order summary</p>
+                    <button className="border-y-transparent border-t-transparent border-b-2 border-b-primaryColor uppercase text-sm sm:text-base" onClick={handelNavigate}>edit</button>
                 </div>
                 <div className="flex justify-between text-sm uppercase font-medium w-full gap-1">
                     <p className="w-[33%]">books</p>
@@ -61,7 +61,7 @@ const OrderSummary = () => {
                         <p className="uppercase">Free</p>
                     </div>
                 </div>
-                <div className="flex justify-between text-xl font-medium">
+                <div className="flex justify-between text-base lg:text-xl font-medium">
                     <p className="uppercase">total</p>
                     <p>${subTotal}</p>
                 </div>

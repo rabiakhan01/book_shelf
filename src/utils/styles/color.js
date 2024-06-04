@@ -9,7 +9,7 @@ const blackTaupeColor = "#00000033";
 const grayColor = "#FFFFFF99";
 const whiteColor = "#FFFFFF";
 const errorColor = '#E50404';
-const errorBgColor = "#fecaca";
+const errorBgColor = "#ff98a7";
 
 // button colors
 const btnPrimaryColor = "#F4CE47";

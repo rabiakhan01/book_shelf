@@ -79,17 +79,17 @@ const Shipping = () => {
             <div>
                 <div className="flex flex-col gap-4">
                     <div>
-                        <h1 className="text-2xl uppercase">Shipping method</h1>
+                        <h1 className="text-base lg:text-xl uppercase">Shipping method</h1>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <div className="flex w-full gap-3">
-                            <div className="flex flex-col gap-1 w-[50%]">
+                        <div className="flex flex-col sm:flex-row w-full gap-3">
+                            <div className="flex flex-col gap-1 w-full sm:w-[50%]">
                                 <InputField placeholder="Date" type="date" name="date" value={shippingInfo.date} onChange={handelChange} errorMessage={errorMessage.dateError} />
                                 {
                                     errorMessage.dateError ? <p className="text-errorColor">{errorMessage.dateError}</p> : ''
                                 }
                             </div>
-                            <div className="flex flex-col gap-1 w-[50%]">
+                            <div className="flex flex-col gap-1 w-full sm:w-[50%]">
                                 <InputField placeholder="Time" type="time" name="time" value={shippingInfo.time} onChange={handelChange} errorMessage={errorMessage.timeError} />
                                 {
                                     errorMessage.timeError ? <p className="text-errorColor">{errorMessage.timeError}</p> : ''

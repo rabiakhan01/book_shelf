@@ -95,8 +95,8 @@ const Checkout = () => {
                 </div>
                 <div className="flex flex-col gap-6">
                     <div className="flex justify-between">
-                        <div> <h1 className="text-xl uppercase">payment</h1></div>
-                        <div className="flex gap-2">
+                        <div> <h1 className="text-base lg:text-xl uppercase">payment</h1></div>
+                        <div className="flex justify-center items-center gap-2 text-sm lg:text-base">
                             <input type="radio" name="paymentMethod" value="byCard" checked={!paymentOnDelivery} onChange={handelChange}></input>By card
                             <input type="radio" name="paymentMethod" value="PUD" onChange={handelChange}></input>Payment upon delivery
                         </div>

@@ -71,14 +71,14 @@ const ContactInfo = () => {
 
     return (
         <CheckoutLayout>
-            <div className="flex justify-between ">
-                <h1 className="text-2xl uppercase">contact information</h1>
-                <div className="flex items-center gap-1 text-sm">
+            <div className="flex flex-col-reverse gap-2 small-tab:flex-row justify-between ">
+                <h1 className="text-sm sm:text-base xl:text-xl uppercase">contact information</h1>
+                <div className="flex items-center gap-1 text-sm ">
                     <p className="text-textLightGrayColor">already have an account?</p>
                     <button>Sign in</button>
                 </div>
             </div>
-            <div className="">
+            <div className="w-full ">
                 <form className="flex flex-col gap-3">
                     <div className="flex flex-col h-auto gap-1">
                         <InputField placeholder="Name Surname" type="text" name="customerName" value={customerInfo.customerName} onChange={handelChange} errorMessage={errorMessage.customerNameError} />
