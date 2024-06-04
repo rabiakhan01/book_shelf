@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "ClashGrotesk";
+  src: url("./ClashGrotesk-Variable.ttf");
+}
+body {
+  font-family: "ClashGrotesk", "sans-serif";
+}
