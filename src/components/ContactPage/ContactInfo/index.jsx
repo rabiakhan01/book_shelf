@@ -61,7 +61,7 @@ const ContactInfo = () => {
             navigate('/shipping', {
                 state: {
                     id: 2,
-                    isActcive: true
+                    isActcive: true,
                 }
             });
         }

@@ -73,7 +73,7 @@ const Checkout = () => {
 
         event.preventDefault();
     }
-    console.log("formdata", context.orderSummary)
+    //console.log("formdata", context.orderSummary)
     return (
         <CheckoutLayout>
             <div className="flex flex-col gap-6">

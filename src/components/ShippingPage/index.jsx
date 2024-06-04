@@ -57,13 +57,13 @@ const Shipping = () => {
             naviagte('/checkout', {
                 state: {
                     id: 3,
-                    isActcive: true
+                    isActcive: true,
                 }
             });
         }
         event.preventDefault();
     }
-    console.log("order summary", context.orderSummary)
+    //console.log("order summary", context.orderSummary)
     return (
         <CheckoutLayout
         >
