@@ -9,7 +9,7 @@ const Button = ({ children, variant, size, color, onClick, disabled, type }) => 
         size = "h-9 w-20 sm:h-10 lg:h-11 lg:w-20 text-blackColor";
     }
     else if (size === "medium") {
-        size = "h-10 w-24 sm:h-12 sm:w-28 lg:[8rem] text-blackColor"
+        size = "h-10 w-24 sm:h-12 sm:w-28 lg:w-[8rem] text-blackColor"
     }
     else if (size === "large") {
         size = " h-14 w-16 small-tab:h-20 small-tab:w-20 sm:h-24 sm:w-28 text-blackColor"

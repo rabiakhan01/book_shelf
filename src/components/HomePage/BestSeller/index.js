@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../../Shared/ContextProvider";
 
 const BestSeller = () => {
+
     const context = useContext(bookListingContext);
     const navigate = useNavigate();
 
@@ -27,6 +28,10 @@ const BestSeller = () => {
             context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
         }
     }
+
+    const gotoDetail = (book_id) => {
+        navigate(`all-books/book-detail/${book_id}`);
+    }
     return (
         <div className="flex flex-col bg-secondaryColor py-4">
             <div className="text-xl md:text-2xl xl:text-3xl font-medium px-4 py-2 uppercase text-textLightWhiteColor">
@@ -36,7 +41,7 @@ const BestSeller = () => {
                 {
                     allBooksData.sort((a, b) => b.rating.views - a.rating.views).filter((book, index) => index < 8).map((book, index) => {
                         return (
-                            <div key={index} className="flex w-full sm:w-[49.47%] lg:w-[32.57%] h-[220px]  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-2">
+                            <div key={index} className="flex w-full sm:w-[49.47%] lg:w-[32.57%] h-[220px]  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-2 cursor-pointer" onClick={() => gotoDetail(book.id)}>
                                 <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 xl:w-40 rounded-xl overflow-hidden">
                                     <img src={book.book_img} alt="book_cover" className="object-cover w-full h-full " />
                                 </div>

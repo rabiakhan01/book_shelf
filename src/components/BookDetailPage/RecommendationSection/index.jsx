@@ -9,7 +9,10 @@ import { useNavigate } from "react-router-dom";
 const RecommendationSection = () => {
     const navigate = useNavigate();
     const navigateToDetailPage = (book_id) => {
-        navigate(`/all-books/book-detail/${book_id}`)
+        const element = document.getElementById('singleBookDetail');
+        element.scrollIntoView({ behavior: 'smooth' })
+        navigate(`/all-books/book-detail/${book_id}`);
+
     }
 
     return (

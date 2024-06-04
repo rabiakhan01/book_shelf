@@ -82,6 +82,15 @@ const SingleBookDetail = () => {
             setCartButton(false);
         }
     }, [context.favouritBookContext.cartBooks]);
+    useEffect(() => {
+        const data = context.favouritBookContext.cartBooks.find((book) => book.bookID == +bookId && book.quantity > 0);
+        if (data) {
+            setCartButton(true)
+        }
+        else {
+            setCartButton(false);
+        }
+    }, [bookId]);
     const handelOrder = (book_id) => {
         const alreadyExists = context.favouritBookContext.cartBooks?.find((bookID) => bookID == +book_id);
         if (!alreadyExists) {
@@ -96,6 +105,7 @@ const SingleBookDetail = () => {
             }
         })
     }
+
     return (
         <React.Fragment>
             {

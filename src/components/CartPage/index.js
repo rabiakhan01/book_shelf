@@ -20,7 +20,7 @@ const Cart = () => {
                 return { ...book, quantity: book.quantity + 1 }
             }
             else {
-                return book
+                return book;
             }
         })
         // console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
@@ -36,15 +36,19 @@ const Cart = () => {
                 return book;
             }
         })
+
         //console.log("🚀 ~ updatedArray ~ updatedArray:", updatedArray)
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedArray });
         const array = updatedArray.filter((item) => item.quantity > 0);
+        console.log("🚀 ~ decrementQuantity ~ array:", array)
 
-        if (array.length < 1) {
+        if (array.length > 0) {
             context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: array });
         }
+        else {
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] })
+        }
     }
-
     const handelNavigate = () => {
         navigate('/contact', {
             state: {
@@ -53,6 +57,7 @@ const Cart = () => {
             }
         })
     }
+
     //everytime when any change happens in the cart array
     useEffect(() => {
         const updatedPrice = context.favouritBookContext.cartBooks.map((item) => {

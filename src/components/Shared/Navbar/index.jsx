@@ -50,8 +50,8 @@ const Navbar = () => {
     return (
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
-                <div className="flex gap-2 xs:gap-3 h-10 items-center">
-                    <img src={icons.logo} alt="logo" className="w-8 h-10 cursor-pointer" onClick={() => handelNavigate('/')} />
+                <div className="flex gap-2 xs:gap-3 h-10 items-center cursor-pointer" onClick={() => handelNavigate('/')}>
+                    <img src={icons.logo} alt="logo" className="w-8 h-10" />
                     <h1 className="flex text-textSecondaryColor text-sm sm:text-base font-medium uppercase">bookmooch</h1>
                 </div>
                 <div className="hidden lg:flex">

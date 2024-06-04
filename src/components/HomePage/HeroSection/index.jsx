@@ -21,7 +21,7 @@ const HeroSection = () => {
                 <div className="relative flex flex-col gap-4 justify-between w-full md:w-1/2 bg-secondaryColor p-4 small-tab:h-56 md:h-auto sm:h-64 rounded-xl">
                     <div className="flex flex-col gap-5">
                         <h1 className="text-textSecondaryColor text-base small-tab:text-xl sm:text-2xl md:text-3xl uppercase w-full lg:w-3/4">find something to read</h1>
-                        <p className="text-textLightWhiteColor text-sm small-tab:text-base sm:text-lg w-2/3 xl:w-1/2">Fancy something unusual and unpredictable? Funny or exciting? No problem. Check out the collections we have prepared for you and I want to be a fantastic book keeper.</p>
+                        <p className="text-textLightWhiteColor text-sm small-tab:text-sm md:text-lg w-2/3 xl:w-1/2">Fancy something unusual and unpredictable? Funny or exciting? No problem. Check out the collections we have prepared for you and I want to be a fantastic book keeper.</p>
                     </div>
                     <div>
                         <Button
