@@ -8,24 +8,22 @@ const CrumbNavigation = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
 
+
     const [navigationArray, setNavigationArray] = useState([
         {
             id: 1,
             name: 'contact information',
             path: '/contact',
-            disable: false,
         },
         {
             id: 2,
             name: 'shipping method',
             path: '/shipping',
-            disable: false,
         },
         {
             id: 3,
             name: 'payment',
             path: '/checkout',
-            disable: false,
 
         },
     ]);
@@ -48,7 +46,8 @@ const CrumbNavigation = () => {
             setNavigationArray([...updatedArray]);
         }
     }, [state.id])
-
+    console.log("state", state);
+    console.log("array", navigationArray)
     const handelNavigate = (path, id) => {
         navigate(`${path}`, {
             state: {
@@ -74,7 +73,7 @@ const CrumbNavigation = () => {
                     navigationArray.map((bread, index) => {
                         return (
                             <div className="flex gap-1 small-tab:gap-2 justify-center items-center" key={index}>
-                                <button onClick={() => handelNavigate(bread.path, bread.id)} className={`cursor-pointer ${state.isActive == true && state.id == bread.id ? 'text-textYellowColor' : 'text-textSecondaryColor'} text-[10px] small-tab:text-xs sm:text-sm uppercase text-nowrap`}>{bread.name}</button>
+                                <p onClick={() => handelNavigate(bread.path, bread.id)} className={`cursor-pointer ${state.isActive && state.id == bread.id ? 'text-textYellowColor' : 'text-textSecondaryColor'} text-[10px] small-tab:text-xs sm:text-sm uppercase text-nowrap`}>{bread.name}</p>
                                 <img src={icons.nextPageIcon} alt="" className="w-2 h-2 small-tab:w-3 small-tab:h-3" />
                             </div>
                         )

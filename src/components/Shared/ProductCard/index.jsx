@@ -28,7 +28,7 @@ const ProductCard = ({ book_id, image, name, intro, review, rate, views, old_pri
                 <div className={`rounded-xl ${isIcon ? '!h-60' : '!h-72'} !w-full overflow-hidden`}>
                     <img src={image} alt="img" className="object-cover h-full w-full" />
                 </div>
-                <div className="absolute w-5 h-50 top-4 right-7 z-20">
+                <div className="absolute w-5 h-50 top-4 right-7 z-10">
                     <BtnBookMark
                         onClick={handelFavouritBook}
                         bookID={book_id}

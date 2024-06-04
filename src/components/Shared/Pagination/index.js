@@ -52,6 +52,9 @@ const Pagination = ({ maxRecordsPerPage }) => {
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
         }
 
+        const element = document.getElementById('pageStart');
+        element.scrollIntoView({ behavior: 'smooth' });
+
     }
 
     const nextPage = () => {

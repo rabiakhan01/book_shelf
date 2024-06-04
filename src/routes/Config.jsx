@@ -8,6 +8,7 @@ import BookDetailPage from "../pages/BookDetailPage";
 import CartPage from "../pages/CartPage";
 import ContactPage from "../pages/ContactPage";
 import CheckoutPage from "../pages/CheckoutPage";
+import ThankYouPage from "../pages/ThankYouPage";
 //public routes
 const publicRoutes = [
     {
@@ -48,6 +49,10 @@ const protectedRoutes = [
         path: '/checkout',
         element: <Layout><CheckoutPage /></Layout>
     },
+    {
+        path: '/thank-you',
+        element: <ThankYouPage />
+    }
 ]
 
 export {

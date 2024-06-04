@@ -53,11 +53,11 @@ const BooksListing = () => {
 
     return (
 
-        <div className="flex flex-col bg-secondaryColor p-4">
+        <div className="flex flex-col bg-secondaryColor p-4" id="pageStart">
             <div className="flex flex-col lg:flex-row w-full gap-4 pb-1 lg:pb-4  ">
                 <div className="flex justify-between w-full lg:w-[32.5%] ">
 
-                    <div className="flex justify-center items-center gap-2">
+                    <div className="flex justify-center items-center gap-2" >
                         <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6" onClick={handelFilters} />
                         <p className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p>
                         <p className={`text-grayColor text-xl ${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'}`}>{context.bookPageContext.bookFilters.length}</p>

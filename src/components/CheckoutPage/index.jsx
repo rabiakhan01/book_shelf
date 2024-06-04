@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Button, CheckoutLayout, InputField, PrevInformation } from "../Shared";
 import { bookListingContext } from "../Shared/ContextProvider";
 import { useNavigate } from "react-router-dom";
-
+import { allBooksData } from "../../utils/MockupData";
 const Checkout = () => {
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
+    const [subTotal, setSubTotal] = useState(0);
     const [paymentdetail, setPaymentDetail] = useState({
         cardNo: '',
         expirationDate: '',
@@ -20,8 +21,10 @@ const Checkout = () => {
 
     const handelChange = (event) => {
         const { value, name, checked } = event.target;
-
-        if (checked === true && value === "byCard") {
+        if (checked === true && value === "PUD") {
+            setPaymentOnDelivery(true);
+        }
+        else {
             if (name === 'cardNo') {
                 setErrorMessage((prev) => ({
                     ...prev,
@@ -41,17 +44,14 @@ const Checkout = () => {
                     CVCError: "",
                 }));
             }
-
             setPaymentDetail((prev) => ({
                 ...prev,
                 [name]: value
             }));
-            setPaymentOnDelivery(false)
+            setPaymentOnDelivery(false);
         }
-        if (checked === true && value === "PUD") {
 
-            setPaymentOnDelivery(true);
-        }
+
     }
     const handelFormSubmission = (event) => {
         if (paymentdetail.cardNo === '') {
@@ -63,16 +63,22 @@ const Checkout = () => {
         if (paymentdetail.CVC === '') {
             setErrorMessage((error) => ({ ...error, CVCError: 'CVC/CVV is required' }));
         }
-
-        if (paymentdetail.cardNo !== '' && paymentdetail.expirationDate !== '' && paymentdetail.CVC !== '') {
-            const formData = {
-                ...context.orderSummary,
-                cardDetail:
-                    { ...paymentdetail }
-            }
-            context.setOrderSummary(formData);
+        if (paymentOnDelivery) {
+            navigate('/thank-you')
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] });
         }
-
+        if (!paymentOnDelivery) {
+            if (paymentdetail.cardNo !== '' && paymentdetail.expirationDate !== '' && paymentdetail.CVC !== '') {
+                const formData = {
+                    ...context.orderSummary,
+                    cardDetail:
+                        { ...paymentdetail }
+                }
+                context.setOrderSummary(formData);
+                navigate('/thank-you');
+                context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] });
+            }
+        }
         event.preventDefault();
     }
 
@@ -94,6 +100,14 @@ const Checkout = () => {
             })
         }
     }
+    useEffect(() => {
+        const priceArray = allBooksData.map((book) => {
+            const matchingBook = context.favouritBookContext.cartBooks.find((item) => item.bookID === book.id);
+            return matchingBook && book.new_price * matchingBook.quantity;
+        }).filter((item) => item !== undefined)
+        const totalPrice = priceArray.reduce((a, b) => (a + b), 0);
+        setSubTotal(totalPrice);
+    }, []);
     return (
         <CheckoutLayout>
             <div className="flex flex-col gap-6">
@@ -146,13 +160,14 @@ const Checkout = () => {
                                         }
                                     </div>
                                 </div>
-                                <div>
-                                    <Button variant="contained" size="extra-large" onClick={handelFormSubmission}>pay $33.0 </Button>
-                                </div>
+
                             </div>
                             :
                             ''
                     }
+                </div>
+                <div>
+                    <Button variant="contained" size="extra-large" onClick={handelFormSubmission}>pay ${subTotal}</Button>
                 </div>
             </div>
         </CheckoutLayout>

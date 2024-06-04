@@ -83,7 +83,7 @@ const Cart = () => {
                                         <div>
                                             <p >{book.book_name}</p>
                                             <p className="text-base sm:text-xl font-medium">{book.author_name}</p>
-                                            <p>{ }</p>
+                                            <p>${book.new_price}</p>
                                             <p>{book.language}</p>
                                         </div>
                                         <div>

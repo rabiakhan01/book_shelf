@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { BtnBookMark, BtnCartQuantity, Button } from "../../Shared";
 import icons from "../../../assets/icons/icons";
 import NavigationCrumb from "../NavigationCrumb";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { allBooksData } from "../../../utils/MockupData";
 import { bookListingContext } from "../../Shared/ContextProvider";
 
 const SingleBookDetail = () => {
-
+    const navigate = useNavigate();
     const context = useContext(bookListingContext);
     const { bookId } = useParams();
 
@@ -82,7 +82,20 @@ const SingleBookDetail = () => {
             setCartButton(false);
         }
     }, [context.favouritBookContext.cartBooks]);
-
+    const handelOrder = (book_id) => {
+        const alreadyExists = context.favouritBookContext.cartBooks?.find((bookID) => bookID == +book_id);
+        if (!alreadyExists) {
+            const cartBooks = [...context.favouritBookContext.cartBooks, { bookID: book_id, quantity: 1 }];
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: cartBooks });
+            setCartButton(true);
+        }
+        navigate('/cart', {
+            state: {
+                id: 1,
+                isActive: true
+            }
+        })
+    }
     return (
         <React.Fragment>
             {
@@ -150,6 +163,7 @@ const SingleBookDetail = () => {
                                                 <Button
                                                     size="medium"
                                                     variant="contained"
+                                                    onClick={() => handelOrder(book.id)}
                                                 >
                                                     buy now
                                                 </Button>
