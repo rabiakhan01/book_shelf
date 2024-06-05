@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { bookListingContext } from "../Shared/ContextProvider";
 import { BtnCartQuantity } from "../Shared";
-import { allAuthorsData, allBooksData } from "../../utils/MockupData";
-import { useNavigate, useParams } from "react-router-dom";
+import { allBooksData } from "../../utils/MockupData";
+import { useNavigate } from "react-router-dom";
 import { Button } from '../Shared';
 
 
@@ -23,7 +23,6 @@ const Cart = () => {
                 return book;
             }
         })
-        // console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
 
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedData })
     }
@@ -37,10 +36,8 @@ const Cart = () => {
             }
         })
 
-        //console.log("🚀 ~ updatedArray ~ updatedArray:", updatedArray)
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedArray });
         const array = updatedArray.filter((item) => item.quantity > 0);
-        console.log("🚀 ~ decrementQuantity ~ array:", array)
 
         if (array.length > 0) {
             context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: array });
@@ -50,12 +47,7 @@ const Cart = () => {
         }
     }
     const handelNavigate = () => {
-        navigate('/contact', {
-            state: {
-                id: 1,
-                isActive: true,
-            }
-        })
+        navigate('/checkout')
     }
 
     //everytime when any change happens in the cart array
@@ -64,7 +56,6 @@ const Cart = () => {
             const matchingBook = allBooksData.find((book) => book.id === +item.bookID);
             return matchingBook ? { bookID: item.bookID, price: item.quantity * matchingBook.new_price } : undefined
         })
-        // console.log("🚀 ~ updatedPrice ~ updatedPrice:", updatedPrice);
         setTotalPrice([...updatedPrice]);
         const totalBill = updatedPrice.reduce((a, b) => (a + b.price), 0);
         setSubTotal(totalBill);

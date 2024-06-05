@@ -1,11 +1,9 @@
 import { Layout } from "../components/Shared";
 import HomePage from "../pages/HomePage";
-import ShippingPage from "../pages/ShippingPage";
 import LoginPage from "../pages/LoginPage";
 import AllBooksPage from "../pages/AllBooksPage";
 import BookDetailPage from "../pages/BookDetailPage";
 import CartPage from "../pages/CartPage";
-import ContactPage from "../pages/ContactPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import ThankYouPage from "../pages/ThankYouPage";
 import SignupPage from "../pages/SignupPage";
@@ -40,15 +38,6 @@ const publicRoutes = [
 
 //protected routes
 const protectedRoutes = [
-
-    {
-        path: '/contact',
-        element: <Layout id="homepage"><ContactPage /></Layout>
-    },
-    {
-        path: '/shipping',
-        element: <Layout><ShippingPage /></Layout>
-    },
     {
         path: '/checkout',
         element: <Layout><CheckoutPage /></Layout>

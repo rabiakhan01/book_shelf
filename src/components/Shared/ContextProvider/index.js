@@ -26,9 +26,10 @@ const ContextProvider = ({ children }) => {
         },
         cardDetail: {},
 
-    })
+    });
+    const [step, setStep] = useState(1);
     return (
-        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary }}>
+        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary, step, setStep }}>
             {children}
         </bookListingContext.Provider>
     )

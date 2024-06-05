@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, InputField } from "../../components/Shared";
 import { useNavigate } from "react-router-dom";
+import { isAuthentication } from "../../utils/utils";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -56,14 +57,9 @@ const LoginPage = () => {
         }
 
         if (loginUser.email !== '' && loginUser.password !== '') {
-            const findUser = user.find((item) => item.email === loginUser.email);
+            const findUser = user.find((item) => item.email === loginUser.email && item.password === loginUser.password);
             if (findUser) {
-                navigate('/contact', {
-                    state: {
-                        id: 1,
-                        isActive: true
-                    }
-                });
+                isAuthentication(findUser);
                 setInvalidUser(false)
             }
             else {
@@ -73,6 +69,9 @@ const LoginPage = () => {
         }
     }
 
+    const navigateToSignup = () => {
+        navigate('/signup')
+    }
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
             {
@@ -109,6 +108,7 @@ const LoginPage = () => {
                     <Button
                         variant="outlined"
                         size="extra-large"
+                        onClick={navigateToSignup}
                     >Create new account</Button>
                 </div>
             </div>

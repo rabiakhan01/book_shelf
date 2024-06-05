@@ -12,7 +12,6 @@ const Pagination = ({ maxRecordsPerPage }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [prevButton, setPrevButton] = useState(true);
     const [nextButton, setNextButton] = useState(false);
-    const [activePage, setActivePage] = useState(false);
     const [pageArray, setPageArray] = useState([]);
     const totalPage = [];
     for (let i = 0; i < maxPage; i++) {

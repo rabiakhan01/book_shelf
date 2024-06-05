@@ -64,9 +64,8 @@ const SignupPage = () => {
         }
 
         if (signupUser.username !== '' && signupUser.email !== '' && signupUser.password !== '') {
-            const data = [...user, { ...signupUser, id: Math.floor(Math.random() * 100) }];
+            const data = [...user, { ...signupUser, id: Math.floor(Math.random() * 100), isLogin: true }];
             const alreadyExist = user.find((item) => item.email == signupUser.email);
-            console.log("🚀 ~ submitUserData ~ alreadyExist:", alreadyExist)
 
             if (alreadyExist) {
                 setUserExist(true);
@@ -86,7 +85,9 @@ const SignupPage = () => {
 
         }
     }
-
+    const navigateToLogin = () => {
+        navigate('/login');
+    }
 
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
@@ -136,6 +137,7 @@ const SignupPage = () => {
                     <Button
                         variant="outlined"
                         size="extra-large"
+                        onClick={navigateToLogin}
                     >Already have an Account</Button>
                 </div>
             </div>

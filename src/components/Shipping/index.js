@@ -54,12 +54,7 @@ const Shipping = () => {
 
             }
             context.setOrderSummary(shippingData);
-            naviagte('/checkout', {
-                state: {
-                    id: 3,
-                    isActcive: true,
-                }
-            });
+            context.setStep(3);
         }
         event.preventDefault();
     }
@@ -73,8 +68,8 @@ const Shipping = () => {
         })
     }
     return (
-        <CheckoutLayout
-        >
+
+        <div>
             <div>
                 <PrevInformation
                     heading="contact information"
@@ -109,7 +104,8 @@ const Shipping = () => {
                     </div>
                 </div>
             </div>
-        </CheckoutLayout>
+
+        </div>
     )
 }
 

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Button, CheckoutLayout, InputField } from "../../Shared";
+import { Button, CheckoutLayout, InputField } from "../Shared";
 import { useNavigate } from "react-router-dom";
-import { bookListingContext } from "../../Shared/ContextProvider";
+import { bookListingContext } from "../Shared/ContextProvider";
 
-const ContactInfo = () => {
+const ContactInformation = () => {
 
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
@@ -57,19 +57,15 @@ const ContactInfo = () => {
                 customerNumber: customerInfo.mobileNo,
             };
             context.setOrderSummary(contactData);
-            navigate('/shipping', {
-                state: {
-                    id: 2,
-                    isActcive: true,
-                }
-            });
+            context.setStep(2);
         }
         event.preventDefault();
     }
-    // console.log("🚀 ~ handelCustomerInfo ~ context.orderSummary.contactInformation:", context.orderSummary)
+    // console.log(" ~ handelCustomerInfo ~ context.orderSummary.contactInformationrmation:", context.orderSummary)
 
     return (
-        <CheckoutLayout>
+
+        <div>
             <div className="flex flex-col-reverse gap-2 small-tab:flex-row justify-between ">
                 <h1 className="text-sm sm:text-base xl:text-xl uppercase">contact information</h1>
                 <div className="flex items-center gap-1 text-sm ">
@@ -85,21 +81,19 @@ const ContactInfo = () => {
                         name="customerName"
                         value={customerInfo.customerName}
                         onChange={handelChange}
-                        error={errorMessage.customerNameError}
-                    />
+                        error={errorMessage.customerNameError} />
                     <InputField
                         placeholder="Mobile"
                         name="mobileNo"
                         type="number"
                         value={customerInfo.mobileNo}
                         onChange={handelChange}
-                        error={errorMessage.mobileNoError}
-                    />
+                        error={errorMessage.mobileNoError} />
                     <Button variant="contained" size="extra-large" type="button" onClick={handelCustomerInfo}>continue to shipping method</Button>
                 </form>
             </div>
-        </CheckoutLayout>
+        </div>
     )
 }
 
-export default ContactInfo;
+export default ContactInformation;

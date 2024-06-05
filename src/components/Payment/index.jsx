@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Button, CheckoutLayout, InputField, PrevInformation } from "../Shared";
+import { Button, InputField, PrevInformation } from "../Shared";
 import { bookListingContext } from "../Shared/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import { allBooksData } from "../../utils/MockupData";
-const Checkout = () => {
+const Payment = () => {
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
     const [subTotal, setSubTotal] = useState(0);
@@ -109,69 +109,68 @@ const Checkout = () => {
         setSubTotal(totalPrice);
     }, []);
     return (
-        <CheckoutLayout>
+
+        <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+                <PrevInformation
+                    heading="contact information"
+                    key1="Name"
+                    key2="Contact"
+                    value1={context.orderSummary.customerName}
+                    value2={context.orderSummary.customerNumber}
+                    onClick={() => editInformation('/contact')}
+                />
+                <PrevInformation
+                    heading="shipping method"
+                    key1="Date"
+                    key2="Adress"
+                    value1={context.orderSummary.shippingMethod.date}
+                    value2={context.orderSummary.shippingMethod.adress}
+                    onClick={() => editInformation('/shipping')}
+                />
+            </div>
             <div className="flex flex-col gap-6">
-                <div className="flex flex-col gap-2">
-                    <PrevInformation
-                        heading="contact information"
-                        key1="Name"
-                        key2="Contact"
-                        value1={context.orderSummary.customerName}
-                        value2={context.orderSummary.customerNumber}
-                        onClick={() => editInformation('/contact')}
-                    />
-                    <PrevInformation
-                        heading="shipping method"
-                        key1="Date"
-                        key2="Adress"
-                        value1={context.orderSummary.shippingMethod.date}
-                        value2={context.orderSummary.shippingMethod.adress}
-                        onClick={() => editInformation('/shipping')}
-                    />
-                </div>
-                <div className="flex flex-col gap-6">
-                    <div className="flex justify-between">
-                        <div> <h1 className="text-base lg:text-xl uppercase">payment</h1></div>
-                        <div className="flex justify-center items-center gap-2 text-sm lg:text-base">
-                            <input type="radio" name="paymentMethod" value="byCard" checked={!paymentOnDelivery} onChange={handelChange}></input>By card
-                            <input type="radio" name="paymentMethod" value="PUD" onChange={handelChange}></input>Payment upon delivery
-                        </div>
+                <div className="flex justify-between">
+                    <div> <h1 className="text-base lg:text-xl uppercase">payment</h1></div>
+                    <div className="flex justify-center items-center gap-2 text-sm lg:text-base">
+                        <input type="radio" name="paymentMethod" value="byCard" checked={!paymentOnDelivery} onChange={handelChange}></input>By card
+                        <input type="radio" name="paymentMethod" value="PUD" onChange={handelChange}></input>Payment upon delivery
                     </div>
-                    {
-                        !paymentOnDelivery ?
-                            <div className="flex flex-col gap-3">
-                                <InputField
-                                    placeholder="Card Number"
-                                    type="number"
-                                    name="cardNo"
-                                    value={paymentdetail.cardNo}
-                                    error={errorMessage.cardNoError}
-                                    onChange={handelChange} />
-                                <div className="flex gap-3 w-full">
-                                    <div className="w-1/2">
-                                        <InputField
-                                            placeholder="Expiration"
-                                            type="date"
-                                            name="expirationDate"
-                                            value={paymentdetail.expirationDate}
-                                            error={errorMessage.expirationDateError}
-                                            onChange={handelChange} />
-                                    </div>
-                                    <div className="w-1/2">
-                                        <InputField placeholder="CVV/CVC" type="text" name="CVC" value={paymentdetail.CVC} error={errorMessage.CVCError} onChange={handelChange} />
-                                    </div>
+                </div>
+                {
+                    !paymentOnDelivery ?
+                        <div className="flex flex-col gap-3">
+                            <InputField
+                                placeholder="Card Number"
+                                type="number"
+                                name="cardNo"
+                                value={paymentdetail.cardNo}
+                                error={errorMessage.cardNoError}
+                                onChange={handelChange} />
+                            <div className="flex gap-3 w-full">
+                                <div className="w-1/2">
+                                    <InputField
+                                        placeholder="Expiration"
+                                        type="date"
+                                        name="expirationDate"
+                                        value={paymentdetail.expirationDate}
+                                        error={errorMessage.expirationDateError}
+                                        onChange={handelChange} />
+                                </div>
+                                <div className="w-1/2">
+                                    <InputField placeholder="CVV/CVC" type="text" name="CVC" value={paymentdetail.CVC} error={errorMessage.CVCError} onChange={handelChange} />
                                 </div>
                             </div>
-                            :
-                            ''
-                    }
-                </div>
-                <div>
-                    <Button variant="contained" size="extra-large" onClick={handelFormSubmission}>pay ${subTotal}</Button>
-                </div>
+                        </div>
+                        :
+                        ''
+                }
             </div>
-        </CheckoutLayout>
+            <div>
+                <Button variant="contained" size="extra-large" onClick={handelFormSubmission}>pay ${subTotal}</Button>
+            </div>
+        </div>
     )
 }
 
-export default Checkout;
+export default Payment;
