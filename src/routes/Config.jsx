@@ -21,7 +21,7 @@ const publicRoutes = [
     },
     {
         path: '/login',
-        element: <Layout><LoginPage /></Layout>
+        element: <LoginPage />
     },
     {
         path: 'all-books/book-detail/:bookId',

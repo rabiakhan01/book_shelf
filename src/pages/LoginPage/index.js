@@ -1,8 +1,41 @@
 import React from "react";
-
+import { Button, InputField } from "../../components/Shared";
 const LoginPage = () => {
+    const handelChange = () => {
+
+    }
     return (
-        <div>LoginPage</div>
+        <div className="flex justify-center items-center h-lvh bg-secondaryColor">
+            <div className="flex flex-col w-[27rem] justify-center items-center border border-lightYellowColor rounded-xl m-4 p-4 small-tab:px-10 py-14">
+                <div>
+                    <h1 className="text-textYellowColor text-xl  small-tab:text-2xlxl sm:text-3xl font-medium uppercase pb-6 text-nowrap ">Login</h1>
+                </div>
+                <div className="grid grid-flow-row gap-2 w-full">
+                    <InputField
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        onChange={handelChange}
+                    />
+                    <InputField
+                        name="password"
+                        value="password"
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <div className="mt-6">
+                        <Button
+                            variant="contained"
+                            size="extra-large"
+                        >Sign In</Button>
+                    </div>
+                    <Button
+                        variant="outlined"
+                        size="extra-large"
+                    >Create new account</Button>
+                </div>
+            </div>
+        </div>
     )
 }
 
