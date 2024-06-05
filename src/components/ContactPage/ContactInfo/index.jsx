@@ -79,18 +79,22 @@ const ContactInfo = () => {
             </div>
             <div className="w-full ">
                 <form className="flex flex-col gap-3">
-                    <div className="flex flex-col h-auto gap-1">
-                        <InputField placeholder="Name Surname" type="text" name="customerName" value={customerInfo.customerName} onChange={handelChange} errorMessage={errorMessage.customerNameError} />
-                        {
-                            errorMessage.customerNameError ? <p className="text-errorColor text-base">{errorMessage.customerNameError}</p> : ''
-                        }
-                    </div>
-                    <div className="flex flex-col gap-1 h-auto">
-                        <InputField placeholder="Mobile" name="mobileNo" type="number" value={customerInfo.mobileNo} onChange={handelChange} errorMessage={errorMessage.mobileNoError} />
-                        {
-                            errorMessage.mobileNoError ? <p className="text-errorColor text-base">{errorMessage.mobileNoError}</p> : ''
-                        }
-                    </div>
+                    <InputField
+                        placeholder="Name Surname"
+                        type="text"
+                        name="customerName"
+                        value={customerInfo.customerName}
+                        onChange={handelChange}
+                        error={errorMessage.customerNameError}
+                    />
+                    <InputField
+                        placeholder="Mobile"
+                        name="mobileNo"
+                        type="number"
+                        value={customerInfo.mobileNo}
+                        onChange={handelChange}
+                        error={errorMessage.mobileNoError}
+                    />
                     <Button variant="contained" size="extra-large" type="button" onClick={handelCustomerInfo}>continue to shipping method</Button>
                 </form>
             </div>

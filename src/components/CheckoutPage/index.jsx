@@ -140,27 +140,27 @@ const Checkout = () => {
                     {
                         !paymentOnDelivery ?
                             <div className="flex flex-col gap-3">
-                                <div className="flex flex-col gap-1">
-                                    <InputField placeholder="Card Number" type="number" name="cardNo" value={paymentdetail.cardNo} errorMessage={errorMessage.cardNoError} onChange={handelChange} />
-                                    {
-                                        errorMessage.cardNoError ? <p className="text-errorColor text-base">{errorMessage.cardNoError}</p> : ''
-                                    }
-                                </div>
+                                <InputField
+                                    placeholder="Card Number"
+                                    type="number"
+                                    name="cardNo"
+                                    value={paymentdetail.cardNo}
+                                    error={errorMessage.cardNoError}
+                                    onChange={handelChange} />
                                 <div className="flex gap-3 w-full">
-                                    <div className="flex flex-col gap-1 w-1/2">
-                                        <InputField placeholder="Expiration" type="date" name="expirationDate" value={paymentdetail.expirationDate} errorMessage={errorMessage.expirationDateError} onChange={handelChange} />
-                                        {
-                                            errorMessage.expirationDateError ? <p className="text-errorColor text-base">{errorMessage.expirationDateError}</p> : ''
-                                        }
+                                    <div className="w-1/2">
+                                        <InputField
+                                            placeholder="Expiration"
+                                            type="date"
+                                            name="expirationDate"
+                                            value={paymentdetail.expirationDate}
+                                            error={errorMessage.expirationDateError}
+                                            onChange={handelChange} />
                                     </div>
-                                    <div className="flex flex-col gap-1 w-1/2">
-                                        <InputField placeholder="CVV/CVC" type="text" name="CVC" value={paymentdetail.CVC} errorMessage={errorMessage.CVCError} onChange={handelChange} />
-                                        {
-                                            errorMessage.CVCError ? <p className="text-errorColor text-base">{errorMessage.CVCError}</p> : ''
-                                        }
+                                    <div className="w-1/2">
+                                        <InputField placeholder="CVV/CVC" type="text" name="CVC" value={paymentdetail.CVC} error={errorMessage.CVCError} onChange={handelChange} />
                                     </div>
                                 </div>
-
                             </div>
                             :
                             ''
