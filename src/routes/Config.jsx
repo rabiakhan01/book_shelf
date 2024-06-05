@@ -8,6 +8,7 @@ import CartPage from "../pages/CartPage";
 import ContactPage from "../pages/ContactPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import ThankYouPage from "../pages/ThankYouPage";
+import SignupPage from "../pages/SignupPage";
 //public routes
 const publicRoutes = [
     {
@@ -30,6 +31,10 @@ const publicRoutes = [
         path: '/cart',
         element: <Layout><CartPage /></Layout>
     },
+    {
+        path: '/signup',
+        element: <SignupPage />
+    }
 
 ];
 
