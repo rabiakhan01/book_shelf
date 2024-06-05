@@ -6,9 +6,9 @@ const SignupPage = () => {
     }
     return (
         <div className="flex justify-center items-center h-lvh bg-secondaryColor">
-            <div className="flex flex-col w-[25%] justify-center items-center border border-lightYellowColor rounded-xl m-5 p-16 sm:py-10">
+            <div className="flex flex-col w-[30rem] justify-center items-center border border-lightYellowColor rounded-xl m-5 p-4 small-tab:p-10 py-10">
                 <div>
-                    <h1 className="text-textYellowColor text-xl sm:text-3xl uppercase pb-6 text-nowrap ">Signup</h1>
+                    <h1 className="text-textYellowColor text-xl  small-tab:text-2xlxl sm:text-3xl font-medium uppercase pb-6 text-nowrap ">Signup</h1>
                 </div>
                 <div className="grid grid-flow-row gap-2 w-full">
                     <InputField
