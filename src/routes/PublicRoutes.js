@@ -7,7 +7,7 @@ const PublicRoutes = () => {
 
         <React.Fragment>
             {
-                isAuthentication() ? <Outlet /> : <Navigate to="/" />
+                !isAuthentication() ? <Outlet /> : <Navigate to="/checkout" />
             }
         </React.Fragment>
 

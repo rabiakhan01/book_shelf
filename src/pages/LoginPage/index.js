@@ -59,7 +59,18 @@ const LoginPage = () => {
         if (loginUser.email !== '' && loginUser.password !== '') {
             const findUser = user.find((item) => item.email === loginUser.email && item.password === loginUser.password);
             if (findUser) {
-                isAuthentication(findUser);
+                const updateUser = user.map((user) => {
+                    if (findUser.email === user.email && findUser.password === user.password) {
+                        return { ...user, isLogin: true }
+                    }
+                    else {
+                        return user;
+                    }
+                })
+                console.log("🚀 ~ updateUser ~ updateUser:", updateUser);
+                localStorage.setItem('loginData', JSON.stringify(updateUser));
+                setUser([...updateUser])
+                navigate('/cart')
                 setInvalidUser(false)
             }
             else {

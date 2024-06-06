@@ -64,7 +64,7 @@ const SignupPage = () => {
         }
 
         if (signupUser.username !== '' && signupUser.email !== '' && signupUser.password !== '') {
-            const data = [...user, { ...signupUser, id: Math.floor(Math.random() * 100), isLogin: true }];
+            const data = [...user, { ...signupUser, id: Math.floor(Math.random() * 100) }];
             const alreadyExist = user.find((item) => item.email == signupUser.email);
 
             if (alreadyExist) {

@@ -4,9 +4,20 @@ import { Button } from '../index'
 import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../ContextProvider";
+import { isAuthentication } from "../../../utils/utils";
 const Navbar = () => {
     const context = useContext(bookListingContext);
     const navigate = useNavigate();
+    const getUser = () => {
+        const userData = JSON.parse(localStorage.getItem('loginData'));
+        if (userData) {
+            return userData;
+        }
+        else {
+            return []
+        }
+    }
+    const [user, setUser] = useState(getUser())
 
     const [drawer, setDrawer] = useState(false);
     const [searchField, setSearchField] = useState(true);
@@ -29,6 +40,22 @@ const Navbar = () => {
 
     const handelNavigate = (path) => {
         navigate(`${path}`)
+    }
+    const handelLogout = () => {
+        const findUser = user.find((user) => user.isLogin);
+        if (findUser) {
+            const updateUserData = user.map((user) => {
+                if (user.isLogin) {
+                    return { ...user, isLogin: false }
+                }
+                else {
+                    return user
+                }
+            });
+            localStorage.setItem('loginData', JSON.stringify(updateUserData));
+            setUser(updateUserData);
+        }
+        navigate('/');
     }
 
     const navigateToCart = () => {
@@ -85,16 +112,29 @@ const Navbar = () => {
                         </div>
 
                     </div>
-                    <div className="hidden md:flex">
-                        <Button
 
-                            variant="contained"
-                            size="small"
-                            onClick={() => handelNavigate('/login')}
-                        >
-                            Login
-                        </Button>
-                    </div>
+                    {
+                        !isAuthentication() ?
+                            <div className="hidden md:flex">
+                                <Button
+                                    variant="contained"
+                                    size="small"
+                                    onClick={() => handelNavigate('/login')}
+                                >
+                                    Login
+                                </Button>
+                            </div>
+                            :
+                            <div className="hidden md:flex">
+                                <Button
+                                    variant="contained"
+                                    size="small"
+                                    onClick={() => handelLogout()}
+                                >
+                                    Logout
+                                </Button>
+                            </div>
+                    }
                     <div className="flex lg:hidden">
                         {
                             drawer ?

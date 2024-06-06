@@ -4,6 +4,7 @@ import { BtnCartQuantity } from "../Shared";
 import { allBooksData } from "../../utils/MockupData";
 import { useNavigate } from "react-router-dom";
 import { Button } from '../Shared';
+import { isAuthentication } from "../../utils/utils";
 
 
 const Cart = () => {
@@ -47,7 +48,12 @@ const Cart = () => {
         }
     }
     const handelNavigate = () => {
-        navigate('/checkout')
+        if (isAuthentication()) {
+            navigate('/checkout');
+        }
+        else {
+            navigate('/login')
+        }
     }
 
     //everytime when any change happens in the cart array
