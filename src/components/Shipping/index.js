@@ -60,12 +60,7 @@ const Shipping = () => {
     }
 
     const editInformation = () => {
-        naviagte('/contact', {
-            state: {
-                id: 1,
-                isActcive: true,
-            }
-        })
+        context.setStep(1);
     }
     return (
 

@@ -83,22 +83,7 @@ const Payment = () => {
     }
 
     const editInformation = (path) => {
-        if (path == '/contact') {
-            navigate(`${path}`, {
-                state: {
-                    id: 1,
-                    isActive: true,
-                }
-            })
-        }
-        if (path == '/shipping') {
-            navigate(`${path}`, {
-                state: {
-                    id: 2,
-                    isActive: true
-                }
-            })
-        }
+        context.setStep(2);
     }
     useEffect(() => {
         const priceArray = allBooksData.map((book) => {
