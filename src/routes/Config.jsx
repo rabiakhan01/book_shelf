@@ -10,34 +10,21 @@ import SignupPage from "../pages/SignupPage";
 //public routes
 const publicRoutes = [
     {
-        path: '/',
-        element: <Layout><HomePage /></Layout>
-    },
-    {
-        path: '/all-books',
-        element: <Layout><AllBooksPage /></Layout>
-    },
-    {
         path: '/login',
         element: <LoginPage />
     },
     {
-        path: 'all-books/book-detail/:bookId',
-        element: <Layout><BookDetailPage /></Layout>
-    },
-    {
-        path: '/cart',
-        element: <Layout><CartPage /></Layout>
-    },
-    {
         path: '/signup',
         element: <SignupPage />
-    }
+    },
+
 
 ];
 
 //protected routes
 const protectedRoutes = [
+
+
     {
         path: '/checkout',
         element: <Layout><CheckoutPage /></Layout>

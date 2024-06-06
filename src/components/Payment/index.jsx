@@ -3,6 +3,7 @@ import { Button, InputField, PrevInformation } from "../Shared";
 import { bookListingContext } from "../Shared/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import { allBooksData } from "../../utils/MockupData";
+import { isAuthentication } from "../../utils/utils";
 const Payment = () => {
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
@@ -64,10 +65,12 @@ const Payment = () => {
             setErrorMessage((error) => ({ ...error, CVCError: 'CVC/CVV is required' }));
         }
         if (paymentOnDelivery) {
-            navigate('/thank-you')
+            navigate('/thank-you');
+
             context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] });
         }
         if (!paymentOnDelivery) {
+            navigate('/thank-you');
             if (paymentdetail.cardNo !== '' && paymentdetail.expirationDate !== '' && paymentdetail.CVC !== '') {
                 const formData = {
                     ...context.orderSummary,
@@ -75,8 +78,8 @@ const Payment = () => {
                         { ...paymentdetail }
                 }
                 context.setOrderSummary(formData);
-                navigate('/thank-you');
                 context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] });
+
             }
         }
         event.preventDefault();

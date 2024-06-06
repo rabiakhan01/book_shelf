@@ -67,10 +67,9 @@ const LoginPage = () => {
                         return user;
                     }
                 })
-                console.log("🚀 ~ updateUser ~ updateUser:", updateUser);
                 localStorage.setItem('loginData', JSON.stringify(updateUser));
                 setUser([...updateUser])
-                navigate('/cart')
+                navigate('/all-books')
                 setInvalidUser(false)
             }
             else {

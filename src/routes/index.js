@@ -3,11 +3,20 @@ import { Route, Routes } from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { publicRoutes, protectedRoutes } from './Config'
+import HomePage from "../pages/HomePage";
+import AllBooksPage from "../pages/AllBooksPage";
+import BookDetailPage from "../pages/BookDetailPage";
+import { Layout } from "../components/Shared";
+import CartPage from "../pages/CartPage";
 
 
 const Routing = () => {
     return (
         <Routes>
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
+            <Route path="/all-books" element={<Layout><AllBooksPage /></Layout>} />
+            <Route path="all-books/book-detail/:bookId" element={<Layout><BookDetailPage /></Layout>} />
+            <Route path='/cart' element=<Layout><CartPage /></Layout> />
             <Route element={<PublicRoutes />}>
                 {
                     publicRoutes.map((route, index) => {

@@ -4,7 +4,7 @@ const isAuthentication = () => {
 
     if (getUser) {
         const findUser = getUser.find((user) => user.isLogin);
-        if (findUser) {
+        if (findUser?.isLogin) {
             return true
         }
         else {

@@ -48,6 +48,7 @@ const Cart = () => {
         }
     }
     const handelNavigate = () => {
+        console.log(isAuthentication())
         if (isAuthentication()) {
             navigate('/checkout');
         }

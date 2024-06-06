@@ -54,8 +54,9 @@ const Navbar = () => {
             });
             localStorage.setItem('loginData', JSON.stringify(updateUserData));
             setUser(updateUserData);
+            navigate('/')
         }
-        navigate('/');
+
     }
 
     const navigateToCart = () => {
@@ -164,17 +165,9 @@ const Navbar = () => {
 
                     </div>
                 }
-            </div >
-            {
-                searchField &&
-                <div className="flex lg:hidden relative pb-2">
-                    <input className="h-10 w-full mt-5 rounded-xl border border-secondaryColor bg-primaryColor pl-6" placeholder="Search" />
-                    <button className="flex justify-center items-center absolute top-6 right-2 w-10 h-8 hover:border focus:border">
-                        <img src={icons.searchIcon} alt="" className="w-6 h-6" />
-                    </button>
-                </div>
-            }
-        </nav >
+            </div>
+
+        </nav>
     )
 }
 

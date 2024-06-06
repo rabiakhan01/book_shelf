@@ -4,10 +4,9 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const PublicRoutes = () => {
     return (
-
         <React.Fragment>
             {
-                !isAuthentication() ? <Outlet /> : <Navigate to="/checkout" />
+                isAuthentication() ? <Navigate to="/" /> : <Outlet />
             }
         </React.Fragment>
 
