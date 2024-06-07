@@ -169,7 +169,8 @@ const allBooksData = [
     },
     {
         id: 8,
-        author_name: 'Donald',
+        author_name: 'Donald Norman',
+        author_id: 13,
         book_name: 'The Design of Everyday Things',
         rating: {
             star: 4.2,
@@ -469,9 +470,122 @@ const allBooksData = [
         book_img: images.book_12,
         description: 'A novel exploring themes of language, identity, and terrorism through the experiences of a risk analyst in 1970s Greece.'
 
-    }
-
-
+    },
+    {
+        id: 21,
+        author_id: 8,
+        author_name: 'Haruki Murakami',
+        book_name: 'Kafka on the Shore',
+        rating: {
+            star: 4.3,
+            views: 220,
+            reviews: 60
+        },
+        category: 'Novel',
+        publish_date: '2002',
+        language: 'English',
+        pages: 467,
+        read_time: '10-12 hours',
+        type: 'Hardcover',
+        publisher: 'Shinchosha',
+        old_price: 25,
+        new_price: 20,
+        plot_summary: 'Kafka on the Shore is a metaphysical novel that intertwines the lives of a fifteen-year-old runaway, Kafka, and an elderly man, Nakata, in a surreal and fantastical narrative.',
+        book_img: images.book_1,
+        description: 'A metaphysical novel that explores themes of memory, identity, and destiny through intertwined narratives of a runaway teenager and an elderly man with a mysterious past.'
+    },
+    {
+        id: 22,
+        author_id: 9,
+        author_name: 'Gabriel Garcia Marquez',
+        book_name: 'One Hundred Years of Solitude',
+        rating: {
+            star: 4.8,
+            views: 400,
+            reviews: 150
+        },
+        category: 'Magical Realism',
+        publish_date: '1967',
+        language: 'Spanish',
+        pages: 417,
+        read_time: '10-12 hours',
+        type: 'Paperback',
+        publisher: 'Harper & Row',
+        old_price: 20,
+        new_price: 15,
+        plot_summary: 'One Hundred Years of Solitude chronicles the rise and fall of the Buendía family in the fictional town of Macondo, blending realism and fantasy.',
+        book_img: images.book_2,
+        description: 'A landmark novel in magical realism, depicting the saga of the Buendía family and the mythical town of Macondo.'
+    },
+    {
+        id: 23,
+        author_id: 29,
+        author_name: 'Toni Morrison',
+        book_name: 'Beloved',
+        rating: {
+            star: 4.5,
+            views: 320,
+            reviews: 100
+        },
+        category: 'Historical Fiction',
+        publish_date: '1987',
+        language: 'English',
+        pages: 324,
+        read_time: '8-10 hours',
+        type: 'Paperback',
+        publisher: 'Knopf',
+        old_price: 18,
+        new_price: 12,
+        plot_summary: 'Beloved is a novel about an escaped slave named Sethe who is haunted by the ghost of her deceased daughter.',
+        book_img: images.book_3,
+        description: 'A powerful narrative on the legacy of slavery, memory, and trauma, centered around Sethe and the haunting presence of her daughter\'s ghost.'
+    },
+    {
+        id: 24,
+        author_id: 11,
+        author_name: 'Hermann Hesse',
+        book_name: 'Siddhartha',
+        rating: {
+            star: 4.4,
+            views: 180,
+            reviews: 50
+        },
+        category: 'Philosophical Fiction',
+        publish_date: '1922',
+        language: 'German',
+        pages: 152,
+        read_time: '4-6 hours',
+        type: 'Paperback',
+        publisher: 'New Directions',
+        old_price: 12,
+        new_price: 8,
+        plot_summary: 'Siddhartha is a philosophical novel that explores the spiritual journey of a man named Siddhartha during the time of the Buddha.',
+        book_img: images.book_4,
+        description: 'A profound exploration of spiritual enlightenment and self-discovery, set in ancient India during the time of the Buddha.'
+    },
+    {
+        id: 25,
+        author_id: 12,
+        author_name: 'Kurt Vonnegut',
+        book_name: 'Slaughterhouse-Five',
+        rating: {
+            star: 4.7,
+            views: 350,
+            reviews: 120
+        },
+        category: 'Satire',
+        publish_date: '1969',
+        language: 'English',
+        pages: 275,
+        read_time: '6-8 hours',
+        type: 'Paperback',
+        publisher: 'Delacorte',
+        old_price: 15,
+        new_price: 10,
+        plot_summary: 'Slaughterhouse-Five is a satirical novel about the experiences of Billy Pilgrim, a soldier who becomes "unstuck in time" and witnesses various moments of his life, including the bombing of Dresden.',
+        book_img: images.book_5,
+        description: 'A satirical and science fiction novel exploring the themes of war, trauma, and the nonlinear nature of time through the experiences of Billy Pilgrim.'
+    },
 ];
 
 //authors data
@@ -479,112 +593,292 @@ const allBooksData = [
 const allAuthorsData = [
     {
         id: 1,
-        book_count: 20,
-        author_imgae: images.author_1,
-        author_name: 'Fyodoe Dostoyevskiy'
+        book_count: 0,
+        author_image: images.author_1,
+        author_name: 'Fyodoe Dostoyevskiy',
+        category: 'Classic Literature',
+        language: 'Russian'
     },
     {
         id: 2,
-        book_count: 15,
-        author_imgae: images.author_2,
-        author_name: 'Leo Tolstoy'
+        book_count: 0,
+        author_image: images.author_2,
+        author_name: 'Leo Tolstoy',
+        category: 'Classic Literature',
+        language: 'Russian'
     },
     {
         id: 3,
-        book_count: 10,
-        author_imgae: images.author_3,
-        author_name: 'Jane Austen'
+        book_count: 0,
+        author_image: images.author_3,
+        author_name: 'Jane Austen',
+        category: 'Romance',
+        language: 'English'
     },
     {
         id: 4,
-        book_count: 12,
-        author_imgae: images.author_4,
-        author_name: 'Charles Dickens'
+        book_count: 0,
+        author_image: images.author_4,
+        author_name: 'Charles Dickens',
+        category: 'Classic Literature',
+        language: 'English'
     },
     {
         id: 5,
-        book_count: 18,
-        author_imgae: images.author_5,
-        author_name: 'William Shakespeare'
+        book_count: 0,
+        author_image: images.author_5,
+        author_name: 'William Shakespeare',
+        category: 'Drama',
+        language: 'English'
     },
     {
         id: 6,
-        book_count: 25,
-        author_imgae: images.author_6,
-        author_name: 'Mark Twain'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Mark Twain',
+        category: 'Adventure',
+        language: 'English'
     },
     {
         id: 7,
-        book_count: 22,
-        author_imgae: images.author_7,
-        author_name: 'Agatha Christie'
+        book_count: 0,
+        author_image: images.author_7,
+        author_name: 'Agatha Christie',
+        category: 'Mystery',
+        language: 'English'
     },
     {
         id: 8,
-        book_count: 2,
-        author_imgae: '',
-        author_name: 'Haruki Murakami'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Haruki Murakami',
+        category: 'Magical Realism',
+        language: 'Japanese'
     },
     {
         id: 9,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Daniel Cargallo'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Daniel Cargallo',
+        category: 'Science Fiction',
+        language: 'English'
     },
     {
         id: 10,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Erik Spiekermann'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Erik Spiekermann',
+        category: 'Design',
+        language: 'German'
     },
     {
         id: 11,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Patrick Ness'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Patrick Ness',
+        category: 'Young Adult',
+        language: 'English'
     },
     {
         id: 12,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'C.R. Brunt'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'C.R. Brunt',
+        category: 'Historical Fiction',
+        language: 'English'
     },
     {
         id: 13,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Donald Norman'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Donald Norman',
+        category: 'Non-Fiction',
+        language: 'English'
     },
     {
         id: 14,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Don DeLillo'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Don DeLillo',
+        category: 'Postmodern Fiction',
+        language: 'English'
     },
     {
         id: 15,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Nathaniel Fick'
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Nathaniel Fick',
+        category: 'Memoir',
+        language: 'English'
     },
     {
         id: 16,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Donna Tartt'
+        book_count: 0,
+        author_image: images.author_5,
+        author_name: 'Donna Tartt',
+        category: 'Literary Fiction',
+        language: 'English'
     },
     {
         id: 17,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Dante Alighieri'
+        book_count: 0,
+        author_image: images.author_5,
+        author_name: 'Dante Alighieri',
+        category: 'Epic Poetry',
+        language: 'Italian'
     },
     {
         id: 18,
-        book_count: 1,
-        author_imgae: '',
-        author_name: 'Dina Nayeri'
-    }
+        book_count: 0,
+        author_image: images.author_5,
+        author_name: 'Dina Nayeri',
+        category: 'Contemporary Fiction',
+        language: 'English'
+    },
+    {
+        id: 19,
+        book_count: 0,
+        author_image: images.author_4,
+        author_name: 'J.K. Rowling',
+        category: 'Fantasy',
+        language: 'English'
+    },
+    {
+        id: 20,
+        book_count: 0,
+        author_image: images.author_2,
+        author_name: 'George Orwell',
+        category: 'Dystopian',
+        language: 'English'
+    },
+    {
+        id: 21,
+        book_count: 0,
+        author_image: images.author_1,
+        author_name: 'Isaac Asimov',
+        category: 'Science Fiction',
+        language: 'English'
+    },
+    {
+        id: 22,
+        book_count: 0,
+        author_image: images.author_2,
+        author_name: 'J.R.R. Tolkien',
+        category: 'Fantasy',
+        language: 'English'
+    },
+    {
+        id: 23,
+        book_count: 0,
+        author_image: images.author_3,
+        author_name: 'Ernest Hemingway',
+        category: 'Classic Literature',
+        language: 'English'
+    },
+    {
+        id: 24,
+        book_count: 0,
+        author_image: images.author_4,
+        author_name: 'Gabriel Garcia Marquez',
+        category: 'Magical Realism',
+        language: 'Spanish'
+    },
+    {
+        id: 25,
+        book_count: 0,
+        author_image: images.author_5,
+        author_name: 'Franz Kafka',
+        category: 'Modernist Literature',
+        language: 'German'
+    },
+    {
+        id: 26,
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Virginia Woolf',
+        category: 'Modernist Literature',
+        language: 'English'
+    },
+    {
+        id: 27,
+        book_count: 0,
+        author_image: images.author_2,
+        author_name: 'Albert Camus',
+        category: 'Philosophical Fiction',
+        language: 'French'
+    },
+    {
+        id: 28,
+        book_count: 0,
+        author_image: images.author_2,
+        author_name: 'Hermann Hesse',
+        category: 'Philosophical Fiction',
+        language: 'German'
+    },
+    {
+        id: 29,
+        book_count: 0,
+        author_image: images.author_3,
+        author_name: 'Toni Morrison',
+        category: 'Literary Fiction',
+        language: 'English'
+    },
+    {
+        id: 30,
+        book_count: 0,
+        author_image: images.author_3,
+        author_name: 'Gabriel Garcia Marquez',
+        category: 'Magical Realism',
+        language: 'Spanish'
+    },
+    {
+        id: 31,
+        book_count: 0,
+        author_image: images.author_1,
+        author_name: 'Kurt Vonnegut',
+        category: 'Satire',
+        language: 'English'
+    },
+    {
+        id: 32,
+        book_count: 0,
+        author_image: images.author_2,
+        author_name: 'George Eliot',
+        category: 'Classic Literature',
+        language: 'English'
+    },
+    {
+        id: 33,
+        book_count: 0,
+        author_image: images.author_3,
+        author_name: 'James Joyce',
+        category: 'Modernist Literature',
+        language: 'English'
+    },
+    {
+        id: 34,
+        book_count: 0,
+        author_image: images.author_4,
+        author_name: 'Franz Kafka',
+        category: 'Modernist Literature',
+        language: 'German'
+    },
+    {
+        id: 35,
+        book_count: 0,
+        author_image: images.author_5,
+        author_name: 'H.G. Wells',
+        category: 'Science Fiction',
+        language: 'English'
+    },
+    {
+        id: 36,
+        book_count: 0,
+        author_image: images.author_6,
+        author_name: 'Margaret Atwood',
+        category: 'Dystopian',
+        language: 'English'
+    },
 
 ];
 

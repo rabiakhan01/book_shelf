@@ -1,13 +1,15 @@
 import React from "react";
-import Headline from "../../components/AllBooksPage/Headline";
 import BooksListing from "../../components/AllBooksPage/BooksListing";
-import { ContextProvider } from "../../components/Shared";
+import { Headline } from "../../components/Shared";
 
 const AllBooksPage = () => {
+    const book = 'all books'
     return (
 
         <div className="flex flex-col gap-4 mb-4">
-            <Headline />
+            <Headline
+                headlineData="all books"
+            />
             <BooksListing />
         </div>
 

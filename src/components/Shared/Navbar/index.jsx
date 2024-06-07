@@ -9,16 +9,6 @@ import images from "../../../assets/images/images";
 const Navbar = () => {
     const context = useContext(bookListingContext);
     const navigate = useNavigate();
-    const getUser = () => {
-        const userData = JSON.parse(localStorage.getItem('loginData'));
-        if (userData) {
-            return userData;
-        }
-        else {
-            return []
-        }
-    }
-    const [user, setUser] = useState(getUser())
 
     const [drawer, setDrawer] = useState(false);
     const [searchField, setSearchField] = useState(true);
@@ -73,8 +63,7 @@ const Navbar = () => {
                     <ul className="flex gap-8 text-sm xl:text-base text-textLightWhiteColor">
                         <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                         <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
-                        <Link><li>Whats to Read</li></Link>
-                        <Link><li>Gift Ideas</li></Link>
+                        <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
                         <Link><li>About Us</li></Link>
                     </ul>
                 </div>
@@ -132,8 +121,7 @@ const Navbar = () => {
                         <ul className="relative flex flex-col gap-4 h-[85vh] w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
                             <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                             <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
-                            <Link><li>Whats to Read</li></Link>
-                            <Link><li>Gift Ideas</li></Link>
+                            <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
                             <Link><li>About Us</li></Link>
                             <Button
                                 variant="contained"

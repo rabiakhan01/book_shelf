@@ -1,9 +1,13 @@
 import React from "react";
-
+import { Headline } from '../../components/Shared';
+import AuthorsListing from "../../components/AllAuthorPage/AuthorsListing";
 const AllAuthorPage = () => {
     return (
         <div>
-            Authors page
+            <Headline
+                headlineData="all authors"
+            />
+            <AuthorsListing />
         </div>
     )
 }
