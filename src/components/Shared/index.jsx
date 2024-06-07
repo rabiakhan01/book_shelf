@@ -19,3 +19,4 @@ export { default as OrderSummary } from './OrderSummary';
 export { default as PrevInformation } from './PrevInformation';
 export { default as ProfileSection } from './ProfileSection';
 export { default as Headline } from './Headline';
+export { default as SearchBar } from './SearchBar';

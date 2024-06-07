@@ -150,14 +150,14 @@ const FilterSection = () => {
 
             filterCategories.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category === element.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
+                    if (filterItem.category === element.name && filterItem.new_price > minVal && filterItem.new_price < maxVal) {
                         filterCategoryData.push(filterItem);
                     }
                 })
             });
             filterLanguages.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.language === element.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
+                    if (filterItem.language === element.name && filterItem.new_price > minVal && filterItem.new_price < maxVal) {
                         filterLanguageData.push(filterItem);
                     }
                 })
@@ -166,7 +166,7 @@ const FilterSection = () => {
             if (filterLanguages.length > 0 && filterCategories.length > 0) {
                 filterLanguages.map((item) => {
                     filterCategoryData.filter((filterItem) => {
-                        if (filterItem.language === item.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
+                        if (filterItem.language === item.name && filterItem.new_price > minVal && filterItem.new_price < maxVal) {
                             filterData.push(filterItem);
                         }
                     })
@@ -218,6 +218,11 @@ const FilterSection = () => {
             })
             setCategories([...filterCategories])
             setLanguages([...filterLanguages])
+        }
+        const findPriceFilter = filters.find((item) => item?.minPrice || item?.maxPrice);
+        if (!findPriceFilter) {
+            setMinVal(min);
+            setMaxVal(max);
         }
 
     }, [context.bookPageContext.bookFilters])

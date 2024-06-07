@@ -68,6 +68,7 @@ const BooksListing = () => {
                 </div>
                 <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'} gap-2 w-full overflow-auto`}>
                     {
+
                         context.bookPageContext.bookFilters.map((item, index) => {
                             if (item.name) {
                                 return (
@@ -77,10 +78,16 @@ const BooksListing = () => {
                                     />
                                 )
                             }
-                            else {
-                                return false;
+                            if (item.minPrice || item.maxPrice) {
+                                return (
+                                    <FilteredChip
+                                        key={index}
+                                        name="Price"
+                                    />
+                                )
                             }
                         })
+
                     }
                 </div>
             </div >

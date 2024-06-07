@@ -1,9 +1,13 @@
 import React from "react";
-import { Headline } from '../../components/Shared';
+import { Headline, SearchBar } from '../../components/Shared';
 import AuthorsListing from "../../components/AllAuthorPage/AuthorsListing";
+import { allAuthorsData } from "../../utils/MockupData";
 const AllAuthorPage = () => {
     return (
         <div>
+            <SearchBar
+                data={allAuthorsData}
+            />
             <Headline
                 headlineData="all authors"
             />

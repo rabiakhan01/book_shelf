@@ -19,7 +19,7 @@ const PopularAuthors = () => {
                         return (
                             <div key={index} className="flex bg-primaryColor w-full sm:w-[48%] md:w-[32.57%] lg:w-[24.38%] h-32 overflow-hidden rounded-xl">
                                 <div className="w-40">
-                                    <img src={author.author_imgae} alt="author" className="object-cover w-full h-full grayscale" />
+                                    <img src={author.author_image} alt="author" className="object-cover w-full h-full grayscale" />
                                 </div>
                                 <div className="flex flex-col gap-y-3 w-full p-4">
                                     <div className="flex w-full justify-between">
