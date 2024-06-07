@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../ContextProvider";
 import { isAuthentication } from "../../../utils/utils";
+import images from "../../../assets/images/images";
 const Navbar = () => {
     const context = useContext(bookListingContext);
     const navigate = useNavigate();
@@ -41,23 +42,6 @@ const Navbar = () => {
     const handelNavigate = (path) => {
         navigate(`${path}`)
     }
-    const handelLogout = () => {
-        const findUser = user.find((user) => user.isLogin);
-        if (findUser) {
-            const updateUserData = user.map((user) => {
-                if (user.isLogin) {
-                    return { ...user, isLogin: false }
-                }
-                else {
-                    return user
-                }
-            });
-            localStorage.setItem('loginData', JSON.stringify(updateUserData));
-            setUser(updateUserData);
-            navigate('/')
-        }
-
-    }
 
     const navigateToCart = () => {
         navigate('/cart')
@@ -65,9 +49,12 @@ const Navbar = () => {
     const navigateToBookMark = () => {
         navigate('/cart')
     }
+
+    const navigateToProfile = () => {
+        navigate('/profile');
+    }
     useEffect(() => {
         const cartQuantity = context.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0);
-        //console.log("🚀 ~ useEffect ~ cartQuantity:", cartQuantity)
         if (cartQuantity > 0) {
             setCartValue(cartQuantity)
         }
@@ -126,15 +113,9 @@ const Navbar = () => {
                                 </Button>
                             </div>
                             :
-                            <div className="hidden md:flex">
-                                <Button
-                                    variant="contained"
-                                    size="small"
-                                    onClick={() => handelLogout()}
-                                >
-                                    Logout
-                                </Button>
-                            </div>
+                            <button className="hidden md:flex" onClick={navigateToProfile}>
+                                <img src={images.profileImg} alt="profile-img" className="w-5 h-5 sm:w-10 sm:h-10 rounded-full" />
+                            </button>
                     }
                     <div className="flex lg:hidden">
                         {

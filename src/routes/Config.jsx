@@ -1,12 +1,9 @@
 import { Layout } from "../components/Shared";
-import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
-import AllBooksPage from "../pages/AllBooksPage";
-import BookDetailPage from "../pages/BookDetailPage";
-import CartPage from "../pages/CartPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import ThankYouPage from "../pages/ThankYouPage";
 import SignupPage from "../pages/SignupPage";
+import UserProfile from "../pages/UserProfile";
 //public routes
 const publicRoutes = [
     {
@@ -24,15 +21,18 @@ const publicRoutes = [
 //protected routes
 const protectedRoutes = [
 
-
     {
         path: '/checkout',
-        element: <Layout><CheckoutPage /></Layout>
+        element: <CheckoutPage />
     },
     {
         path: '/thank-you',
         element: <ThankYouPage />
-    }
+    },
+    {
+        path: '/profile',
+        element: <Layout><UserProfile /></Layout>
+    },
 ]
 
 export {

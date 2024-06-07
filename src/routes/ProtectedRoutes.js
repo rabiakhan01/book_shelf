@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { isAuthentication } from "../utils/utils";
-import { bookListingContext } from "../components/Shared/ContextProvider";
 
 const ProtectedRoutes = () => {
-    const context = useContext(bookListingContext);
-    console.log(context.favouritBookContext.cartBooks?.length)
     return (
         <React.Fragment>
             {
-                isAuthentication() && context.favouritBookContext.cartBooks?.length > 0 ? <Outlet /> : <Navigate to="/" />
+                isAuthentication() ? <Outlet /> : <Navigate to="/" />
             }
         </React.Fragment>
     );

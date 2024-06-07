@@ -17,3 +17,4 @@ export { default as BtnCartQuantity } from './BtnCartQuantity';
 export { default as InputField } from './InputField';
 export { default as OrderSummary } from './OrderSummary';
 export { default as PrevInformation } from './PrevInformation';
+export { default as ProfileSection } from './ProfileSection';

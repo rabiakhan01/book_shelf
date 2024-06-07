@@ -39,6 +39,12 @@ const images = {
     viewer_3: require('./viewer_3.png'),
     viewer_4: require('./viewer_4.png'),
 
+    //user profile
+    message: require('./message.png'),
+    padlock: require('./padlock.png'),
+    profileImg: require('./profile_img.png'),
+    user: require('./user.png'),
+
 }
 
 export default images;
