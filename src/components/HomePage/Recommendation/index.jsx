@@ -1,7 +1,14 @@
 import React from "react";
 import icons from '../../../assets/icons/icons';
 import Button from "../../Shared/Button";
+import { useNavigate } from "react-router-dom";
 const Recommendation = () => {
+
+    const navigate = useNavigate();
+
+    const handelNavigate = () => {
+        navigate('/all-books')
+    }
     return (
         <div className="relative flex items-center w-full bg-secondaryColor rounded-xl overflow-hidden small-tab:h-[12rem]">
             <div className="flex flex-col gap-4 lg:gap-0 w-full p-4">
@@ -12,7 +19,7 @@ const Recommendation = () => {
                     <div className="w-full pr-4 sm:w-2/3 md:w-1/2">
                         <p className="text-textLightWhiteColor text-xs small-tab:text-sm sm:text-md">You’re in the right place. Tell us what titles or genres you’ve enjoyed in the past, and we’ll give you surprisingly insightful recommendations.</p>
                     </div>
-                    <div className="z-10 p-1">
+                    <div className="z-10 p-1" onClick={handelNavigate}>
                         <Button
                             variant="contained"
                             size="large"

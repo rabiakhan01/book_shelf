@@ -5,7 +5,7 @@ import { bookListingContext } from "../ContextProvider";
 const BtnBookMark = ({ onClick, bookID }) => {
 
     const context = useContext(bookListingContext);
-    const isFavourit = context.favouritBookContext.favouritBooks.find((book) => book == +bookID);
+    const isFavourit = context?.favouritBookContext.favouritBooks?.find((book) => book == +bookID);
 
     return (
         <div className={`flex justify-center items-center ${isFavourit ? 'bg-btnPrimaryColor' : 'bg-btnsecondaryColor'}  w-8 h-8 rounded-full`} onClick={onClick}>

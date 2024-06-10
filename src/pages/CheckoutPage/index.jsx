@@ -103,7 +103,8 @@ const CheckoutPage = () => {
                             {
                                 context.step === 1 ? <ContactInformation /> :
                                     context.step === 2 ? <Shipping /> :
-                                        <Payment />
+                                        context.step === 3 ? <Payment /> :
+                                            <ContactInformation />
                             }
                         </div>
                         <div className="flex w-full lg:w-[50%] lg:justify-end">

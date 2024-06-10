@@ -16,17 +16,12 @@ const Navbar = () => {
 
     const showMenu = () => {
         setDrawer(true);
-        setSearchField(false)
+
         document.body.classList.add('overflow-hidden');
     }
     const hideMenu = () => {
-        setSearchField(true)
         setDrawer(false);
         document.body.classList.remove('overflow-hidden')
-    }
-
-    const handelSearchClick = () => {
-        setSearchField(true);
     }
 
     const handelNavigate = (path) => {
@@ -44,14 +39,14 @@ const Navbar = () => {
         navigate('/profile');
     }
     useEffect(() => {
-        const cartQuantity = context.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0);
+        const cartQuantity = context?.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0);
         if (cartQuantity > 0) {
             setCartValue(cartQuantity)
         }
         else {
             setCartValue(0);
         }
-    }, [context.favouritBookContext.cartBooks])
+    }, [context?.favouritBookContext.cartBooks])
     return (
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
@@ -64,21 +59,16 @@ const Navbar = () => {
                         <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                         <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
                         <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
-                        <Link><li>About Us</li></Link>
+
                     </ul>
                 </div>
                 <div className="relative flex items-center gap-2 small-tab:gap-5 xl:gap-8 h-auto w-auto">
 
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
-                        <div className="h-6 w-6 ">
-                            <button onClick={handelSearchClick} className="h-full w-full">
-                                <img src={icons.whiteSearch} alt="search" className={`hidden lg:flex`} />
-                            </button>
-                        </div>
                         <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToBookMark}>
                             <img src={icons.bookmark} alt="bookmark" className="h-full w-full" />
-                            <div className={`${context.favouritBookContext.favouritBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
-                                <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length}</p>
+                            <div className={`${context?.favouritBookContext.favouritBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                                <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context?.favouritBookContext.favouritBooks.length}</p>
                             </div>
                         </div>
                         <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToCart}>
@@ -122,7 +112,7 @@ const Navbar = () => {
                             <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                             <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
                             <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
-                            <Link><li>About Us</li></Link>
+
                             <Button
                                 variant="contained"
                                 size="small"
