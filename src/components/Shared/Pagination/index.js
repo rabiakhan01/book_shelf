@@ -13,6 +13,7 @@ const Pagination = ({ maxRecordsPerPage }) => {
     const [prevButton, setPrevButton] = useState(true);
     const [nextButton, setNextButton] = useState(false);
     const [pageArray, setPageArray] = useState([]);
+
     const totalPage = [];
     for (let i = 0; i < maxPage; i++) {
         totalPage.push(
@@ -95,7 +96,7 @@ const Pagination = ({ maxRecordsPerPage }) => {
             setMaxPage(pages);
             const currentPageData = allBooksData.slice(0, maxRecordsPerPage)
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-            if (pages <= 1) {
+            if (pages < 1) {
                 setNextButton(true);
             }
             else {
@@ -132,6 +133,21 @@ const Pagination = ({ maxRecordsPerPage }) => {
         setPageArray([...newArray])
 
     }, [maxPage])
+
+    useEffect(() => {
+        if (context.searchTrigger > 0) {
+            const pages = Math.ceil(context.bookPageContext.bookListing.length / maxRecordsPerPage)
+            setMaxPage(pages);
+            const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
+            context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            if (pages < 1) {
+                setNextButton(true);
+            }
+            else {
+                setNextButton(false)
+            }
+        }
+    }, [context.searchTrigger]);
 
     return (
         <div className="w-full flex items-center justify-center mt-6">

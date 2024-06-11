@@ -6,14 +6,15 @@ import { allBooksData } from "../../../utils/MockupData";
 const FilteredChip = ({ name }) => {
 
     const context = useContext(bookListingContext);
-    console.log("🚀 ~ filters ~ filters:", context.bookPageContext.bookFilters)
+    console.log("🚀 ~ filters ~ filters:", context.bookPageContext.bookFilters);
+
     const removeFilter = (removeItem) => {
 
         const filterData = [];
         if (context.bookPageContext.bookFilters.length > 0) {
             if (name === 'Price') {
                 const updatedFilter = context.bookPageContext.bookFilters.filter((item) => !item.minPrice || !item.maxPrice);
-                context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter });
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter, bookListing: allBooksData });
             }
             else {
                 const updatedFilter = context.bookPageContext.bookFilters.filter((item) => item.name !== removeItem)

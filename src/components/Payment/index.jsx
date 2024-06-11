@@ -84,8 +84,8 @@ const Payment = () => {
         if (paymentdetail.expirationDate === '') {
             setErrorMessage((error) => ({ ...error, expirationDateError: 'expiration date is required' }));
         }
-        if (paymentdetail.CVC === '' || paymentdetail.CVC.length < 3) {
-            setErrorMessage((error) => ({ ...error, CVCError: 'CVC/CVV is required' }));
+        if (paymentdetail.CVC === '' || paymentdetail.CVC.length < 4) {
+            setErrorMessage((error) => ({ ...error, CVCError: 'Invalid CVC' }));
         }
         if (paymentOnDelivery) {
             navigate('/thank-you');

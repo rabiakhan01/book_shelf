@@ -10,8 +10,9 @@ const BooksListing = () => {
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
 
-    const [showFilterSection, setShowFilterSection] = useState(false);
+    console.log(context.bookPageContext.bookFilters)
 
+    const [showFilterSection, setShowFilterSection] = useState(false);
 
     const handelFilters = () => {
         setShowFilterSection(!showFilterSection)
@@ -35,7 +36,6 @@ const BooksListing = () => {
 
     useEffect(() => {
         setShowFilterSection(false);
-
     }, [context.bookPageContext.bookFilters])
 
     useEffect(() => {
@@ -49,7 +49,6 @@ const BooksListing = () => {
             element.classList.remove('overflow-hidden');
         }
     }, [showFilterSection])
-
 
     return (
 

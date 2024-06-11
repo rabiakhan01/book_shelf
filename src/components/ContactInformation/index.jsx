@@ -54,6 +54,7 @@ const ContactInformation = () => {
     }
 
     const handelCustomerInfo = (event) => {
+
         const mobileValidation = customerInfo.mobileNo.match(validationPattern);
 
         if (customerInfo.customerName === '') {

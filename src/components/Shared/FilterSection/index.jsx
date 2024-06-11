@@ -115,7 +115,9 @@ const FilterSection = () => {
 
     }
 
+    // console.log("filter listing", context.bookPageContext.bookListing)
     const applyFilter = () => {
+
 
         const filterData = [];
         const filterLanguageData = [];
@@ -223,6 +225,7 @@ const FilterSection = () => {
         if (!findPriceFilter) {
             setMinVal(min);
             setMaxVal(max);
+            context.setBookPageContext({ ...context.bookPageContext, bookListing: allBooksData })
         }
 
     }, [context.bookPageContext.bookFilters])
