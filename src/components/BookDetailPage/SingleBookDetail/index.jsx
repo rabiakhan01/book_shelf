@@ -15,6 +15,7 @@ const SingleBookDetail = () => {
     const [quantity, setQuantity] = useState(0);
 
     const handelCart = (book_id) => {
+        console.log("🚀 ~ handelCart ~ book_id:", book_id)
 
         const alreadyExists = context.favouritBookContext.cartBooks?.find((bookID) => bookID == +book_id);
         if (!alreadyExists) {
@@ -72,6 +73,7 @@ const SingleBookDetail = () => {
         }
     }
 
+    // set the cart button show or hidden
     useEffect(() => {
         const data = context.favouritBookContext.cartBooks.find((book) => book.bookID == +bookId && book.quantity > 0);
         if (data) {
@@ -82,6 +84,7 @@ const SingleBookDetail = () => {
             setCartButton(false);
         }
     }, [context.favouritBookContext.cartBooks]);
+
     useEffect(() => {
         const data = context.favouritBookContext.cartBooks.find((book) => book.bookID == +bookId && book.quantity > 0);
         if (data) {
@@ -91,12 +94,26 @@ const SingleBookDetail = () => {
             setCartButton(false);
         }
     }, [bookId]);
+
+    //handel buy the book directly
     const handelOrder = (book_id) => {
-        const alreadyExists = context.favouritBookContext.cartBooks?.find((bookID) => bookID == +book_id);
+        const alreadyExists = context.favouritBookContext.cartBooks?.find((item) => item.bookID == +book_id);
         if (!alreadyExists) {
             const cartBooks = [...context.favouritBookContext.cartBooks, { bookID: book_id, quantity: 1 }];
             context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: cartBooks });
             setCartButton(true);
+        }
+        else {
+            const updatedArray = context.favouritBookContext.cartBooks.map((book) => {
+                if (book.bookID == + book_id) {
+                    return { ...book, quantity: quantity + 1 }
+                }
+                else {
+                    return book;
+                }
+            })
+            //console.log("🚀 ~ updatedArray ~ updatedArray:", updatedArray)
+            context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedArray });
         }
         navigate('/cart', {
             state: {

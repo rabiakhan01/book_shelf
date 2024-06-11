@@ -42,7 +42,7 @@ const images = {
     //user profile
     message: require('./message.png'),
     padlock: require('./padlock.png'),
-    profileImg: require('./profile_img.png'),
+    profileImg: require('./profile_img.jpg'),
     user: require('./user.png'),
 
 }
