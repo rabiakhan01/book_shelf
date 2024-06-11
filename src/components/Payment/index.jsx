@@ -3,8 +3,11 @@ import { Button, InputField, PrevInformation } from "../Shared";
 import { bookListingContext } from "../Shared/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import { allBooksData } from "../../utils/MockupData";
-import { isAuthentication } from "../../utils/utils";
+
 const Payment = () => {
+    const cardValidationPattern = /(\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{4})$/g;
+    const alphabet = /[A-Za-z---*-+\\/]$/g;
+
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
     const [subTotal, setSubTotal] = useState(0);
@@ -27,10 +30,20 @@ const Payment = () => {
         }
         else {
             if (name === 'cardNo') {
-                setErrorMessage((prev) => ({
-                    ...prev,
-                    cardNoError: "",
-                }));
+                if (value.match(alphabet) == null && value.length < 20) {
+                    const validNumber = value.match(cardValidationPattern);
+                    if (validNumber) {
+                        setErrorMessage((prev) => ({
+                            ...prev,
+                            cardNoError: "",
+                        }));
+                    }
+                    setPaymentDetail((prev) => ({
+                        ...prev,
+                        [name]: value
+                    }));
+
+                }
             }
 
             if (name === 'expirationDate') {
@@ -38,40 +51,48 @@ const Payment = () => {
                     ...prev,
                     expirationDateError: "",
                 }));
-            }
-            if (name === 'CVC') {
-                setErrorMessage((prev) => ({
+                setPaymentDetail((prev) => ({
                     ...prev,
-                    CVCError: "",
+                    [name]: value
                 }));
             }
-            setPaymentDetail((prev) => ({
-                ...prev,
-                [name]: value
-            }));
-            setPaymentOnDelivery(false);
+            if (name === 'CVC') {
+                if (value.match(alphabet) === null && value.length < 4) {
+                    setErrorMessage((prev) => ({
+                        ...prev,
+                        CVCError: "",
+                    }));
+                    setPaymentDetail((prev) => ({
+                        ...prev,
+                        [name]: value
+                    }));
+                }
+            }
         }
+        setPaymentOnDelivery(false);
 
 
     }
     const handelFormSubmission = (event) => {
-        if (paymentdetail.cardNo === '') {
-            setErrorMessage((error) => ({ ...error, cardNoError: 'card number is required' }));
+
+        const cardNoValidation = paymentdetail.cardNo.match(cardValidationPattern);
+        console.log("🚀 ~ handelFormSubmission ~ cardNoValidation:", cardNoValidation)
+
+        if (paymentdetail.cardNo === '' || !cardNoValidation) {
+            setErrorMessage((error) => ({ ...error, cardNoError: 'inValid card Number' }));
         }
         if (paymentdetail.expirationDate === '') {
             setErrorMessage((error) => ({ ...error, expirationDateError: 'expiration date is required' }));
         }
-        if (paymentdetail.CVC === '') {
+        if (paymentdetail.CVC === '' || paymentdetail.CVC.length < 3) {
             setErrorMessage((error) => ({ ...error, CVCError: 'CVC/CVV is required' }));
         }
         if (paymentOnDelivery) {
             navigate('/thank-you');
-
             context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] });
         }
         if (!paymentOnDelivery) {
-            navigate('/thank-you');
-            if (paymentdetail.cardNo !== '' && paymentdetail.expirationDate !== '' && paymentdetail.CVC !== '') {
+            if (paymentdetail.cardNo !== '' && paymentdetail.expirationDate !== '' && paymentdetail.CVC !== '' && cardNoValidation && paymentdetail.CVC.length === 3) {
                 const formData = {
                     ...context.orderSummary,
                     cardDetail:
@@ -79,14 +100,15 @@ const Payment = () => {
                 }
                 context.setOrderSummary(formData);
                 context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] });
+                navigate('/thank-you');
 
             }
         }
         event.preventDefault();
     }
 
-    const editInformation = (path) => {
-        context.setStep(2);
+    const editInformation = (step) => {
+        context.setStep(step);
     }
     useEffect(() => {
         const priceArray = allBooksData.map((book) => {
@@ -106,7 +128,7 @@ const Payment = () => {
                     key2="Contact"
                     value1={context.orderSummary.customerName}
                     value2={context.orderSummary.customerNumber}
-                    onClick={() => editInformation('/contact')}
+                    onClick={() => editInformation(1)}
                 />
                 <PrevInformation
                     heading="shipping method"
@@ -114,7 +136,7 @@ const Payment = () => {
                     key2="Adress"
                     value1={context.orderSummary.shippingMethod.date}
                     value2={context.orderSummary.shippingMethod.adress}
-                    onClick={() => editInformation('/shipping')}
+                    onClick={() => editInformation(2)}
                 />
             </div>
             <div className="flex flex-col gap-6">
@@ -130,11 +152,12 @@ const Payment = () => {
                         <div className="flex flex-col gap-3">
                             <InputField
                                 placeholder="Card Number"
-                                type="number"
+                                type="text"
                                 name="cardNo"
                                 value={paymentdetail.cardNo}
                                 error={errorMessage.cardNoError}
                                 onChange={handelChange} />
+
                             <div className="flex gap-3 w-full">
                                 <div className="w-1/2">
                                     <InputField

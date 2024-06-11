@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../Shared/ContextProvider";
 
 const ContactInformation = () => {
-
+    const validationPattern = /(\+\d{2}[ ]\d{10})$/g;
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
     const [customerInfo, setCustomerInfo] = useState({
@@ -22,33 +22,48 @@ const ContactInformation = () => {
             setErrorMessage((prev) => ({
                 ...prev,
                 customerNameError: "",
+            }))
+            setCustomerInfo((prev) => ({
+                ...prev,
+                [name]: value
             }));
+
         }
 
         if (name === 'mobileNo') {
-            setErrorMessage((prev) => ({
-                ...prev,
-                mobileNoError: "",
-            }));
+            const alphabet = /[A-Za-z---*\\/]$/g;
+            if (value.match(alphabet) == null && value.length < 15) {
+                const validNumber = value.match(validationPattern);
+
+                if (validNumber) {
+                    setErrorMessage((prev) => ({
+                        ...prev,
+                        mobileNoError: "",
+                    }));
+                }
+                setCustomerInfo((prev) => ({
+                    ...prev,
+                    [name]: value
+                }));
+            }
+
+
         }
 
-        setCustomerInfo((prev) => ({
-            ...prev,
-            [name]: value
-        }));
 
     }
 
     const handelCustomerInfo = (event) => {
+        const mobileValidation = customerInfo.mobileNo.match(validationPattern);
 
         if (customerInfo.customerName === '') {
             setErrorMessage((error) => ({ ...error, customerNameError: 'username is required' }));
         }
-        if (customerInfo.mobileNo === '') {
+        if (customerInfo.mobileNo === '' || !mobileValidation) {
             setErrorMessage((error) => ({ ...error, mobileNoError: 'mobile number is required' }));
         }
 
-        if (customerInfo.customerName !== '' && customerInfo.mobileNo !== '') {
+        if (customerInfo.customerName !== '' && customerInfo.mobileNo !== '' && mobileValidation) {
             const contactData =
             {
                 ...context.orderSummary,
@@ -61,8 +76,6 @@ const ContactInformation = () => {
         }
         event.preventDefault();
     }
-    // console.log(" ~ handelCustomerInfo ~ context.orderSummary.contactInformationrmation:", context.orderSummary)
-
     return (
 
         <div className="flex flex-col gap-4">
@@ -76,19 +89,20 @@ const ContactInformation = () => {
             <div className="w-full ">
                 <form className="flex flex-col gap-3">
                     <InputField
-                        placeholder="Name Surname"
+                        placeholder="Full Name"
                         type="text"
                         name="customerName"
                         value={customerInfo.customerName}
                         onChange={handelChange}
                         error={errorMessage.customerNameError} />
                     <InputField
-                        placeholder="Mobile"
+                        placeholder="+92 1234567891"
                         name="mobileNo"
-                        type="number"
+                        type="text"
                         value={customerInfo.mobileNo}
                         onChange={handelChange}
-                        error={errorMessage.mobileNoError} />
+                        error={errorMessage.mobileNoError}
+                    />
                     <Button variant="contained" size="extra-large" type="button" onClick={handelCustomerInfo}>continue to shipping method</Button>
                 </form>
             </div>
