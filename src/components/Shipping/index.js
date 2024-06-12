@@ -65,7 +65,7 @@ const Shipping = () => {
     return (
 
         <div>
-            <div>
+            <div className="mb-4">
                 <PrevInformation
                     heading="contact information"
                     key1="Name"

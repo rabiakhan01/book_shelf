@@ -10,7 +10,6 @@ const Payment = () => {
 
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
-    const [subTotal, setSubTotal] = useState(0);
     const [paymentdetail, setPaymentDetail] = useState({
         cardNo: '',
         expirationDate: '',
@@ -68,8 +67,8 @@ const Payment = () => {
                     }));
                 }
             }
+            setPaymentOnDelivery(false);
         }
-        setPaymentOnDelivery(false);
 
 
     }
@@ -116,7 +115,7 @@ const Payment = () => {
             return matchingBook && book.new_price * matchingBook.quantity;
         }).filter((item) => item !== undefined)
         const totalPrice = priceArray.reduce((a, b) => (a + b), 0);
-        setSubTotal(totalPrice);
+
     }, []);
     return (
 
@@ -178,7 +177,7 @@ const Payment = () => {
                 }
             </div>
             <div>
-                <Button variant="contained" size="extra-large" onClick={handelFormSubmission}>pay ${subTotal}</Button>
+                <Button variant="contained" size="extra-large" onClick={handelFormSubmission}>checkout</Button>
             </div>
         </div>
     )

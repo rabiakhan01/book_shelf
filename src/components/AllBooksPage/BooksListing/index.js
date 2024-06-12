@@ -67,7 +67,6 @@ const BooksListing = () => {
                 </div>
                 <div className={`${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'} gap-2 w-full overflow-auto`}>
                     {
-
                         context.bookPageContext.bookFilters.map((item, index) => {
                             if (item.name) {
                                 return (
@@ -89,7 +88,7 @@ const BooksListing = () => {
 
                     }
                 </div>
-            </div >
+            </div>
             <div className="relative flex gap-2 w-full pb-4">
 
                 <div className={` ${showFilterSection ? 'absolute top-2 flex z-10  pr-2' : 'hidden lg:flex'} ${context.bookPageContext.bookFilters.length > 0 ? '-top-16 sm:-top-[70px]' : ''} flex-col w-full small-tab:w-80 lg:w-[32.5%] rounded-xl h-[30.1rem] bg-primaryColor `}>

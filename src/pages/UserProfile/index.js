@@ -75,7 +75,7 @@ const UserProfile = () => {
                         alt="password"
                     >
                         <input
-                            type="text"
+                            type="password"
                             name="password"
                             value={user.password}
                             disabled={true}
