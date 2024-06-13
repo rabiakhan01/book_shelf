@@ -25,6 +25,7 @@ const icons = {
     yellow_star: require('./yellow-star.png'),
     hamburger: require('./hamburger.png'),
     cross: require('./cross.png'),
+    close: require('./close.png'),
     upArrow: require('./upArrow.png'),
     line: require('./line.svg').default,
 

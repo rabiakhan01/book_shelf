@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { allAuthorsData } from "../../../utils/MockupData";
 import BtnBookMark from "../../Shared/BtnBookMark";
 import { useNavigate } from "react-router-dom";
+import { bookListingContext } from "../../Shared/ContextProvider";
 
 const PopularAuthors = () => {
+    const context = useContext(bookListingContext);
     const navigate = useNavigate();
     const handelNavigate = () => {
         navigate('/all-authors')
     }
+
+    const handelBookMark = (book_id) => {
+
+        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +book_id);
+
+        if (!alreadyExists) {
+            const favouritBook = [...context.favouritBookContext.favouritBooks, book_id];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
+        }
+        else {
+            const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
+            const favouritBook = [...updatedBooks];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
+        }
+    }
+
     return (
         <div className="bg-secondaryColor p-4">
             <div className="text-xl md:text-2xl xl:text-3xl font-medium uppercase text-textLightWhiteColor pb-5 pt-2">
@@ -27,7 +45,10 @@ const PopularAuthors = () => {
                                             <p>{author.book_count} books</p>
                                         </div>
                                         <div className="flex justify-end w-8 h-2">
-                                            <BtnBookMark />
+                                            <BtnBookMark
+                                                bookID={author.id}
+                                                onClick={() => handelBookMark(author.id)}
+                                            />
                                         </div>
                                     </div>
                                     <div className="font-medium text-xl">{author.author_name}</div>
