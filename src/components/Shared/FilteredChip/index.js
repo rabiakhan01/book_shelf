@@ -9,7 +9,7 @@ const FilteredChip = ({ name }) => {
     console.log("🚀 ~ filters ~ filters:", context.bookPageContext.bookFilters);
 
     const removeFilter = (removeItem) => {
-
+        console.log("clear", context.bookPageContext.bookFilters)
         const filterData = [];
         if (context.bookPageContext.bookFilters.length > 0) {
             if (name === 'Price') {
@@ -29,8 +29,8 @@ const FilteredChip = ({ name }) => {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter, bookListing: filterData });
             }
         }
-        else {
-            context.setBookPageContext({ bookFilters: [], bookListing: allBooksData });
+        if (context.bookPageContext.bookFilters.length === 1) {
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData });
         }
     }
 

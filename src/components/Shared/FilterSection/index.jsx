@@ -130,8 +130,15 @@ const FilterSection = () => {
             minPrice: minVal,
             maxPrice: maxVal,
         }
-        const filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
+        let filters;
 
+        if (minVal > min || maxVal < max) {
+            filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
+        }
+        else {
+            filters = { ...context.bookPageContext, bookFilters: [...selectedFilters] }
+
+        }
         const filterLanguages = languages.map((item) => {
             const matchingLanguage = filters.bookFilters.find((filterItem) => filterItem.name === item.name);
             if (matchingLanguage) {
@@ -184,8 +191,8 @@ const FilterSection = () => {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
             }
             else {
-                allBooksData.map((item) => {
-                    if (item.new_price >= minVal && item.new_price <= maxVal) {
+                context.bookPageContext.bookListing.map((item) => {
+                    if (item.new_price > minVal && item.new_price < maxVal) {
                         filterData.push(item);
                     }
                 })
@@ -197,10 +204,11 @@ const FilterSection = () => {
             context.setBookPageContext({ bookFilters: [], bookListing: allBooksData })
         }
 
+        // console.log("🚀 ~ applyFilter ~ filters:", filters)
     }
 
     const resetAllFilters = () => {
-        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] });
+        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData });
         setMinVal(min);
         setMaxVal(max);
     }
@@ -225,7 +233,7 @@ const FilterSection = () => {
         if (!findPriceFilter) {
             setMinVal(min);
             setMaxVal(max);
-            context.setBookPageContext({ ...context.bookPageContext, bookListing: allBooksData })
+            //context.setBookPageContext({ ...context.bookPageContext, bookListing: allBooksData })
         }
 
     }, [context.bookPageContext.bookFilters])
@@ -286,6 +294,7 @@ const FilterSection = () => {
                 <Button
                     variant="outlined"
                     size="extra-small"
+                    color="errorColor"
                     onClick={resetAllFilters}
                 >Reset</Button>
                 <Button

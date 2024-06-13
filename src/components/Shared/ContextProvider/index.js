@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { allBooksData } from "../../../utils/MockupData";
+import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
 export const bookListingContext = createContext();
 
@@ -9,7 +9,7 @@ const ContextProvider = ({ children }) => {
         bookFilters: [],
         bookListing: allBooksData,
     });
-
+    const [authorListing, setAuthorListing] = useState(allAuthorsData);
     const [favouritBookContext, setFavouritBookContext] = useState({
         favouritBooks: [],
         cartBooks: [],

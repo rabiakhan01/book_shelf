@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ProductCard } from "../../Shared";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
 const AuthorsListing = () => {
+    // const context = useContext(book)
     return (
         <div className="flex bg-secondaryColor w-full p-4 flex-wrap gap-2 justify-center items-center">
             {

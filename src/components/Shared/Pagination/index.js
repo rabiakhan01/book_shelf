@@ -56,6 +56,11 @@ const Pagination = ({ maxRecordsPerPage }) => {
             top: 0,
             behavior: "smooth"
         })
+        const element = document.getElementById('cards');
+        element.scroll({
+            top: 0,
+            behavior: "smooth"
+        })
 
     }
 

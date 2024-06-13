@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../ContextProvider";
 import { isAuthentication } from "../../../utils/utils";
@@ -11,8 +11,8 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const [drawer, setDrawer] = useState(false);
-    const [searchField, setSearchField] = useState(true);
     const [cartValue, setCartValue] = useState(0);
+
 
     const showMenu = () => {
         setDrawer(true);

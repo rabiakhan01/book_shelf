@@ -4,10 +4,13 @@ import AuthorsListing from "../../components/AllAuthorPage/AuthorsListing";
 import { allAuthorsData } from "../../utils/MockupData";
 const AllAuthorPage = () => {
     return (
-        <div>
-            <SearchBar
-                data={allAuthorsData}
-            />
+        <div className="flex flex-col gap-6">
+            <div>
+                <SearchBar
+                    data={allAuthorsData}
+                    name="author"
+                />
+            </div>
             <Headline
                 headlineData="all authors"
             />
