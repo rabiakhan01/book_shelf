@@ -36,7 +36,7 @@ const SearchBar = ({ data, name }) => {
 
     return (
 
-        <div className="relative mt-7 flex w-full">
+        <div className="flex w-full">
             <input
                 type="text"
                 value={search}

@@ -34,7 +34,7 @@ const ContextProvider = ({ children }) => {
 
     const [searchTrigger, setSearchTrigger] = useState(0)
     return (
-        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary, step, setStep, searchTrigger, setSearchTrigger }}>
+        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary, step, setStep, searchTrigger, setSearchTrigger, authorListing, setAuthorListing }}>
             {children}
         </bookListingContext.Provider>
     )

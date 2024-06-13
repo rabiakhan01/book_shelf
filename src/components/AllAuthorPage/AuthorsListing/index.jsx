@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { ProductCard } from "../../Shared";
-import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
+import { bookListingContext } from "../../Shared/ContextProvider";
 
 const AuthorsListing = () => {
-    // const context = useContext(book)
+    const context = useContext(bookListingContext)
     return (
         <div className="flex bg-secondaryColor w-full p-4 flex-wrap gap-2 justify-center items-center">
             {
-                allAuthorsData.map((author, index) => {
+                context.authorListing.map((author, index) => {
                     return (
                         <ProductCard
                             key={index}
