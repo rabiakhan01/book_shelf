@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import BooksListing from "../../components/AllBooksPage/BooksListing";
 import { Headline, SearchBar } from "../../components/Shared";
-import { allBooksData } from "../../utils/MockupData";
-import { bookListingContext } from "../../components/Shared/ContextProvider";
 
 const AllBooksPage = () => {
     return (
 
-        <div className="flex flex-col gap-4 mb-4">
-            <SearchBar
-                data={allBooksData}
-            />
-            <Headline
-                headlineData="all books"
-            />
+        <div className="mb-4">
+            <div className="sticky top-[5rem] z-20 pt-7 bg-primaryColor pb-4">
+                <SearchBar
+                    name="books"
+                />
+            </div>
+
+            <div className="mb-4">
+                <Headline
+                    headlineData="all books"
+                />
+            </div>
             <BooksListing />
         </div>
 

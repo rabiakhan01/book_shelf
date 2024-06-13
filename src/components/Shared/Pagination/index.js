@@ -38,19 +38,29 @@ const Pagination = ({ maxRecordsPerPage }) => {
         setPageArray([...newArray]);
 
         setCurrentPage(pageNo);
-        const lastIndexOfPage = pageNo * maxRecordsPerPage;
-        const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
 
-        if (context.bookPageContext.bookFilters.length > 0) {
+        const lastIndexOfPage = pageNo * maxRecordsPerPage;
+        console.log("🚀 ~ handelPageChange ~ lastIndexOfPage:", lastIndexOfPage)
+
+        const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
+        console.log("🚀 ~ handelPageChange ~ firstIndexOfPage:", firstIndexOfPage)
+
+        if (context.bookPageContext.bookFilters.length > 0 || context.searchTrigger) {
             const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
-            //console.log("in result of filters applied: ", currentPageData);
+            console.log("🚀 ~ handelPageChange ~ currentPageDat1:", currentPageData)
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
         }
         else {
             const currentPageData = allBooksData.slice(firstIndexOfPage, lastIndexOfPage);
-            // console.log("in result of filter not applied: ", currentPageData);
             context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            console.log("🚀 ~ handelPageChange ~ currentPageData2:", currentPageData)
+
         }
+        // if (context.searchTrigger) {
+        //     const currentPageData = context.bookPageContext.bookListing.slice(firstIndexOfPage, lastIndexOfPage);
+        //     console.log("🚀 ~ handelPageChange ~ currentPageDat3:", currentPageData)
+        //     context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+        // }
 
         window.scroll({
             top: 0,
@@ -73,42 +83,43 @@ const Pagination = ({ maxRecordsPerPage }) => {
     }
 
     useEffect(() => {
-        if (context.bookPageContext.bookFilters.length > 0) {
+        if (!context.searchTrigger) {
+            if (context.bookPageContext.bookFilters.length > 0) {
 
-            //store the listing data after every time filter changes
-            const filteredListing = context.bookPageContext.bookListing;
-            setFilterData([...filteredListing]);
-            // console.log("filter listing", filteredListing);
+                //store the listing data after every time filter changes
+                const filteredListing = context.bookPageContext.bookListing;
+                setFilterData([...filteredListing]);
 
-            //calculate number of pages required 
-            const pages = Math.ceil(filteredListing.length / maxRecordsPerPage);
-            setMaxPage(pages);
+                //calculate number of pages required 
+                const pages = Math.ceil(filteredListing.length / maxRecordsPerPage);
+                setMaxPage(pages);
 
-            const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
-            context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-            if (pages <= 1) {
-                setNextButton(true);
+                const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
+                context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+                if (pages <= 1) {
+                    setNextButton(true);
+                }
+                else {
+                    setNextButton(false)
+                }
+
             }
             else {
-                setNextButton(false)
-            }
 
-        }
-        else {
-
-            //calculate number of pages required 
-            const pages = Math.ceil(allBooksData.length / maxRecordsPerPage)
-            setMaxPage(pages);
-            const currentPageData = allBooksData.slice(0, maxRecordsPerPage)
-            context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-            if (pages < 1) {
-                setNextButton(true);
-            }
-            else {
-                setNextButton(false)
+                //calculate number of pages required 
+                const pages = Math.ceil(allBooksData.length / maxRecordsPerPage)
+                console.log('hello from the world')
+                setMaxPage(pages);
+                const currentPageData = allBooksData.slice(0, maxRecordsPerPage)
+                context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+                if (pages < 1) {
+                    setNextButton(true);
+                }
+                else {
+                    setNextButton(false)
+                }
             }
         }
-
     }, [context.bookPageContext.bookFilters]);
 
     useEffect(() => {
@@ -124,9 +135,11 @@ const Pagination = ({ maxRecordsPerPage }) => {
             setPrevButton(false);
             setNextButton(false);
         }
+
     }, [currentPage])
 
     useEffect(() => {
+        //console.log("maxpages", maxPage)
         const newArray = totalPage.map((page, index) => {
             if (index == 0) {
                 return { ...page, active: true }
@@ -140,17 +153,32 @@ const Pagination = ({ maxRecordsPerPage }) => {
     }, [maxPage])
 
     useEffect(() => {
-        if (context.searchTrigger > 0) {
+
+        const filteredListing = context.bookPageContext.bookListing;
+        setFilterData([...filteredListing]);
+        if (context.searchTrigger) {
+
             const pages = Math.ceil(context.bookPageContext.bookListing.length / maxRecordsPerPage)
+            //console.log("🚀 ~ useEffect ~ pages:", pages)
             setMaxPage(pages);
             const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
-            context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: currentPageData })
             if (pages < 1) {
                 setNextButton(true);
             }
             else {
                 setNextButton(false)
             }
+            setCurrentPage(1);
+            const newArray = pageArray.map((page, index) => {
+                if (index + 1 === 1) {
+                    return { ...page, active: true }
+                }
+                else {
+                    return { ...page, active: false }
+                }
+            })
+            setPageArray([...newArray]);
         }
     }, [context.searchTrigger]);
 

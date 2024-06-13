@@ -5,7 +5,7 @@ import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 import icons from "../../../assets/icons/icons";
 
 
-const SearchBar = ({ data, name }) => {
+const SearchBar = ({ name }) => {
 
     const context = useContext(bookListingContext);
     const [search, setSearch] = useState();
@@ -13,39 +13,39 @@ const SearchBar = ({ data, name }) => {
     const handelChange = (event) => {
         const { value } = event.target;
         setSearch(value);
+
     }
 
-    const handelSearch = () => {
+    const handelSearch = (event) => {
 
         if (search) {
-            if (name === 'author') {
-                const searchedData = data.filter((item) => item.author_name.toLowerCase().includes(search) || item.category.toLowerCase().includes(search) || item.language.toLowerCase().includes(search));
-                console.log("🚀 ~ handelSearch ~ searched:", searchedData);
+            if (event.target.name === 'author') {
+                const searchedData = allAuthorsData.filter((item) => item.author_name.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()) || item.language.toLowerCase().includes(search.toLowerCase()));
                 context.setAuthorListing(searchedData);
-
             }
-            else {
-                const searchedData = data.filter((item) => item.author_name.toLowerCase().includes(search) || item.book_name.toLowerCase().includes(search) || item.category.toLowerCase().includes(search) || item.language.toLowerCase().includes(search));
+            if (event.target.name === "books") {
+                const searchedData = allBooksData.filter((item) => item.author_name.toLowerCase().includes(search.toLowerCase()) || item.book_name.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()) || item.language.toLowerCase().includes(search.toLowerCase()));
                 const updatedData = { ...context.bookPageContext, bookListing: searchedData };
-                //console.log("🚀 ~ handelSearch ~ updatedData:", updatedData)
                 context.setBookPageContext({ ...updatedData });
-                context.setSearchTrigger((...searchTrigger) => (searchTrigger + 1));
+                context.setSearchTrigger((prev) => (prev + 1))
             }
         }
+        window.scroll({
+            top: 0,
+            behaviour: "smooth"
+        })
     }
 
     const clearSerach = () => {
         setSearch('');
-        context.setAuthorListing(allAuthorsData);
-    }
-    document.addEventListener('keypress', (event) => {
-        if (event.which === 13) {
-            if (search === '') {
-                context.setAuthorListing(allAuthorsData);
-            }
-            handelSearch();
+        if (name === 'author') {
+            context.setAuthorListing(allAuthorsData);
         }
-    })
+        if (name === 'books') {
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData })
+        }
+        context.setSearchTrigger(0);
+    }
 
     return (
 
@@ -67,6 +67,8 @@ const SearchBar = ({ data, name }) => {
                 <button
                     className="bg-lightYellowColor px-2 py-1 rounded-md"
                     onClick={handelSearch}
+                    value={search}
+                    name={name}
                     disabled={search?.length > 0 ? false : true}
                 >Search</button>
             </div>

@@ -387,7 +387,7 @@ const allBooksData = [
         },
         category: 'Novel',
         publish_date: '1861',
-        language: 'English',
+        language: 'Urdu',
         pages: 544,
         read_time: '15-18 hours',
         type: 'Paperback',
@@ -459,7 +459,7 @@ const allBooksData = [
         },
         category: 'Imaginative literature',
         publish_date: 'January 1934',
-        language: 'English',
+        language: 'Urdu',
         pages: 256,
         read_time: '5-7 hours',
         type: 'Paperback',
@@ -483,7 +483,7 @@ const allBooksData = [
         },
         category: 'Novel',
         publish_date: '2002',
-        language: 'English',
+        language: 'Urdu',
         pages: 467,
         read_time: '10-12 hours',
         type: 'Hardcover',
@@ -575,7 +575,7 @@ const allBooksData = [
         },
         category: 'Satire',
         publish_date: '1969',
-        language: 'English',
+        language: 'Urdu',
         pages: 275,
         read_time: '6-8 hours',
         type: 'Paperback',
@@ -685,7 +685,7 @@ const allAuthorsData = [
         author_image: images.author_6,
         author_name: 'C.R. Brunt',
         category: 'Historical Fiction',
-        language: 'English'
+        language: 'Urdu'
     },
     {
         id: 13,
@@ -701,7 +701,7 @@ const allAuthorsData = [
         author_image: images.author_6,
         author_name: 'Don DeLillo',
         category: 'Postmodern Fiction',
-        language: 'English'
+        language: 'Urdu'
     },
     {
         id: 15,
@@ -709,7 +709,7 @@ const allAuthorsData = [
         author_image: images.author_6,
         author_name: 'Nathaniel Fick',
         category: 'Memoir',
-        language: 'English'
+        language: 'Urdu'
     },
     {
         id: 16,

@@ -296,11 +296,13 @@ const FilterSection = () => {
                     size="extra-small"
                     color="errorColor"
                     onClick={resetAllFilters}
+                    disabled={context.searchTrigger ? true : false}
                 >Reset</Button>
                 <Button
                     variant="contained"
                     size="extra-small"
                     onClick={applyFilter}
+                    disabled={context.searchTrigger ? true : false}
                 >Apply</Button>
             </div>
         </div>

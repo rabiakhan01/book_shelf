@@ -11,7 +11,7 @@ const BooksListing = () => {
     const navigate = useNavigate();
     const context = useContext(bookListingContext);
 
-    console.log(context.bookPageContext.bookListing)
+    //console.log("homepage", context.bookPageContext.bookListing)
 
     const [showFilterSection, setShowFilterSection] = useState(false);
 
@@ -91,7 +91,7 @@ const BooksListing = () => {
                     context.bookPageContext.bookListing.length > 0
                         ?
                         <div className={` ${showFilterSection ? 'brightness-50' : ''} w-full flex flex-col pt-2 lg:pt-0`}>
-                            <div className={`flex pr-2 pl-1 flex-wrap w-full h-lvh ${showFilterSection ? 'overflow-hidden' : 'overflow-auto'} gap-2`}>
+                            <div className={`flex pr-2 pl-1 flex-wrap w-full h-lvh ${showFilterSection ? 'overflow-hidden' : 'overflow-auto'} gap-2`} id="cards">
                                 {
                                     context.bookPageContext.bookListing.map((book, index) => {
                                         return (

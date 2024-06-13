@@ -7,7 +7,6 @@ const AllAuthorPage = () => {
         <div>
             <div className="sticky top-[5rem] z-20 pt-7 bg-primaryColor pb-4">
                 <SearchBar
-                    data={allAuthorsData}
                     name="author"
                 />
             </div>
