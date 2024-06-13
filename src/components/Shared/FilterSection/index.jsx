@@ -238,7 +238,6 @@ const FilterSection = () => {
 
     }, [context.bookPageContext.bookFilters])
 
-
     return (
         <div className="flex flex-col justify-between p-4 gap-4">
             <div className="flex flex-col gap-2">
@@ -250,7 +249,7 @@ const FilterSection = () => {
                         categories.map((category) => {
                             return (
                                 <div className="flex gap-2" key={category.id}>
-                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} onClick={handelCategory} />
+                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} onClick={handelCategory} disabled={context.searchTrigger ? true : false} />
                                     <label>{category.name}</label>
                                 </div>
                             )
@@ -267,7 +266,7 @@ const FilterSection = () => {
                         languages.map((language) => {
                             return (
                                 <div className="flex gap-2" key={language.id}>
-                                    <input type="checkbox" checked={language.check} value={language.name} onChange={handelLanguage} />
+                                    <input type="checkbox" checked={language.check} value={language.name} onChange={handelLanguage} disabled={context.searchTrigger ? true : false} />
                                     <label>{language.name}</label>
                                 </div>
                             )

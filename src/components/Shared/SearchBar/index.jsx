@@ -13,6 +13,9 @@ const SearchBar = ({ name }) => {
     const handelChange = (event) => {
         const { value } = event.target;
         setSearch(value);
+        if (event.target.value === '') {
+            context.setSearchTrigger(false)
+        }
 
     }
 
@@ -49,23 +52,25 @@ const SearchBar = ({ name }) => {
 
     return (
 
-        <div className="flex w-full relative">
-            <input
-                type="text"
-                value={search}
-                placeholder="Search"
-                className="w-[70%] small-tab:w-[80%] mid-tab:w-[87%] lg:w-[92%] h-12 lg:h-14 border border-lightGrayColor focus:outline focus:outline-1 focus:outline-lightYellowColor rounded-s-xl pl-4 pr-10"
-                onChange={handelChange}
-            />
-            {
-                search &&
-                <div className="absolute flex justify-center items-center right-28 top-4 w-6 h-6 border border-lightGrayColor rounded-full focus:bg-orange-400 cursor-pointer" onClick={clearSerach}>
-                    <img src={icons.close} alt="cross-search-icon" className=" w-[10px] h-[10px] " />
-                </div>
-            }
-            <div className={`flex justify-center items-center bg-whiteColor w-[30%] small-tab:w-[20%] mid-tab:w-[12%] lg:w-[8%] h-12 lg:h-14 border border-lightGrayColor rounded-e-xl`}>
+        <div className="flex w-full">
+            <div className="flex relative w-[80%] mid-tab:w-[87%] lg:w-[92%]">
+                <input
+                    type="text"
+                    value={search}
+                    placeholder="Search"
+                    className="w-full h-12 lg:h-14 border border-lightGrayColor focus:outline focus:outline-1 focus:outline-lightYellowColor rounded-s-xl pl-4 pr-10 sm:pr-14"
+                    onChange={handelChange}
+                />
+                {
+                    search &&
+                    <div className="absolute flex justify-center items-center right-3 sm:right-4 top-[14px] sm:top-3 lg:top-4 w-5 h-5 sm:w-6 sm:h-6 border border-lightGrayColor rounded-full focus:bg-orange-400 cursor-pointer" onClick={clearSerach}>
+                        <img src={icons.close} alt="cross-search-icon" className="w-[10px] h-[10px] " />
+                    </div>
+                }
+            </div>
+            <div className={`flex justify-center items-center bg-whiteColor w-[20%] mid-tab:w-[12%] lg:w-[8%] h-12 lg:h-14 border border-lightGrayColor rounded-e-xl`}>
                 <button
-                    className="bg-lightYellowColor px-2 py-1 rounded-md"
+                    className="bg-lightYellowColor text-xs small-tab:text-sm sm:text-base px-1 small-tab:px-2 py-1 rounded-md"
                     onClick={handelSearch}
                     value={search}
                     name={name}

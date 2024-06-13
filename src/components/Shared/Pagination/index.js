@@ -188,7 +188,7 @@ const Pagination = ({ maxRecordsPerPage }) => {
                 <div>
                     <PaginationButton
                         name="prev"
-                        Icon={icons.prevPageIcon}
+                        Icon={icons.nextPageIcon}
                         onChange={() => { }}
                         onClick={() => prevPage()}
                         disabled={prevButton}

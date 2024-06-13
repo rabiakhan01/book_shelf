@@ -10,7 +10,7 @@ const AuthorsListing = () => {
         context.setAuthorListing(allAuthorsData);
     }
     return (
-        <div className="flex bg-secondaryColor min-h-[58vh] w-full p-4 flex-wrap gap-4 justify-start mb-4">
+        <div className="flex bg-secondaryColor min-h-[58vh] w-full p-4 flex-wrap gap-4 justify-center items-center mb-4">
             {
                 context.authorListing?.length > 0 ?
                     context.authorListing.map((author, index) => {
