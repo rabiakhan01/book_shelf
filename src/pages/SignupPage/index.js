@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, InputField } from "../../components/Shared";
 import { useNavigate } from "react-router-dom";
+import icons from "../../assets/icons/icons";
+
 const SignupPage = () => {
     const navigate = useNavigate();
 
@@ -92,9 +94,17 @@ const SignupPage = () => {
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
             {
-                userExist && <p className="flex text-center bg-errorBgColor text-errorColor rounded-md px-4 py-1">user already exists please choose another email</p>
+                <div className="flex w-[95%] sm:w-[30rem] gap-2 sm:gap-4 justify-center items-center flex-row-reverse just border border-errorColor rounded-md p-2 sm:p-3">
+                    <div className="flex flex-col">
+                        <p className="text-errorColor text-base sm:text-lg">There was a problem</p>
+                        <p className="text-sm sm:text-base">User already exists please choose another email</p>
+                    </div>
+                    <div>
+                        <img src={icons.warning} alt="" className="w-7 h-7 sm:w-10 sm:h-10" />
+                    </div>
+                </div>
             }
-            <div className="flex flex-col w-[30rem] justify-center items-center rounded-xl m-5 p-4 small-tab:p-10 py-10 bg-secondaryColor">
+            <div className="flex flex-col w-[95%] sm:w-[30rem] justify-center items-center rounded-xl m-5 p-4 small-tab:p-10 py-10 bg-secondaryColor">
                 <div>
                     <h1 className="text-textYellowColor text-xl  small-tab:text-2xlxl sm:text-3xl font-medium uppercase pb-6 text-nowrap ">Signup</h1>
                 </div>

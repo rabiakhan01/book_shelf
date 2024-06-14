@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, InputField } from "../../components/Shared";
 import { useNavigate } from "react-router-dom";
 import { isAuthentication } from "../../utils/utils";
+import icons from "../../assets/icons/icons";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -85,9 +86,18 @@ const LoginPage = () => {
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
             {
-                invalidUser && <p className="flex text-center bg-errorBgColor text-errorColor rounded-md px-4 py-1">Invalid username or password</p>
+                invalidUser &&
+                <div className="flex w-[95%] sm:w-[27rem] gap-2 sm:gap-4 justify-center items-center flex-row-reverse just border border-errorColor rounded-md p-2 sm:p-3">
+                    <div className="flex flex-col">
+                        <p className="text-errorColor text-base sm:text-lg">There was a problem</p>
+                        <p className="text-sm sm:text-base">We cannot find an account with that email adress</p>
+                    </div>
+                    <div>
+                        <img src={icons.warning} alt="" className="w-7 h-7 sm:w-10 sm:h-10" />
+                    </div>
+                </div>
             }
-            <div className="flex flex-col w-[27rem] justify-center items-center bg-secondaryColor rounded-xl m-4 p-4 small-tab:px-10 py-14">
+            <div className="flex flex-col w-[95%] sm:w-[27rem] justify-center items-center bg-secondaryColor rounded-xl m-4 p-4 small-tab:px-10 py-14">
                 <div>
                     <h1 className="text-textYellowColor text-xl  small-tab:text-2xlxl sm:text-3xl font-medium uppercase pb-6 text-nowrap ">Login</h1>
                 </div>
