@@ -3,6 +3,7 @@ import { Button, InputField } from "../../components/Shared";
 import { useNavigate } from "react-router-dom";
 import { isAuthentication } from "../../utils/utils";
 import icons from "../../assets/icons/icons";
+import images from "../../assets/images/images";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -83,8 +84,16 @@ const LoginPage = () => {
     const navigateToSignup = () => {
         navigate('/signup')
     }
+
+    const navigateToHome = () => (
+        navigate('/')
+    )
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
+            <div className="flex justify-center items-center gap-1 cursor-pointer mb-4" onClick={navigateToHome}>
+                <img src={icons.logo} alt="logo" className="h-10 w-10 cursor-pointer" />
+                <p className="text-xl font-medium text-textLightBlackColor uppercase">BookMooch</p>
+            </div>
             {
                 invalidUser &&
                 <div className="flex w-[95%] sm:w-[27rem] gap-2 sm:gap-4 justify-center items-center flex-row-reverse just border border-errorColor rounded-md p-2 sm:p-3">

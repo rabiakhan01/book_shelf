@@ -1,7 +1,7 @@
 const images = {
 
     //logo
-    logo: require('./logo.png'),
+    logo: require('./logo.svg').default,
 
     //books section
     book_1: require('./book_1.png'),

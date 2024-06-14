@@ -89,11 +89,19 @@ const SignupPage = () => {
     }
     const navigateToLogin = () => {
         navigate('/login');
+        setErrorMessage('');
     }
-
+    const navigateToHome = () => (
+        navigate('/')
+    )
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
+            <div className="flex justify-center items-center gap-1 cursor-pointer mb-4" onClick={navigateToHome}>
+                <img src={icons.logo} alt="logo" className="h-10 w-10 cursor-pointer" />
+                <p className="text-xl font-medium text-textLightBlackColor uppercase">BookMooch</p>
+            </div>
             {
+                userExist &&
                 <div className="flex w-[95%] sm:w-[30rem] gap-2 sm:gap-4 justify-center items-center flex-row-reverse just border border-errorColor rounded-md p-2 sm:p-3">
                     <div className="flex flex-col">
                         <p className="text-errorColor text-base sm:text-lg">There was a problem</p>
