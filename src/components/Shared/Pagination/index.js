@@ -2,17 +2,27 @@ import React, { useState, useContext, useEffect } from "react";
 import PaginationButton from "./PaginationButton";
 import icons from '../../../assets/icons/icons';
 import { bookListingContext } from "../ContextProvider";
-import { allBooksData } from "../../../utils/MockupData";
+import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
-const Pagination = ({ maxRecordsPerPage }) => {
+const Pagination = ({ maxRecordsPerPage, name }) => {
     const context = useContext(bookListingContext);
+    const calculateMaxPage = () => {
+        if (name === 'books') {
+            return Math.ceil(allBooksData.length / maxRecordsPerPage);
+        }
+        else {
+            return Math.ceil(allAuthorsData.length / maxRecordsPerPage);
+        }
+    }
 
-    const [maxPage, setMaxPage] = useState(Math.ceil(allBooksData.length / maxRecordsPerPage));
+    const [maxPage, setMaxPage] = useState(calculateMaxPage());
+    //console.log("🚀 ~ Pagination ~ maxPage:", maxPage)
     const [filterData, setFilterData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [prevButton, setPrevButton] = useState(true);
     const [nextButton, setNextButton] = useState(false);
     const [pageArray, setPageArray] = useState([]);
+    // console.log("🚀 ~ Pagination ~ pageArray:", pageArray)
 
     const totalPage = [];
     for (let i = 0; i < maxPage; i++) {
@@ -40,34 +50,41 @@ const Pagination = ({ maxRecordsPerPage }) => {
         setCurrentPage(pageNo);
 
         const lastIndexOfPage = pageNo * maxRecordsPerPage;
-        console.log("🚀 ~ handelPageChange ~ lastIndexOfPage:", lastIndexOfPage)
+        // console.log("🚀 ~ handelPageChange ~ lastIndexOfPage:", lastIndexOfPage)
 
         const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
-        console.log("🚀 ~ handelPageChange ~ firstIndexOfPage:", firstIndexOfPage)
+        // console.log("🚀 ~ handelPageChange ~ firstIndexOfPage:", firstIndexOfPage)
 
-        if (context.bookPageContext.bookFilters.length > 0 || context.searchTrigger) {
-            const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
-            console.log("🚀 ~ handelPageChange ~ currentPageDat1:", currentPageData)
-            context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-        }
-        else {
-            const currentPageData = allBooksData.slice(firstIndexOfPage, lastIndexOfPage);
-            context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-            console.log("🚀 ~ handelPageChange ~ currentPageData2:", currentPageData)
+        if (name === 'books') {
 
+            if (context.bookPageContext.bookFilters.length > 0 || context.searchTrigger) {
+                const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
+                context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            }
+            else {
+                const currentPageData = allBooksData.slice(firstIndexOfPage, lastIndexOfPage);
+                context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+            }
+            const element = document.getElementById('cards');
+            element.scroll({
+                top: 0,
+                behavior: "smooth"
+            })
         }
-        // if (context.searchTrigger) {
-        //     const currentPageData = context.bookPageContext.bookListing.slice(firstIndexOfPage, lastIndexOfPage);
-        //     console.log("🚀 ~ handelPageChange ~ currentPageDat3:", currentPageData)
-        //     context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-        // }
+        if (name === 'authors') {
+            if (!context.searchTrigger) {
+                const currentPageData = allAuthorsData.slice(firstIndexOfPage, lastIndexOfPage);
+                context.setAuthorListing(currentPageData);
+            }
+            else {
+                const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
+                context.setAuthorListing(currentPageData);
+            }
+            const element = document.getElementById('author-card');
+            element.scroll({ top: 0, behavior: "smooth" });
+        }
 
         window.scroll({
-            top: 0,
-            behavior: "smooth"
-        })
-        const element = document.getElementById('cards');
-        element.scroll({
             top: 0,
             behavior: "smooth"
         })
@@ -83,7 +100,7 @@ const Pagination = ({ maxRecordsPerPage }) => {
     }
 
     useEffect(() => {
-        if (!context.searchTrigger) {
+        if (!context.searchTrigger && name == 'books') {
             if (context.bookPageContext.bookFilters.length > 0) {
 
                 //store the listing data after every time filter changes
@@ -108,7 +125,6 @@ const Pagination = ({ maxRecordsPerPage }) => {
 
                 //calculate number of pages required 
                 const pages = Math.ceil(allBooksData.length / maxRecordsPerPage)
-                console.log('hello from the world')
                 setMaxPage(pages);
                 const currentPageData = allBooksData.slice(0, maxRecordsPerPage)
                 context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
@@ -139,7 +155,6 @@ const Pagination = ({ maxRecordsPerPage }) => {
     }, [currentPage])
 
     useEffect(() => {
-        //console.log("maxpages", maxPage)
         const newArray = totalPage.map((page, index) => {
             if (index == 0) {
                 return { ...page, active: true }
@@ -154,15 +169,25 @@ const Pagination = ({ maxRecordsPerPage }) => {
 
     useEffect(() => {
 
-        const filteredListing = context.bookPageContext.bookListing;
-        setFilterData([...filteredListing]);
+        let pages;
         if (context.searchTrigger) {
-
-            const pages = Math.ceil(context.bookPageContext.bookListing.length / maxRecordsPerPage)
-            //console.log("🚀 ~ useEffect ~ pages:", pages)
-            setMaxPage(pages);
-            const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
-            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: currentPageData })
+            if (name === 'books') {
+                const filteredListing = context.bookPageContext.bookListing;
+                setFilterData([...filteredListing]);
+                pages = Math.ceil(context.bookPageContext.bookListing.length / maxRecordsPerPage)
+                //console.log("🚀 ~ useEffect ~ pages:", pages)
+                setMaxPage(pages);
+                const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: currentPageData })
+            }
+            if (name === 'authors') {
+                setFilterData(context.authorListing);
+                pages = Math.ceil(context.authorListing.length / maxRecordsPerPage)
+                console.log("🚀 ~ useEffect ~ pages:", pages)
+                setMaxPage(pages);
+                const currentPageData = context.authorListing.slice(0, maxRecordsPerPage);
+                context.setAuthorListing(currentPageData);
+            }
             if (pages < 1) {
                 setNextButton(true);
             }
@@ -180,45 +205,81 @@ const Pagination = ({ maxRecordsPerPage }) => {
             })
             setPageArray([...newArray]);
         }
+        else {
+            if (name === 'authors') {
+                //calculate number of pages required 
+                const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
+                setMaxPage(pages);
+                const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
+                context.setAuthorListing(currentPageData)
+                setFilterData(allAuthorsData);
+                if (pages <= 1) {
+                    setNextButton(true);
+                }
+                else {
+                    setNextButton(false)
+                }
+            }
+        }
     }, [context.searchTrigger]);
+
+    useEffect(() => {
+        if (name === 'authors') {
+            //calculate number of pages required 
+            const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
+            setMaxPage(pages);
+            const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
+            context.setAuthorListing(currentPageData)
+            setFilterData(allAuthorsData);
+            if (pages <= 1) {
+                setNextButton(true);
+            }
+            else {
+                setNextButton(false)
+            }
+        }
+    }, [name])
 
     return (
         <div className="w-full flex items-center justify-center mt-6">
-            <div className="flex gap-2 justify-center items-center">
-                <div>
-                    <PaginationButton
-                        name="prev"
-                        Icon={icons.nextPageIcon}
-                        onChange={() => { }}
-                        onClick={() => prevPage()}
-                        disabled={prevButton}
+            {
+                maxPage > 1 &&
+                <div className="flex gap-2 justify-center items-center">
+                    <div>
+                        <PaginationButton
+                            name="prev"
+                            Icon={icons.nextPageIcon}
+                            onChange={() => { }}
+                            onClick={() => prevPage()}
+                            disabled={prevButton}
 
-                    />
+                        />
+                    </div>
+                    <div className="flex justify-center items-center gap-1">
+                        {
+                            pageArray.map((page, index) => {
+                                return (
+                                    <PaginationButton
+                                        key={index}
+                                        name={page.name}
+                                        activeButton={page.active}
+                                        onClick={() => handelPageChange(page.name)}
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                    <div>
+                        <PaginationButton
+                            name="next"
+                            Icon={icons.nextPageIcon}
+                            onChange={() => { }}
+                            onClick={() => nextPage()}
+                            disabled={nextButton}
+                        />
+                    </div>
                 </div>
-                <div className="flex justify-center items-center gap-1">
-                    {
-                        pageArray.map((page, index) => {
-                            return (
-                                <PaginationButton
-                                    key={index}
-                                    name={page.name}
-                                    activeButton={page.active}
-                                    onClick={() => handelPageChange(page.name)}
-                                />
-                            )
-                        })
-                    }
-                </div>
-                <div>
-                    <PaginationButton
-                        name="next"
-                        Icon={icons.nextPageIcon}
-                        onChange={() => { }}
-                        onClick={() => nextPage()}
-                        disabled={nextButton}
-                    />
-                </div>
-            </div>
+            }
         </div>
 
     )

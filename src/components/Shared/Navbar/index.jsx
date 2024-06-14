@@ -33,7 +33,7 @@ const Navbar = () => {
         navigate('/cart')
     }
     const navigateToBookMark = () => {
-        navigate('/cart')
+        navigate('/bookmark')
     }
 
     const navigateToProfile = () => {
@@ -66,8 +66,8 @@ const Navbar = () => {
                 <div className="relative flex items-center gap-2 small-tab:gap-5 xl:gap-8 h-auto w-auto">
 
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
-                        <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToBookMark}>
-                            <img src={icons.bookmark} alt="bookmark" className="h-full w-full" />
+                        <div className="relative h-6 w-6 cursor-pointer">
+                            <img src={icons.bookmark} alt="bookmark" className="h-full w-full" onClick={navigateToBookMark} />
                             <div className={`${context?.favouritBookContext.favouritBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
                                 <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context?.favouritBookContext.favouritBooks.length}</p>
                             </div>

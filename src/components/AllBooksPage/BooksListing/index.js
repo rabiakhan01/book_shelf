@@ -115,6 +115,7 @@ const BooksListing = () => {
                             </div>
                             <Pagination
                                 maxRecordsPerPage={6}
+                                name="books"
                             />
                         </div>
                         :

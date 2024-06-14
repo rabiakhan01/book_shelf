@@ -22,16 +22,18 @@ const SearchBar = ({ name }) => {
     const handelSearch = (event) => {
 
         if (search) {
-            if (event.target.name === 'author') {
+            console.log(event.target.name)
+            if (event.target.name === 'authors') {
                 const searchedData = allAuthorsData.filter((item) => item.author_name.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()) || item.language.toLowerCase().includes(search.toLowerCase()));
-                context.setAuthorListing(searchedData);
+                console.log("🚀 ~ handelSearch ~ searchedData:", searchedData)
+                context.setAuthorListing([...searchedData]);
             }
             if (event.target.name === "books") {
                 const searchedData = allBooksData.filter((item) => item.author_name.toLowerCase().includes(search.toLowerCase()) || item.book_name.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()) || item.language.toLowerCase().includes(search.toLowerCase()));
                 const updatedData = { ...context.bookPageContext, bookListing: searchedData };
                 context.setBookPageContext({ ...updatedData });
-                context.setSearchTrigger((prev) => (prev + 1))
             }
+            context.setSearchTrigger((prev) => (prev + 1))
         }
         window.scroll({
             top: 0,
@@ -41,7 +43,7 @@ const SearchBar = ({ name }) => {
 
     const clearSerach = () => {
         setSearch('');
-        if (name === 'author') {
+        if (name === 'authors') {
             context.setAuthorListing(allAuthorsData);
         }
         if (name === 'books') {

@@ -9,6 +9,7 @@ import BookDetailPage from "../pages/BookDetailPage";
 import { Layout } from "../components/Shared";
 import CartPage from "../pages/CartPage";
 import AllAuthorPage from "../pages/AllAuthorsPage";
+import BookMarkPage from "../pages/BookMarkPage";
 
 
 const Routing = () => {
@@ -19,6 +20,7 @@ const Routing = () => {
             <Route path="all-books/book-detail/:bookId" element={<Layout><BookDetailPage /></Layout>} />
             <Route path='/cart' element=<Layout><CartPage /></Layout> />
             <Route path='/all-authors' element=<Layout><AllAuthorPage /></Layout> />
+            <Route path='/bookmark' element=<Layout><BookMarkPage /></Layout> />
             <Route element={<PublicRoutes />}>
                 {
                     publicRoutes.map((route, index) => {
