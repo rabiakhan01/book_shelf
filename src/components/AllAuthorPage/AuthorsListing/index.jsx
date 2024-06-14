@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductCard } from "../../Shared";
 import { bookListingContext } from "../../Shared/ContextProvider";
 import { allAuthorsData } from "../../../utils/MockupData";
@@ -9,6 +9,12 @@ const AuthorsListing = () => {
     const clearFilters = () => {
         context.setAuthorListing(allAuthorsData);
     }
+
+    useEffect(() => {
+        if (!context.searchTrigger) {
+            context.setAuthorListing(allAuthorsData);
+        }
+    }, [context.searchTrigger])
     return (
         <div className="flex bg-secondaryColor min-h-[58vh] w-full p-4 flex-wrap gap-4 justify-center items-center mb-4">
             {

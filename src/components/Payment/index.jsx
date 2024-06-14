@@ -143,7 +143,7 @@ const Payment = () => {
                     <div> <h1 className="text-base lg:text-xl uppercase">payment</h1></div>
                     <div className="flex justify-center items-center gap-2 text-sm lg:text-base">
                         <input type="radio" name="paymentMethod" value="byCard" checked={!paymentOnDelivery} onChange={handelChange}></input>By card
-                        <input type="radio" name="paymentMethod" value="PUD" onChange={handelChange}></input>Payment upon delivery
+                        <input type="radio" name="paymentMethod" value="PUD" onChange={handelChange}></input>cash on delivery
                     </div>
                 </div>
                 {

@@ -192,6 +192,7 @@ const Pagination = ({ maxRecordsPerPage }) => {
                         onChange={() => { }}
                         onClick={() => prevPage()}
                         disabled={prevButton}
+
                     />
                 </div>
                 <div className="flex justify-center items-center gap-1">

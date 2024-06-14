@@ -82,10 +82,7 @@ const ContactInformation = () => {
         <div className="flex flex-col gap-4">
             <div className="flex flex-col-reverse gap-2 small-tab:flex-row justify-between ">
                 <h1 className="text-sm sm:text-base xl:text-xl uppercase">contact information</h1>
-                <div className="flex items-center gap-1 text-sm ">
-                    <p className="text-textLightGrayColor">already have an account?</p>
-                    <button>Sign in</button>
-                </div>
+
             </div>
             <div className="w-full ">
                 <form className="flex flex-col gap-3">

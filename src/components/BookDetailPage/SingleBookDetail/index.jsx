@@ -182,7 +182,7 @@ const SingleBookDetail = () => {
                                             </div>
                                             <div className="flex gap-2 text-xl lg:text-2xl">
                                                 {
-                                                    book.old_price > 0 ? <p className="text-textLightGrayColor">${book.old_price}</p> : ''
+                                                    book.old_price > 0 ? <s><p className="text-textLightGrayColor">${book.old_price}</p></s> : ''
                                                 }
                                                 <p>${book.new_price}</p>
                                             </div>

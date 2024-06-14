@@ -1,33 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import InputField from '../InputField';
+import icons from '../../../assets/icons/icons';
 import { bookListingContext } from "../ContextProvider";
 import { allBooksData } from "../../../utils/MockupData";
-import { useNavigate } from "react-router-dom";
 import BtnCartQuantity from "../BtnCartQuantity";
-import Button from "../Button";
 const OrderSummary = () => {
 
     const context = useContext(bookListingContext);
-
     const [totalquantity, setTotalQuantity] = useState(0);
+    const [errorMessage, setErrorMessage] = useState('');
     const [subTotal, setSubTotal] = useState(0);
     const [totalBill, setTotalBill] = useState();
     const [editOrder, setEditOrder] = useState(false);
 
     const [promoCodes, setPromoCodes] = useState(
-        [{
+        {
             used: false,
             code: '123mbu123'
-        },
-        {
-            used: false,
-            code: 'wert23456'
-        },
-        {
-            used: false,
-            code: '45678dfgh'
-        },
-        ]);
+        });
     const [promoCode, setPromoCode] = useState('');
     //console.log("🚀 ~ OrderSummary ~ promoCode:", promoCodes)
 
@@ -38,15 +28,17 @@ const OrderSummary = () => {
     const handelChange = (event) => {
         if (event.target.value.length < 10) {
             setPromoCode(event.target.value)
+            if (event.target.value.length === 9) {
+                setErrorMessage('');
+            }
         }
     }
 
     const incrementQuantity = (book_id) => {
-        console.log(book_id)
+        // console.log(book_id)
         const findBook = context.favouritBookContext.cartBooks.find((book) => book.bookID === book_id);
         //console.log("🚀 ~ incrementQuantity ~ findBook:", findBook)
         const updatedData = context.favouritBookContext.cartBooks.map((book) => {
-            console.log("🚀 ~ OrderSummary ~ promoCodes:", promoCodes)
             if (book.bookID === findBook.bookID) {
                 return { ...book, quantity: book.quantity + 1 }
             }
@@ -54,8 +46,6 @@ const OrderSummary = () => {
                 return book
             }
         })
-        //console.log("🚀 ~ updatedData ~ updatedData:", updatedData)
-
         context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: updatedData })
     }
     const decrementQuantity = (book_id) => {
@@ -77,22 +67,17 @@ const OrderSummary = () => {
         else {
             context.setFavouritBookContext({ ...context.favouritBookContext, cartBooks: [] })
         }
-    }
 
-    const handelDiscount = () => {
-        const findPromoCode = promoCodes.find((item) => item.code === promoCode);
-        //console.log("🚀 ~ handelDiscount ~ findPromoCode:", findPromoCode)
-        const updatedPromoCodes = promoCodes.map((item) => {
-            if (item.code === promoCode) {
-                return { ...item, used: true }
-            }
-            else {
-                return item
-            }
-        })
-        setPromoCodes(updatedPromoCodes);
-        if (findPromoCode && !findPromoCode?.used) {
+    }
+    const applyPromoCode = () => {
+        let error = '';
+        if (promoCode.length < 9 || promoCode !== promoCodes.code) {
+            error = 'Please enter 9 digits promo code'
+            setErrorMessage(error);
+        }
+        if (!promoCodes.used && error === '') {
             setSubTotal((prev) => (prev - (prev * 3 / 100)));
+            setPromoCodes({ ...promoCodes, used: true })
         }
     }
 
@@ -100,6 +85,12 @@ const OrderSummary = () => {
         setEditOrder(false)
     }
 
+    const removePromoCode = () => {
+        setPromoCode('');
+        setPromoCodes((prev) => ({ ...prev, used: false }))
+        setErrorMessage('');
+        setSubTotal(totalBill);
+    }
     // total the price and quantity every time any item is added in the cart
     useEffect(() => {
         const updatedQuantity = context.favouritBookContext.cartBooks.reduce((a, b) => (a + b.quantity), 0);
@@ -109,14 +100,17 @@ const OrderSummary = () => {
             return matchingBook && book.new_price * matchingBook.quantity;
         }).filter((item) => item !== undefined)
         const totalPrice = priceArray.reduce((a, b) => (a + b), 0);
+        if (!promoCodes.used) {
+            setSubTotal(totalPrice);
+        }
+        if (promoCodes.used) {
+            setSubTotal(totalPrice - (totalPrice * 3 / 100));
+        }
         setTotalQuantity(updatedQuantity);
         setTotalBill(totalPrice);
-        setSubTotal(totalPrice);
-        const updatedPromoCodes = promoCodes.map((item) => {
-            return { ...item, used: false }
-        });
-        setPromoCodes(updatedPromoCodes);
+
     }, [context.favouritBookContext.cartBooks]);
+
     return (
         <div className="flex flex-col gap-4 text-textSecondaryColor w-full lg:w-[75%]">
             <div className="flex flex-col gap-3 bg-lightBlackColor rounded-xl p-4">
@@ -175,15 +169,21 @@ const OrderSummary = () => {
                 }
             </div>
             <div className="flex gap-2 w-full ">
-                <div className="w-full">
+                <div className=" relative w-full">
                     <InputField
                         value={promoCode}
                         name="promoCode"
                         placeholder="Promo code"
+                        error={errorMessage}
                         onChange={handelChange}
                     />
                 </div>
-                <button className="uppercase px-6 rounded-xl py-2 bg-textLightGrayColor text-textPrimaryColor font-medium" disabled={editOrder ? true : false} onClick={handelDiscount}>Apply</button>
+                {
+                    promoCodes.used ?
+                        <button className="uppercase px-6 rounded-xl h-[46px] bg-transparent border border-textYellowColor text-textYellowColor font-medium" onClick={removePromoCode}>Remove</button>
+                        :
+                        <button className="uppercase px-6 rounded-xl h-[46px] bg-textLightGrayColor text-textPrimaryColor font-medium" onClick={applyPromoCode}>Apply</button>
+                }
             </div>
         </div>
     )

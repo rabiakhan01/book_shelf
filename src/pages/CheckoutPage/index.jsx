@@ -5,10 +5,11 @@ import Shipping from "../../components/Shipping";
 import icons from "../../assets/icons/icons";
 import Payment from "../../components/Payment";
 import { bookListingContext } from "../../components/Shared/ContextProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
     const context = useContext(bookListingContext);
+    const navigate = useNavigate();
 
     const [navigationArray, setNavigationArray] = useState([
         {
@@ -44,6 +45,9 @@ const CheckoutPage = () => {
         }
     }
 
+    const gotoCartPage = () => {
+        navigate('/cart')
+    }
     useEffect(() => {
 
         if (context.step === 2) {
@@ -82,7 +86,7 @@ const CheckoutPage = () => {
                             </div>
                             <div className="flex gap-1 small-tab:gap-2">
                                 <div className="flex gap-1 small-tab:gap-2 items-center">
-                                    <button className="cursor-pointer hover:text-textYellowColor text-[10px] small-tab:text-xs sm:text-sm uppercase">Back</button>
+                                    <button className="cursor-pointer hover:text-textYellowColor text-[10px] small-tab:text-xs sm:text-sm uppercase" onClick={gotoCartPage}>Back</button>
                                     <img src={icons.line} alt="" className="w-3 h-3" />
                                 </div>
                                 {
