@@ -68,8 +68,8 @@ const Navbar = () => {
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
                         <div className="relative h-6 w-6 cursor-pointer">
                             <img src={icons.bookmark} alt="bookmark" className="h-full w-full" onClick={navigateToBookMark} />
-                            <div className={`${context?.favouritBookContext.favouritBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
-                                <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context?.favouritBookContext.favouritBooks.length}</p>
+                            <div className={`${context.favouritBookContext.favouritBooks.length || context?.favouritBookContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                                <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length + context.favouritBookContext.favouritAuthors.length}</p>
                             </div>
                         </div>
                         <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToCart}>

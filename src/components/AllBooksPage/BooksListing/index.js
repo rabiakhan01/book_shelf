@@ -97,7 +97,7 @@ const BooksListing = () => {
                                         return (
                                             <ProductCard
                                                 key={index}
-                                                book_id={book.id}
+                                                id={book.id}
                                                 image={book.book_img}
                                                 name={book.book_name}
                                                 intro={book.author_name}

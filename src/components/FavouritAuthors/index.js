@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { ProductCard } from "../../Shared";
-import { bookListingContext } from "../../Shared/ContextProvider";
-import { allAuthorsData } from "../../../utils/MockupData";
+import { ProductCard } from "../Shared";
+import { bookListingContext } from "../Shared/ContextProvider";
+import { allAuthorsData } from "../../utils/MockupData";
 
-const AuthorsListing = () => {
+const FavouritAuthors = () => {
     const context = useContext(bookListingContext);
 
     const clearFilters = () => {
@@ -46,4 +46,5 @@ const AuthorsListing = () => {
         </div>
     )
 }
-export default AuthorsListing;
+
+export default FavouritAuthors;

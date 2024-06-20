@@ -141,7 +141,7 @@ const SingleBookDetail = () => {
                                             <div className="absolute top-4 right-4 z-10  h-8 w-8 rounded-full">
                                                 <BtnBookMark
                                                     onClick={() => handelFavouritBook(book.id)}
-                                                    bookID={book.id}
+                                                    id={book.id}
                                                 />
                                             </div>
                                         </div>

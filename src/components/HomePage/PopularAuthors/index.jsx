@@ -10,19 +10,19 @@ const PopularAuthors = () => {
     const handelNavigate = () => {
         navigate('/all-authors')
     }
+    //console.log("authors", context.favouritBookContext.favouritAuthors);
+    const handelBookMark = (id) => {
 
-    const handelBookMark = (book_id) => {
-
-        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +book_id);
+        const alreadyExists = context.favouritBookContext.favouritAuthors?.find((book) => book == +id);
 
         if (!alreadyExists) {
-            const favouritBook = [...context.favouritBookContext.favouritBooks, book_id];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
+            const favouritBook = [...context.favouritBookContext.favouritAuthors, id];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritAuthors: favouritBook });
         }
         else {
-            const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
-            const favouritBook = [...updatedBooks];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
+            const updatedAuthor = context.favouritBookContext.favouritAuthors.filter((author) => author !== +alreadyExists)
+            const favouritAuthor = [...updatedAuthor];
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritAuthors: favouritAuthor })
         }
     }
 
@@ -46,8 +46,9 @@ const PopularAuthors = () => {
                                         </div>
                                         <div className="flex justify-end w-8 h-2">
                                             <BtnBookMark
-                                                bookID={author.id}
+                                                id={author.id}
                                                 onClick={() => handelBookMark(author.id)}
+                                                isAuthor={true}
                                             />
                                         </div>
                                     </div>

@@ -2,10 +2,17 @@ import React, { useContext } from "react";
 import icons from "../../../assets/icons/icons";
 import { bookListingContext } from "../ContextProvider";
 
-const BtnBookMark = ({ onClick, bookID }) => {
+const BtnBookMark = ({ onClick, id, isAuthor }) => {
 
     const context = useContext(bookListingContext);
-    const isFavourit = context?.favouritBookContext.favouritBooks?.find((book) => book == +bookID);
+
+    let isFavourit;
+    if (isAuthor) {
+        isFavourit = context?.favouritBookContext.favouritAuthors?.find((author) => author == +id);
+    }
+    else {
+        isFavourit = context?.favouritBookContext.favouritBooks?.find((book) => book == +id);
+    }
 
     return (
         <div className={`flex justify-center items-center ${isFavourit ? 'bg-btnPrimaryColor' : 'bg-btnsecondaryColor'}  w-8 h-8 rounded-full`} onClick={onClick}>

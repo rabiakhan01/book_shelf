@@ -11,15 +11,18 @@ const BestSeller = () => {
     const navigate = useNavigate();
 
     const handelNaviagte = () => {
-        navigate('/all-books')
+        navigate('/all-books');
+
     }
 
-    const handelFavouritBook = (book_id) => {
+    //console.log("favourit books", context.favouritBookContext.favouritBooks);
 
-        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +book_id);
+    const handelFavouritBook = (id) => {
+
+        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +id);
 
         if (!alreadyExists) {
-            const favouritBook = [...context.favouritBookContext.favouritBooks, book_id];
+            const favouritBook = [...context.favouritBookContext.favouritBooks, id];
             context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
         }
         else {
@@ -54,7 +57,7 @@ const BestSeller = () => {
                                         <div className="flex justify-end w-8 h-10 ml-1">
                                             <BtnBookMark
                                                 onClick={() => handelFavouritBook(book.id)}
-                                                bookID={book.id}
+                                                id={book.id}
                                             />
                                         </div>
                                     </div>
