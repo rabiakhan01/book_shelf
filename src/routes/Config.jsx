@@ -1,35 +1,20 @@
 import { Layout } from "../components/Shared";
-import HomePage from "../pages/HomePage";
-import ShippingPage from "../pages/ShippingPage";
 import LoginPage from "../pages/LoginPage";
-import AllBooksPage from "../pages/AllBooksPage";
-import BookDetailPage from "../pages/BookDetailPage";
-import CartPage from "../pages/CartPage";
-import ContactPage from "../pages/ContactPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import ThankYouPage from "../pages/ThankYouPage";
+import SignupPage from "../pages/SignupPage";
+import UserProfile from "../pages/UserProfile";
 //public routes
 const publicRoutes = [
     {
-        path: '/',
-        element: <Layout><HomePage /></Layout>
-    },
-    {
-        path: '/all-books',
-        element: <Layout><AllBooksPage /></Layout>
-    },
-    {
         path: '/login',
-        element: <Layout><LoginPage /></Layout>
+        element: <LoginPage />
     },
     {
-        path: 'all-books/book-detail/:bookId',
-        element: <Layout><BookDetailPage /></Layout>
+        path: '/signup',
+        element: <SignupPage />
     },
-    {
-        path: '/cart',
-        element: <Layout><CartPage /></Layout>
-    },
+
 
 ];
 
@@ -37,21 +22,17 @@ const publicRoutes = [
 const protectedRoutes = [
 
     {
-        path: '/contact',
-        element: <Layout id="homepage"><ContactPage /></Layout>
-    },
-    {
-        path: '/shipping',
-        element: <Layout><ShippingPage /></Layout>
-    },
-    {
         path: '/checkout',
-        element: <Layout><CheckoutPage /></Layout>
+        element: <CheckoutPage />
     },
     {
         path: '/thank-you',
         element: <ThankYouPage />
-    }
+    },
+    {
+        path: '/profile',
+        element: <Layout><UserProfile /></Layout>
+    },
 ]
 
 export {

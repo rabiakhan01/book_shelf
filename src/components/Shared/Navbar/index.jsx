@@ -1,30 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import icons from "../../../assets/icons/icons";
 import { Button } from '../index'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../ContextProvider";
+import { isAuthentication } from "../../../utils/utils";
+import images from "../../../assets/images/images";
+
 const Navbar = () => {
     const context = useContext(bookListingContext);
     const navigate = useNavigate();
 
     const [drawer, setDrawer] = useState(false);
-    const [searchField, setSearchField] = useState(true);
     const [cartValue, setCartValue] = useState(0);
 
     const showMenu = () => {
         setDrawer(true);
-        setSearchField(false)
         document.body.classList.add('overflow-hidden');
     }
     const hideMenu = () => {
-        setSearchField(true)
         setDrawer(false);
         document.body.classList.remove('overflow-hidden')
-    }
-
-    const handelSearchClick = () => {
-        setSearchField(true);
     }
 
     const handelNavigate = (path) => {
@@ -32,23 +28,28 @@ const Navbar = () => {
     }
 
     const navigateToCart = () => {
-        navigate('/cart')
+        navigate('/cart');
+        setDrawer(false);
     }
     const navigateToBookMark = () => {
-        navigate('/cart')
+        navigate('/bookmark');
+        setDrawer(false);
+    }
+
+    const navigateToProfile = () => {
+        navigate('/profile');
     }
     useEffect(() => {
-        const cartQuantity = context.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0);
-        //console.log("🚀 ~ useEffect ~ cartQuantity:", cartQuantity)
+        const cartQuantity = context?.favouritBookContext.cartBooks.reduce((book, initial) => (book + initial.quantity), 0);
         if (cartQuantity > 0) {
             setCartValue(cartQuantity)
         }
         else {
             setCartValue(0);
         }
-    }, [context.favouritBookContext.cartBooks])
+    }, [context?.favouritBookContext.cartBooks])
     return (
-        <nav className="sticky top-0 right-0 w-full bg-primaryColor z-20">
+        <nav className="sticky top-0 right-0 w-full bg-primaryColor z-30">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
                 <div className="flex gap-2 xs:gap-3 h-10 items-center cursor-pointer" onClick={() => handelNavigate('/')}>
                     <img src={icons.logo} alt="logo" className="w-8 h-10" />
@@ -58,23 +59,17 @@ const Navbar = () => {
                     <ul className="flex gap-8 text-sm xl:text-base text-textLightWhiteColor">
                         <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                         <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
-                        <Link><li>Whats to Read</li></Link>
-                        <Link><li>Gift Ideas</li></Link>
-                        <Link><li>About Us</li></Link>
+                        <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
+
                     </ul>
                 </div>
                 <div className="relative flex items-center gap-2 small-tab:gap-5 xl:gap-8 h-auto w-auto">
 
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
-                        <div className="h-6 w-6 ">
-                            <button onClick={handelSearchClick} className="h-full w-full">
-                                <img src={icons.whiteSearch} alt="search" className={`hidden lg:flex`} />
-                            </button>
-                        </div>
-                        <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToBookMark}>
-                            <img src={icons.bookmark} alt="bookmark" className="h-full w-full" />
-                            <div className={`${context.favouritBookContext.favouritBooks.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
-                                <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length}</p>
+                        <div className="relative h-6 w-6 cursor-pointer">
+                            <img src={icons.bookmark} alt="bookmark" className="h-full w-full" onClick={navigateToBookMark} />
+                            <div className={`${context.favouritBookContext.favouritBooks.length || context?.authorContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                                <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length + context.authorContext.favouritAuthors.length}</p>
                             </div>
                         </div>
                         <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToCart}>
@@ -85,16 +80,23 @@ const Navbar = () => {
                         </div>
 
                     </div>
-                    <div className="hidden md:flex">
-                        <Button
 
-                            variant="contained"
-                            size="small"
-                            onClick={() => handelNavigate('/login')}
-                        >
-                            Login
-                        </Button>
-                    </div>
+                    {
+                        !isAuthentication() ?
+                            <div className="hidden md:flex">
+                                <Button
+                                    variant="contained"
+                                    size="small"
+                                    onClick={() => handelNavigate('/login')}
+                                >
+                                    Login
+                                </Button>
+                            </div>
+                            :
+                            <button className="hidden md:flex" onClick={navigateToProfile}>
+                                <img src={images.profileImg} alt="profile-img" className="w-5 h-5 sm:w-10 sm:h-10 rounded-full" />
+                            </button>
+                    }
                     <div className="flex lg:hidden">
                         {
                             drawer ?
@@ -105,14 +107,11 @@ const Navbar = () => {
                     </div>
                 </div>
                 {
-                    drawer &&
-                    <div className={`flex lg:hidden right-0 top-[50px] sm:top-14 absolute text-base text-textLightWhiteColor font-medium w-full `}>
-                        <ul className="relative flex flex-col gap-4 h-[85vh] w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
+                    <div className={`transition-height duration-300 ease-in-out ${drawer ? 'h-[85vh]' : 'h-0'} overflow-hidden flex lg:hidden right-0 top-[50px] sm:top-14 absolute text-base text-textLightWhiteColor font-medium w-full`}>
+                        <ul className="relative flex flex-col gap-4 w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
                             <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                             <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
-                            <Link><li>Whats to Read</li></Link>
-                            <Link><li>Gift Ideas</li></Link>
-                            <Link><li>About Us</li></Link>
+                            <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
                             <Button
                                 variant="contained"
                                 size="small"
@@ -121,20 +120,11 @@ const Navbar = () => {
                                 Login
                             </Button>
                         </ul>
-
                     </div>
                 }
-            </div >
-            {
-                searchField &&
-                <div className="flex lg:hidden relative pb-2">
-                    <input className="h-10 w-full mt-5 rounded-xl border border-secondaryColor bg-primaryColor pl-6" placeholder="Search" />
-                    <button className="flex justify-center items-center absolute top-6 right-2 w-10 h-8 hover:border focus:border">
-                        <img src={icons.searchIcon} alt="" className="w-6 h-6" />
-                    </button>
-                </div>
-            }
-        </nav >
+            </div>
+
+        </nav>
     )
 }
 

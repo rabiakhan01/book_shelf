@@ -54,28 +54,18 @@ const Shipping = () => {
 
             }
             context.setOrderSummary(shippingData);
-            naviagte('/checkout', {
-                state: {
-                    id: 3,
-                    isActcive: true,
-                }
-            });
+            context.setStep(3);
         }
         event.preventDefault();
     }
 
     const editInformation = () => {
-        naviagte('/contact', {
-            state: {
-                id: 1,
-                isActcive: true,
-            }
-        })
+        context.setStep(1);
     }
     return (
-        <CheckoutLayout
-        >
-            <div>
+
+        <div>
+            <div className="mb-4">
                 <PrevInformation
                     heading="contact information"
                     key1="Name"
@@ -92,33 +82,25 @@ const Shipping = () => {
                     </div>
                     <div className="flex flex-col gap-3">
                         <div className="flex flex-col sm:flex-row w-full gap-3">
-                            <div className="flex flex-col gap-1 w-full sm:w-[50%]">
-                                <InputField placeholder="Date" type="date" name="date" value={shippingInfo.date} onChange={handelChange} errorMessage={errorMessage.dateError} />
-                                {
-                                    errorMessage.dateError ? <p className="text-errorColor">{errorMessage.dateError}</p> : ''
-                                }
+                            <div className="w-full sm:w-[50%]">
+                                <InputField placeholder="Date" type="date" name="date" value={shippingInfo.date} onChange={handelChange} error={errorMessage.dateError} />
+
                             </div>
-                            <div className="flex flex-col gap-1 w-full sm:w-[50%]">
-                                <InputField placeholder="Time" type="time" name="time" value={shippingInfo.time} onChange={handelChange} errorMessage={errorMessage.timeError} />
-                                {
-                                    errorMessage.timeError ? <p className="text-errorColor">{errorMessage.timeError}</p> : ''
-                                }
+                            <div className="w-full sm:w-[50%]">
+                                <InputField placeholder="Time" type="time" name="time" value={shippingInfo.time} onChange={handelChange} error={errorMessage.timeError} />
                             </div>
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="flex flex-col gap-1">
-                                <InputField placeholder="adress" type="text" name="adress" value={shippingInfo.adress} onChange={handelChange} errorMessage={errorMessage.adressError} />
-                                {
-                                    errorMessage.adressError ? <p className="text-errorColor">{errorMessage.adressError}</p> : ''
-                                }
-                            </div>
+                            <InputField placeholder="adress" type="text" name="adress" value={shippingInfo.adress} onChange={handelChange} error={errorMessage.adressError} />
+
                             <textarea placeholder="Note" className="bg-primaryColor text-blackColor h-24 rounded-xl pl-3 pt-2"></textarea>
                             <Button variant="contained" size="extra-large" type="button" onClick={handelShippingData}>continue to payment</Button>
                         </div>
                     </div>
                 </div>
             </div>
-        </CheckoutLayout>
+
+        </div>
     )
 }
 

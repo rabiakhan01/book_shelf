@@ -25,7 +25,7 @@ const Button = ({ children, variant, size, color, onClick, disabled, type }) => 
     }
     return (
         <button
-            className={`flex relative ${variant} ${size} rounded-lg sm:rounded-xl justify-center items-center text-xs sm:text-sm lg:text-base font-medium uppercase`} onClick={onClick} disabled={disabled} type={type}>
+            className={`flex relative ${variant} ${size} rounded-lg sm:rounded-xl justify-center items-center text-xs sm:text-sm lg:text-base font-medium uppercase cursor-pointer}`} onClick={onClick} disabled={disabled} type={type}>
             {children}
         </button>
     )

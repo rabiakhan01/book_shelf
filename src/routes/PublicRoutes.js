@@ -3,14 +3,10 @@ import { isAuthentication } from "../utils/utils";
 import { Navigate, Outlet } from "react-router-dom";
 
 const PublicRoutes = () => {
-
-    console.log(isAuthentication());
-
     return (
-
         <React.Fragment>
             {
-                isAuthentication() ? <Outlet /> : <Navigate to="/" />
+                isAuthentication() ? <Navigate to="/" /> : <Outlet />
             }
         </React.Fragment>
 

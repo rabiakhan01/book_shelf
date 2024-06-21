@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { allBooksData } from "../../../utils/MockupData";
+import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
 export const bookListingContext = createContext();
 
@@ -8,11 +8,21 @@ const ContextProvider = ({ children }) => {
     const [bookPageContext, setBookPageContext] = useState({
         bookFilters: [],
         bookListing: allBooksData,
-    })
+    });
+
+    const [authorListing, setAuthorListing] = useState(allAuthorsData);
+
     const [favouritBookContext, setFavouritBookContext] = useState({
+        favouritBookListing: [],
         favouritBooks: [],
         cartBooks: [],
     });
+
+    const [authorContext, setAuthorContext] = useState({
+        favouritAuthors: [],
+        favouritAuthorListing: [],
+    })
+
     const [orderSummary, setOrderSummary] = useState({
         orderId: 0,
         customerName: '',
@@ -26,9 +36,14 @@ const ContextProvider = ({ children }) => {
         },
         cardDetail: {},
 
-    })
+    });
+
+    const [step, setStep] = useState(1);
+
+    const [searchTrigger, setSearchTrigger] = useState(0);
+
     return (
-        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary }}>
+        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary, step, setStep, searchTrigger, setSearchTrigger, authorListing, setAuthorListing, authorContext, setAuthorContext }}>
             {children}
         </bookListingContext.Provider>
     )

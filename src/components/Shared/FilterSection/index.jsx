@@ -115,7 +115,9 @@ const FilterSection = () => {
 
     }
 
+    // console.log("filter listing", context.bookPageContext.bookListing)
     const applyFilter = () => {
+
 
         const filterData = [];
         const filterLanguageData = [];
@@ -128,8 +130,15 @@ const FilterSection = () => {
             minPrice: minVal,
             maxPrice: maxVal,
         }
-        const filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
+        let filters;
 
+        if (minVal > min || maxVal < max) {
+            filters = { ...context.bookPageContext, bookFilters: [...selectedFilters, { ...selectedPrice }] }
+        }
+        else {
+            filters = { ...context.bookPageContext, bookFilters: [...selectedFilters] }
+
+        }
         const filterLanguages = languages.map((item) => {
             const matchingLanguage = filters.bookFilters.find((filterItem) => filterItem.name === item.name);
             if (matchingLanguage) {
@@ -150,14 +159,14 @@ const FilterSection = () => {
 
             filterCategories.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.category === element.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
+                    if (filterItem.category === element.name && filterItem.new_price > minVal && filterItem.new_price < maxVal) {
                         filterCategoryData.push(filterItem);
                     }
                 })
             });
             filterLanguages.map(element => {
                 allBooksData.filter((filterItem) => {
-                    if (filterItem.language === element.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
+                    if (filterItem.language === element.name && filterItem.new_price > minVal && filterItem.new_price < maxVal) {
                         filterLanguageData.push(filterItem);
                     }
                 })
@@ -166,7 +175,7 @@ const FilterSection = () => {
             if (filterLanguages.length > 0 && filterCategories.length > 0) {
                 filterLanguages.map((item) => {
                     filterCategoryData.filter((filterItem) => {
-                        if (filterItem.language === item.name && filterItem.new_price >= minVal && filterItem.new_price <= maxVal) {
+                        if (filterItem.language === item.name && filterItem.new_price > minVal && filterItem.new_price < maxVal) {
                             filterData.push(filterItem);
                         }
                     })
@@ -182,8 +191,8 @@ const FilterSection = () => {
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: filters.bookFilters, bookListing: filterCategoryData });
             }
             else {
-                allBooksData.map((item) => {
-                    if (item.new_price >= minVal && item.new_price <= maxVal) {
+                context.bookPageContext.bookListing.map((item) => {
+                    if (item.new_price > minVal && item.new_price < maxVal) {
                         filterData.push(item);
                     }
                 })
@@ -195,10 +204,11 @@ const FilterSection = () => {
             context.setBookPageContext({ bookFilters: [], bookListing: allBooksData })
         }
 
+        // console.log("🚀 ~ applyFilter ~ filters:", filters)
     }
 
     const resetAllFilters = () => {
-        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [] });
+        context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData });
         setMinVal(min);
         setMaxVal(max);
     }
@@ -219,9 +229,14 @@ const FilterSection = () => {
             setCategories([...filterCategories])
             setLanguages([...filterLanguages])
         }
+        const findPriceFilter = filters.find((item) => item?.minPrice || item?.maxPrice);
+        if (!findPriceFilter) {
+            setMinVal(min);
+            setMaxVal(max);
+            //context.setBookPageContext({ ...context.bookPageContext, bookListing: allBooksData })
+        }
 
     }, [context.bookPageContext.bookFilters])
-
 
     return (
         <div className="flex flex-col justify-between p-4 gap-4">
@@ -234,7 +249,7 @@ const FilterSection = () => {
                         categories.map((category) => {
                             return (
                                 <div className="flex gap-2" key={category.id}>
-                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} onClick={handelCategory} />
+                                    <input type="checkbox" checked={category.check} value={category.name} onChange={handelCategory} onClick={handelCategory} disabled={context.searchTrigger ? true : false} />
                                     <label>{category.name}</label>
                                 </div>
                             )
@@ -251,7 +266,7 @@ const FilterSection = () => {
                         languages.map((language) => {
                             return (
                                 <div className="flex gap-2" key={language.id}>
-                                    <input type="checkbox" checked={language.check} value={language.name} onChange={handelLanguage} />
+                                    <input type="checkbox" checked={language.check} value={language.name} onChange={handelLanguage} disabled={context.searchTrigger ? true : false} />
                                     <label>{language.name}</label>
                                 </div>
                             )
@@ -278,12 +293,15 @@ const FilterSection = () => {
                 <Button
                     variant="outlined"
                     size="extra-small"
+                    color="errorColor"
                     onClick={resetAllFilters}
+                    disabled={context.searchTrigger ? true : false}
                 >Reset</Button>
                 <Button
                     variant="contained"
                     size="extra-small"
                     onClick={applyFilter}
+                    disabled={context.searchTrigger ? true : false}
                 >Apply</Button>
             </div>
         </div>

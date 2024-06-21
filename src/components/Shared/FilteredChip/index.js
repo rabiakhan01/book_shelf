@@ -6,24 +6,31 @@ import { allBooksData } from "../../../utils/MockupData";
 const FilteredChip = ({ name }) => {
 
     const context = useContext(bookListingContext);
+    console.log("🚀 ~ filters ~ filters:", context.bookPageContext.bookFilters);
 
     const removeFilter = (removeItem) => {
-
+        console.log("clear", context.bookPageContext.bookFilters)
         const filterData = [];
         if (context.bookPageContext.bookFilters.length > 0) {
-            const updatedFilter = context.bookPageContext.bookFilters.filter((item) => item.name !== removeItem)
-            const filters = { ...context.bookPageContext, bookFilters: updatedFilter };
-            filters.bookFilters.map(element => {
-                allBooksData.filter((filterItem) => {
-                    if (filterItem.category == element.name || filterItem.language == element.name) {
-                        filterData.push(filterItem);
-                    }
-                })
-            });
-            context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter, bookListing: filterData });
+            if (name === 'Price') {
+                const updatedFilter = context.bookPageContext.bookFilters.filter((item) => !item.minPrice || !item.maxPrice);
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter, bookListing: allBooksData });
+            }
+            else {
+                const updatedFilter = context.bookPageContext.bookFilters.filter((item) => item.name !== removeItem)
+                const filters = { ...context.bookPageContext, bookFilters: updatedFilter };
+                filters.bookFilters.map(element => {
+                    allBooksData.filter((filterItem) => {
+                        if (filterItem.category == element.name || filterItem.language == element.name) {
+                            filterData.push(filterItem);
+                        }
+                    })
+                });
+                context.setBookPageContext({ ...context.bookPageContext, bookFilters: updatedFilter, bookListing: filterData });
+            }
         }
-        else {
-            context.setBookPageContext({ bookFilters: [], bookListing: allBooksData });
+        if (context.bookPageContext.bookFilters.length === 1) {
+            context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: allBooksData });
         }
     }
 

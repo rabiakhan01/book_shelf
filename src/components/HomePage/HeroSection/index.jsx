@@ -13,7 +13,7 @@ const HeroSection = () => {
     }
     return (
         <div>
-            <div className="flex justify-center items-center mb-2 md:mb-0 lg:mt-2">
+            <div className="flex justify-center items-center mb-2 md:mb-0 mt-4 md:mt-2">
                 <h1 className="text-[5.8vw] 2xl:text-[4.8rem] text-nowrap uppercase font-semibold text-textLightBlackColor">reading makes the world huge</h1>
             </div>
             <div className="flex flex-col md:flex-row gap-2 w-full">

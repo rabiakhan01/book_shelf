@@ -11,25 +11,41 @@ const BestSeller = () => {
     const navigate = useNavigate();
 
     const handelNaviagte = () => {
-        navigate('/all-books')
+        navigate('/all-books');
+
     }
 
-    const handelFavouritBook = (book_id) => {
+    //console.log("favourit books", context.favouritBookContext.favouritBooks);
 
-        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +book_id);
+    const handelFavouritBook = (id) => {
+        this.event.stopPropagation();
+        const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +id);
 
         if (!alreadyExists) {
-            const favouritBook = [...context.favouritBookContext.favouritBooks, book_id];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
+            const favouritBook = [...context.favouritBookContext.favouritBooks, id];
+            const newdata = allBooksData.map((book) => {
+                const matchingBook = favouritBook.find((item) => item === book.id);
+                return matchingBook ? book : undefined
+            }).filter((item) => item !== undefined);
+
+
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: newdata, favouritBooks: favouritBook });
         }
         else {
             const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
             const favouritBook = [...updatedBooks];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
+            const newdata = allBooksData.map((book) => {
+                const matchingBook = updatedBooks.find((item) => item === book.id);
+                return matchingBook ? book : undefined
+            }).filter((item) => item !== undefined);
+
+
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: newdata, favouritBooks: favouritBook });
         }
+
     }
 
-    const gotoDetail = (book_id) => {
+    const navigateToBookDetailPage = (book_id) => {
         navigate(`all-books/book-detail/${book_id}`);
     }
     return (
@@ -37,11 +53,11 @@ const BestSeller = () => {
             <div className="text-xl md:text-2xl xl:text-3xl font-medium px-4 py-2 uppercase text-textLightWhiteColor">
                 <h1>bestsellers</h1>
             </div>
-            <div className="flex flex-row-reverse flex-wrap justify-between gap-y-2 lg:gap-y-[13px] w-full p-3">
+            <div className="flex flex-row flex-wrap justify-between gap-y-2 lg:gap-y-[13px] w-full p-3">
                 {
                     allBooksData.sort((a, b) => b.rating.views - a.rating.views).filter((book, index) => index < 8).map((book, index) => {
                         return (
-                            <div key={index} className="flex w-full sm:w-[49.47%] lg:w-[32.57%] h-[220px]  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-2 cursor-pointer" onClick={() => gotoDetail(book.id)}>
+                            <div key={index} className="flex w-full sm:w-[49.47%] lg:w-[32.57%] h-[220px]  items-center bg-primaryColor rounded-xl p-3 gap-2 small-tab:gap-2 cursor-pointer" onClick={() => navigateToBookDetailPage(book.id)}>
                                 <div className="h-48 w-[14rem] small-tab:w-48  md:w-56 xl:w-40 rounded-xl overflow-hidden">
                                     <img src={book.book_img} alt="book_cover" className="object-cover w-full h-full " />
                                 </div>
@@ -54,7 +70,7 @@ const BestSeller = () => {
                                         <div className="flex justify-end w-8 h-10 ml-1">
                                             <BtnBookMark
                                                 onClick={() => handelFavouritBook(book.id)}
-                                                bookID={book.id}
+                                                id={book.id}
                                             />
                                         </div>
                                     </div>

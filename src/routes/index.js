@@ -3,13 +3,24 @@ import { Route, Routes } from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { publicRoutes, protectedRoutes } from './Config'
-import { bookListingContext } from "../components/Shared/ContextProvider";
-import RedirectPage from "../pages/RedirectPage";
+import HomePage from "../pages/HomePage";
+import AllBooksPage from "../pages/AllBooksPage";
+import BookDetailPage from "../pages/BookDetailPage";
+import { Layout } from "../components/Shared";
+import CartPage from "../pages/CartPage";
+import AllAuthorPage from "../pages/AllAuthorsPage";
+import BookMarkPage from "../pages/BookMarkPage";
+
 
 const Routing = () => {
-    const context = useContext(bookListingContext);
     return (
         <Routes>
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
+            <Route path="/all-books" element={<Layout><AllBooksPage /></Layout>} />
+            <Route path="all-books/book-detail/:bookId" element={<Layout><BookDetailPage /></Layout>} />
+            <Route path='/cart' element=<Layout><CartPage /></Layout> />
+            <Route path='/all-authors' element=<Layout><AllAuthorPage /></Layout> />
+            <Route path='/bookmark' element=<Layout><BookMarkPage /></Layout> />
             <Route element={<PublicRoutes />}>
                 {
                     publicRoutes.map((route, index) => {
@@ -19,12 +30,9 @@ const Routing = () => {
             </Route>
             <Route element={<ProtectedRoutes />}>
                 {
-                    context.favouritBookContext.cartBooks.length > 0 ?
-                        protectedRoutes.map((route, index) => {
-                            return <Route key={index} path={route.path} element={route.element} />
-                        })
-                        :
-                        <Route path="*" element={<RedirectPage />} />
+                    protectedRoutes.map((route, index) => {
+                        return <Route key={index} path={route.path} element={route.element} />
+                    })
                 }
             </Route>
         </Routes>

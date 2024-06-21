@@ -1,7 +1,7 @@
 const images = {
 
     //logo
-    logo: require('./logo.png'),
+    logo: require('./logo.svg').default,
 
     //books section
     book_1: require('./book_1.png'),
@@ -38,6 +38,12 @@ const images = {
     viewer_2: require('./viewer_2.png'),
     viewer_3: require('./viewer_3.png'),
     viewer_4: require('./viewer_4.png'),
+
+    //user profile
+    message: require('./message.png'),
+    padlock: require('./padlock.png'),
+    profileImg: require('./profile_img.jpg'),
+    user: require('./user.png'),
 
 }
 

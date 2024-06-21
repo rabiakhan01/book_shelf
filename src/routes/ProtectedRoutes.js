@@ -6,7 +6,7 @@ const ProtectedRoutes = () => {
     return (
         <React.Fragment>
             {
-                isAuthentication ? <Outlet /> : <Navigate to="/" />
+                isAuthentication() ? <Outlet /> : <Navigate to="/" />
             }
         </React.Fragment>
     );
