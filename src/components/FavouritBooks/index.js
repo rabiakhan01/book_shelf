@@ -7,7 +7,7 @@ const FavouritBooks = () => {
     const context = useContext(bookListingContext);
     const navigate = useNavigate();
     const navigateToDetailPage = (bookId) => {
-        navigate(`book-detail/${bookId}`);
+        navigate(`/all-books/book-detail/${bookId}`);
     }
 
     return (
@@ -28,6 +28,7 @@ const FavouritBooks = () => {
                                     views={book.rating.views}
                                     old_price={book.old_price}
                                     new_price={book.new_price}
+                                    onClick={() => navigateToDetailPage(book.id)}
                                 />
                             )
                         })

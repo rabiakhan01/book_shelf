@@ -14,10 +14,8 @@ const Navbar = () => {
     const [drawer, setDrawer] = useState(false);
     const [cartValue, setCartValue] = useState(0);
 
-
     const showMenu = () => {
         setDrawer(true);
-
         document.body.classList.add('overflow-hidden');
     }
     const hideMenu = () => {
@@ -30,10 +28,12 @@ const Navbar = () => {
     }
 
     const navigateToCart = () => {
-        navigate('/cart')
+        navigate('/cart');
+        setDrawer(false);
     }
     const navigateToBookMark = () => {
-        navigate('/bookmark')
+        navigate('/bookmark');
+        setDrawer(false);
     }
 
     const navigateToProfile = () => {
@@ -107,13 +107,11 @@ const Navbar = () => {
                     </div>
                 </div>
                 {
-                    drawer &&
-                    <div className={`flex lg:hidden right-0 top-[50px] sm:top-14 absolute text-base text-textLightWhiteColor font-medium w-full `}>
-                        <ul className="relative flex flex-col gap-4 h-[85vh] w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
+                    <div className={`transition-height duration-300 ease-in-out ${drawer ? 'h-[85vh]' : 'h-0'} overflow-hidden flex lg:hidden right-0 top-[50px] sm:top-14 absolute text-base text-textLightWhiteColor font-medium w-full`}>
+                        <ul className="relative flex flex-col gap-4 w-full pt-24 items-center bg-secondaryColor rounded-b-2xl">
                             <NavLink to="/" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Home</li></NavLink>
                             <NavLink to="/all-books" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Books</li></NavLink>
                             <NavLink to="/all-authors" className={({ isActive }) => isActive ? 'text-textYellowColor' : 'text-primaryColor'} onClick={hideMenu}><li>Authors</li></NavLink>
-
                             <Button
                                 variant="contained"
                                 size="small"
@@ -122,7 +120,6 @@ const Navbar = () => {
                                 Login
                             </Button>
                         </ul>
-
                     </div>
                 }
             </div>

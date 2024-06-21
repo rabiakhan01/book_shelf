@@ -25,7 +25,6 @@ const SearchBar = ({ name }) => {
             console.log(event.target.name)
             if (event.target.name === 'authors') {
                 const searchedData = allAuthorsData.filter((item) => item.author_name.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()) || item.language.toLowerCase().includes(search.toLowerCase()));
-                console.log("🚀 ~ handelSearch ~ searchedData:", searchedData)
                 context.setAuthorListing([...searchedData]);
             }
             if (event.target.name === "books") {

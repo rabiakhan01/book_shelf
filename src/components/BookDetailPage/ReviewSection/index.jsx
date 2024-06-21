@@ -21,7 +21,7 @@ const ReviewSection = () => {
                     allReviewsData.map((review, index) => {
                         return (
                             <ReviewCard
-                                key={review.id}
+                                key={index}
                                 image={review.viewer_img}
                                 name={review.viewer_name}
                                 date={review.date}

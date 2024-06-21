@@ -15,7 +15,7 @@ const SingleBookDetail = () => {
     const [quantity, setQuantity] = useState(0);
 
     const handelCart = (book_id) => {
-        console.log("🚀 ~ handelCart ~ book_id:", book_id)
+        //console.log("🚀 ~ handelCart ~ book_id:", book_id)
 
         const alreadyExists = context.favouritBookContext.cartBooks?.find((bookID) => bookID == +book_id);
         if (!alreadyExists) {
@@ -35,7 +35,7 @@ const SingleBookDetail = () => {
         else {
             const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
             const favouritBook = [...updatedBooks];
-            console.log("🚀 ~ handelFavouritBook ~ updatedBooks:", favouritBook)
+            //console.log("🚀 ~ handelFavouritBook ~ updatedBooks:", favouritBook)
             context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
         }
 

@@ -21,7 +21,7 @@ const NavigationCrumb = ({ author_name, book_name }) => {
         {
             id: 3,
             name: `${book_name}, ${author_name}`,
-            path: '/book-detail',
+            path: '',
             isActive: true,
         },
     ];

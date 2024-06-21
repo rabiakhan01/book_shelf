@@ -250,34 +250,17 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
         else {
             if (name === 'authors') {
                 //calculate number of pages required 
-                if (bookmark) {
 
-                    const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
-                    setMaxPage(pages);
-                    const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
-                    context.setAuthorListing(currentPageData)
-                    setFilterData(allAuthorsData);
-                    if (pages <= 1) {
-                        setNextButton(true);
-                    }
-                    else {
-                        setNextButton(false)
-                    }
+                const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
+                setMaxPage(pages);
+                const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
+                context.setAuthorListing(currentPageData)
+                setFilterData(allAuthorsData);
+                if (pages <= 1) {
+                    setNextButton(true);
                 }
                 else {
-                    const pages = Math.ceil(context.authorContext.favouritAuthors.length / maxRecordsPerPage);
-                    setMaxPage(pages);
-                    setFilterData(context.authorContext.favouritAuthorListing);
-                    const currentPageData = context.authorContext.favouritAuthorListing.slice(0, maxRecordsPerPage);
-
-                    const newdata = { ...context.authorContext, favouritAuthorListing: currentPageData };
-                    context.setAuthorContext(newdata)
-                    if (pages <= 1) {
-                        setNextButton(true);
-                    }
-                    else {
-                        setNextButton(false)
-                    }
+                    setNextButton(false)
                 }
             }
         }

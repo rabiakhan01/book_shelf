@@ -54,7 +54,7 @@ const RecommendationSection = () => {
                     grabCursor={true}
                     modules={[Pagination]}
                     pagination={{ clickable: true }}
-                    className={`w-full h-96 xl:h-auto`}
+                    className={`w-full h-[25rem] xl:h-auto`}
                 >
 
                     {
