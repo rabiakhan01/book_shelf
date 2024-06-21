@@ -6,6 +6,8 @@ import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
 const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
     const context = useContext(bookListingContext);
+
+    //calculate the number of maximum pages required in pagination
     const calculateMaxPage = () => {
         if (name === 'books') {
             if (bookmark) {
@@ -24,17 +26,17 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
             }
         }
     }
-    console.log("maxpages", calculateMaxPage())
+    // console.log("max", calculateMaxPage())
     const [maxPage, setMaxPage] = useState(calculateMaxPage());
-    //console.log("🚀 ~ Pagination ~ maxPage:", maxPage)
+    // console.log("🚀 ~ Pagination ~ maxPage:", maxPage)
     const [filterData, setFilterData] = useState([]);
-    console.log("🚀 ~ Pagination ~ filterData:", filterData)
-    const [currentPage, setCurrentPage] = useState(1);
+    // console.log("🚀 ~ Pagination ~ filterData:", filterData)
+    const [currentPage, setCurrentPage] = useState();
     const [prevButton, setPrevButton] = useState(true);
     const [nextButton, setNextButton] = useState(false);
     const [pageArray, setPageArray] = useState([]);
-    // console.log("🚀 ~ Pagination ~ pageArray:", pageArray)
 
+    //create a an array of total pages required with active property
     const totalPage = [];
     for (let i = 0; i < maxPage; i++) {
         totalPage.push(
@@ -61,11 +63,10 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
         setCurrentPage(pageNo);
 
         const lastIndexOfPage = pageNo * maxRecordsPerPage;
-        // console.log("🚀 ~ handelPageChange ~ lastIndexOfPage:", lastIndexOfPage)
 
         const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
-        // console.log("🚀 ~ handelPageChange ~ firstIndexOfPage:", firstIndexOfPage)
 
+        // handel the page change for the books listing
         if (name === 'books') {
 
             if (context.bookPageContext.bookFilters.length > 0 || context.searchTrigger) {
@@ -89,21 +90,31 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 behavior: "smooth"
             })
         }
+        //handel the page change for author listing
         if (name === 'authors') {
+
+            // when serahc is not applied 
             if (!context.searchTrigger) {
+
+                //handle theb listing of author listing
                 if (!bookmark) {
                     const currentPageData = allAuthorsData.slice(firstIndexOfPage, lastIndexOfPage);
                     context.setAuthorListing(currentPageData);
                 }
+
+                //handel the listing of author in bookmark page
                 else {
                     const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
                     context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData });
                 }
             }
+            //handel the listing of author when search is applied
             else {
                 const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
                 context.setAuthorListing(currentPageData);
             }
+
+            //when click on the page button 
             const element = document.getElementById('author-card');
             element.scroll({ top: 0, behavior: "smooth" });
         }
@@ -115,16 +126,20 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
 
     }
 
+    //handel next page click
     const nextPage = () => {
         handelPageChange(currentPage + 1);
     }
-
+    //handel the previous page click
     const prevPage = () => {
         handelPageChange(currentPage - 1);
     }
-
+    //handel the pagination after the filters are applied
     useEffect(() => {
+
+        //when the search is not applied and books listing are handeled
         if (!context.searchTrigger && name == 'books') {
+            // if filters on the book listing are applied
             if (context.bookPageContext.bookFilters.length > 0) {
 
                 //store the listing data after every time filter changes
@@ -145,6 +160,8 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 }
 
             }
+
+            //if the filters on the book listing are not applied
             else {
 
                 //calculate number of pages required 
@@ -162,6 +179,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
         }
     }, [context.bookPageContext.bookFilters]);
 
+    //handel the next and previous page diability when the current page changes
     useEffect(() => {
         if (currentPage <= 1) {
             setPrevButton(true);
@@ -178,6 +196,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
 
     }, [currentPage])
 
+    //handel the max pages
     useEffect(() => {
         const newArray = totalPage.map((page, index) => {
             if (index == 0) {
@@ -187,10 +206,12 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 return page;
             }
         })
+        console.log("🚀 ~ newArray ~ newArray:", newArray)
         setPageArray([...newArray])
 
     }, [maxPage])
 
+    //handel the pahgination when the search is applied
     useEffect(() => {
 
         let pages;
@@ -199,7 +220,6 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 const filteredListing = context.bookPageContext.bookListing;
                 setFilterData([...filteredListing]);
                 pages = Math.ceil(context.bookPageContext.bookListing.length / maxRecordsPerPage)
-                //console.log("🚀 ~ useEffect ~ pages:", pages)
                 setMaxPage(pages);
                 const currentPageData = context.bookPageContext.bookListing.slice(0, maxRecordsPerPage)
                 context.setBookPageContext({ ...context.bookPageContext, bookFilters: [], bookListing: currentPageData })
@@ -207,7 +227,6 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
             if (name === 'authors') {
                 setFilterData(context.authorListing);
                 pages = Math.ceil(context.authorListing.length / maxRecordsPerPage)
-                console.log("🚀 ~ useEffect ~ pages:", pages)
                 setMaxPage(pages);
                 const currentPageData = context.authorListing.slice(0, maxRecordsPerPage);
                 context.setAuthorListing(currentPageData);
@@ -218,7 +237,6 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
             else {
                 setNextButton(false)
             }
-            setCurrentPage(1);
             const newArray = pageArray.map((page, index) => {
                 if (index + 1 === 1) {
                     return { ...page, active: true }
@@ -265,6 +283,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
         }
     }, [context.searchTrigger]);
 
+    //handel when the pagination is applied for the author and book in book mark page and author page
     useEffect(() => {
         if (name === 'authors') {
             //calculate number of pages required 
@@ -286,8 +305,8 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 setMaxPage(pages);
                 setFilterData(context.authorContext.favouritAuthorListing);
                 const currentPageData = context.authorContext.favouritAuthorListing.slice(0, maxRecordsPerPage);
-                const newdata = { ...context.authorContext, favouritAuthorListing: currentPageData };
-                context.setAuthorContext(newdata)
+
+                context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData });
                 if (pages <= 1) {
                     setNextButton(true);
                 }
@@ -300,12 +319,16 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
         if (name === 'books') {
             if (bookmark) {
 
-                const pages = Math.ceil(context.favouritBookContext.favouritBookListing?.length / maxRecordsPerPage);
+                const pages = Math.ceil(context.favouritBookContext.favouritBooks?.length / maxRecordsPerPage);
                 setMaxPage(pages);
-                setFilterData(context.favouritBookContext.favouritBookListing);
-                const currentPageData = context.favouritBookContext.favouritBookListing.slice(0, maxRecordsPerPage);
-                const newdata = { ...context.favouritBookContext, favouritBookListing: currentPageData };
-                context.setFavouritBookContext(newdata)
+                const books = allBooksData.map((item) => {
+                    const matchingBook = context.favouritBookContext.favouritBooks.find((books) => books === item.id);
+                    return matchingBook ? item : undefined
+                }).filter((item) => item !== undefined);
+
+                setFilterData(books);
+                const currentPageData = books.slice(0, maxRecordsPerPage);
+                context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: currentPageData })
                 if (pages <= 1) {
                     setNextButton(true);
                 }
@@ -315,7 +338,86 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
             }
 
         }
-    }, [name])
+    }, [name]);
+
+    //handle the pagination when any changes in the bookmarked authors happens
+    useEffect(() => {
+
+        if (bookmark && name === "authors") {
+
+            const lastIndexOfPage = currentPage * maxRecordsPerPage;
+            // console.log("🚀 ~ handelPageChange ~ lastIndexOfPage:", lastIndexOfPage)
+
+            const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
+
+            const authors = allAuthorsData.map((item) => {
+                const matchingAuthor = context.authorContext.favouritAuthors.find((author) => author === item.id);
+                return matchingAuthor ? item : undefined
+            }).filter((item) => item !== undefined);
+
+            const pages = Math.ceil(authors.length / maxRecordsPerPage);
+            setMaxPage(pages);
+            setFilterData(authors);
+            if (currentPage > 1) {
+                const currentPageData = authors.slice(firstIndexOfPage, lastIndexOfPage);
+                if (currentPageData.length < 1) {
+                    const currentPageData = authors.slice(0, maxRecordsPerPage);
+                    context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData })
+
+                }
+                else {
+
+                    context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData })
+                }
+            }
+
+            if (pages < 1) {
+                setNextButton(true);
+            }
+            else {
+                setNextButton(false)
+            }
+        }
+    }, [context.authorContext.favouritAuthors])
+
+    useEffect(() => {
+
+        if (bookmark && name === "books") {
+
+            const lastIndexOfPage = currentPage * maxRecordsPerPage;
+            const firstIndexOfPage = lastIndexOfPage - maxRecordsPerPage;
+
+            const books = allBooksData.map((item) => {
+                const matchingBook = context.favouritBookContext.favouritBooks.find((book) => book === item.id);
+                return matchingBook ? item : undefined
+            }).filter((item) => item !== undefined);
+
+            const pages = Math.ceil(books.length / maxRecordsPerPage);
+            //console.log("🚀 ~ useEffect 5 ~ pages:", pages)
+
+            setMaxPage(pages);
+            setFilterData(books);
+
+            if (currentPage > 1) {
+                const currentPageData = books.slice(firstIndexOfPage, lastIndexOfPage);
+                if (currentPageData.length < 1) {
+                    const currentPageData = books.slice(0, maxRecordsPerPage);
+                    context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: currentPageData })
+                }
+                else {
+
+                    context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: currentPageData })
+                }
+            }
+
+            if (pages < 1) {
+                setNextButton(true);
+            }
+            else {
+                setNextButton(false)
+            }
+        }
+    }, [context.favouritBookContext.favouritBooks])
 
     return (
         <div className="w-full flex items-center justify-center mt-6">

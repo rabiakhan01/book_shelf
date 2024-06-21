@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import BtnBookMark from "../BtnBookMark";
 import icons from "../../../assets/icons/icons";
 import { bookListingContext } from "../ContextProvider";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
-const ProductCard = ({ id, bookmark, image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon, isAuthor, language }) => {
+const ProductCard = ({ id, image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon, isAuthor, language }) => {
     const totalBooks = allBooksData.filter((book) => book.author_id === id).length;
     const context = useContext(bookListingContext);
     //console.log("favourit authors", context.favouritBookContext.favouritAuthors);
@@ -16,7 +16,7 @@ const ProductCard = ({ id, bookmark, image, name, intro, review, rate, views, ol
             const alreadyExists = context.authorContext.favouritAuthors?.find((author) => author == +id);
             if (!alreadyExists) {
                 const favouritAuthor = [...context.authorContext.favouritAuthors, id];
-                console.log("🚀 ~ handelFavouritBook1 ~ favouritAuthor:", favouritAuthor)
+                //console.log("🚀 ~ handelFavouritBook1 ~ favouritAuthor:", favouritAuthor)
                 const newData = allAuthorsData.map((author) => {
                     const mathcingAuthor = favouritAuthor.find((item) => item === author.id);
                     return mathcingAuthor ? author : undefined
@@ -27,11 +27,11 @@ const ProductCard = ({ id, bookmark, image, name, intro, review, rate, views, ol
                 const favouritAuthor = context.authorContext.favouritAuthors.filter((author) => author !== +alreadyExists)
                 const updatedAuthor = [...favouritAuthor];
 
-                console.log("🚀 ~ handelFavouritBook ~ updatedAuthor:", updatedAuthor)
                 const newData = allAuthorsData.map((author) => {
                     const mathcingAuthor = favouritAuthor.find((item) => item === author.id);
                     return mathcingAuthor ? author : undefined
                 }).filter((item) => item !== undefined);
+                console.log("🚀 ~ newData ~ newData:", newData)
 
                 context.setAuthorContext({ ...context.authorContext, favouritAuthors: updatedAuthor, favouritAuthorListing: newData })
 

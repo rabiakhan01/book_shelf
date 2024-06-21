@@ -24,12 +24,7 @@ const BookMarkPage = () => {
     }
     return (
         <div>
-            <div className="sticky top-[3.6rem] sm:top-[4.5rem] lg:top-20 z-20 pt-7 bg-primaryColor pb-3 sm:pb-4">
-                <SearchBar
-                    name="authors"
-                />
-            </div>
-            <div className="pb-4">
+            <div className="pb-4 pt-8">
                 <Headline
                     headlineData="Book mark"
                 />
