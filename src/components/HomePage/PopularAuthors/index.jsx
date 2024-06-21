@@ -10,19 +10,30 @@ const PopularAuthors = () => {
     const handelNavigate = () => {
         navigate('/all-authors')
     }
-    //console.log("authors", context.favouritBookContext.favouritAuthors);
+
     const handelBookMark = (id) => {
 
-        const alreadyExists = context.favouritBookContext.favouritAuthors?.find((book) => book == +id);
+        const alreadyExists = context.authorContext.favouritAuthors?.find((author) => author == id);
+        // console.log("🚀 ~ handelBookMark ~ alreadyExists:", alreadyExists)
 
         if (!alreadyExists) {
-            const favouritBook = [...context.favouritBookContext.favouritAuthors, id];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritAuthors: favouritBook });
+            const favouritAuthor = [...context.authorContext.favouritAuthors, id];
+            //console.log("🚀 ~ handelBookMark ~ favouritAuthor:", favouritAuthor);
+            const newData = allAuthorsData.map((author) => {
+                const mathcingAuthor = favouritAuthor.find((item) => item === author.id);
+                return mathcingAuthor ? author : undefined
+            }).filter((item) => item !== undefined);
+            context.setAuthorContext({ ...context.authorContext, favouritAuthors: favouritAuthor, favouritAuthorListing: newData })
+
         }
         else {
-            const updatedAuthor = context.favouritBookContext.favouritAuthors.filter((author) => author !== +alreadyExists)
+            const updatedAuthor = context.authorContext.favouritAuthors.filter((author) => author !== +alreadyExists)
             const favouritAuthor = [...updatedAuthor];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritAuthors: favouritAuthor })
+            const newData = allAuthorsData.map((author) => {
+                const mathcingAuthor = favouritAuthor.find((item) => item === author.id);
+                return mathcingAuthor ? author : undefined
+            }).filter((item) => item !== undefined);
+            context.setAuthorContext({ ...context.authorContext, favouritAuthors: favouritAuthor, favouritAuthorListing: newData })
         }
     }
 

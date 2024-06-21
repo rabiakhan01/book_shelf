@@ -64,11 +64,13 @@ const BookMarkPage = () => {
                         <Pagination
                             maxRecordsPerPage={8}
                             name="authors"
+                            bookmark={true}
                         />
                         :
                         <Pagination
                             maxRecordsPerPage={6}
                             name="books"
+                            bookmark={true}
                         />
                 }
             </div>

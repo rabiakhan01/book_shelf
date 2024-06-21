@@ -5,10 +5,10 @@ import { bookListingContext } from "../ContextProvider";
 const BtnBookMark = ({ onClick, id, isAuthor }) => {
 
     const context = useContext(bookListingContext);
-
     let isFavourit;
+
     if (isAuthor) {
-        isFavourit = context?.favouritBookContext.favouritAuthors?.find((author) => author == +id);
+        isFavourit = context?.authorContext.favouritAuthors?.find((author) => author == +id);
     }
     else {
         isFavourit = context?.favouritBookContext.favouritBooks?.find((book) => book == +id);

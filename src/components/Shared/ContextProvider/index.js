@@ -13,10 +13,15 @@ const ContextProvider = ({ children }) => {
     const [authorListing, setAuthorListing] = useState(allAuthorsData);
 
     const [favouritBookContext, setFavouritBookContext] = useState({
-        favouritAuthors: [],
+        favouritBookListing: [],
         favouritBooks: [],
         cartBooks: [],
     });
+
+    const [authorContext, setAuthorContext] = useState({
+        favouritAuthors: [],
+        favouritAuthorListing: [],
+    })
 
     const [orderSummary, setOrderSummary] = useState({
         orderId: 0,
@@ -38,7 +43,7 @@ const ContextProvider = ({ children }) => {
     const [searchTrigger, setSearchTrigger] = useState(0);
 
     return (
-        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary, step, setStep, searchTrigger, setSearchTrigger, authorListing, setAuthorListing }}>
+        <bookListingContext.Provider value={{ bookPageContext, setBookPageContext, favouritBookContext, setFavouritBookContext, orderSummary, setOrderSummary, step, setStep, searchTrigger, setSearchTrigger, authorListing, setAuthorListing, authorContext, setAuthorContext }}>
             {children}
         </bookListingContext.Provider>
     )

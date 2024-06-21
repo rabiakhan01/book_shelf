@@ -4,20 +4,31 @@ import icons from '../../../assets/icons/icons';
 import { bookListingContext } from "../ContextProvider";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
-const Pagination = ({ maxRecordsPerPage, name }) => {
+const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
     const context = useContext(bookListingContext);
     const calculateMaxPage = () => {
         if (name === 'books') {
-            return Math.ceil(allBooksData.length / maxRecordsPerPage);
+            if (bookmark) {
+                return Math.ceil(context.favouritBookContext.favouritBooks?.length / maxRecordsPerPage);
+            }
+            else {
+                return Math.ceil(allBooksData.length / maxRecordsPerPage);
+            }
         }
         else {
-            return Math.ceil(allAuthorsData.length / maxRecordsPerPage);
+            if (bookmark) {
+                return Math.ceil(context.authorContext.favouritAuthors.length / maxRecordsPerPage);
+            }
+            else {
+
+            }
         }
     }
-
+    console.log("maxpages", calculateMaxPage())
     const [maxPage, setMaxPage] = useState(calculateMaxPage());
     //console.log("🚀 ~ Pagination ~ maxPage:", maxPage)
     const [filterData, setFilterData] = useState([]);
+    console.log("🚀 ~ Pagination ~ filterData:", filterData)
     const [currentPage, setCurrentPage] = useState(1);
     const [prevButton, setPrevButton] = useState(true);
     const [nextButton, setNextButton] = useState(false);
@@ -62,8 +73,15 @@ const Pagination = ({ maxRecordsPerPage, name }) => {
                 context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
             }
             else {
-                const currentPageData = allBooksData.slice(firstIndexOfPage, lastIndexOfPage);
-                context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+                if (!bookmark) {
+
+                    const currentPageData = allBooksData.slice(firstIndexOfPage, lastIndexOfPage);
+                    context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
+                }
+                else {
+                    const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
+                    context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: currentPageData })
+                }
             }
             const element = document.getElementById('cards');
             element.scroll({
@@ -73,8 +91,14 @@ const Pagination = ({ maxRecordsPerPage, name }) => {
         }
         if (name === 'authors') {
             if (!context.searchTrigger) {
-                const currentPageData = allAuthorsData.slice(firstIndexOfPage, lastIndexOfPage);
-                context.setAuthorListing(currentPageData);
+                if (!bookmark) {
+                    const currentPageData = allAuthorsData.slice(firstIndexOfPage, lastIndexOfPage);
+                    context.setAuthorListing(currentPageData);
+                }
+                else {
+                    const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
+                    context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData });
+                }
             }
             else {
                 const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
@@ -208,6 +232,43 @@ const Pagination = ({ maxRecordsPerPage, name }) => {
         else {
             if (name === 'authors') {
                 //calculate number of pages required 
+                if (bookmark) {
+
+                    const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
+                    setMaxPage(pages);
+                    const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
+                    context.setAuthorListing(currentPageData)
+                    setFilterData(allAuthorsData);
+                    if (pages <= 1) {
+                        setNextButton(true);
+                    }
+                    else {
+                        setNextButton(false)
+                    }
+                }
+                else {
+                    const pages = Math.ceil(context.authorContext.favouritAuthors.length / maxRecordsPerPage);
+                    setMaxPage(pages);
+                    setFilterData(context.authorContext.favouritAuthorListing);
+                    const currentPageData = context.authorContext.favouritAuthorListing.slice(0, maxRecordsPerPage);
+
+                    const newdata = { ...context.authorContext, favouritAuthorListing: currentPageData };
+                    context.setAuthorContext(newdata)
+                    if (pages <= 1) {
+                        setNextButton(true);
+                    }
+                    else {
+                        setNextButton(false)
+                    }
+                }
+            }
+        }
+    }, [context.searchTrigger]);
+
+    useEffect(() => {
+        if (name === 'authors') {
+            //calculate number of pages required 
+            if (!bookmark) {
                 const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
                 setMaxPage(pages);
                 const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
@@ -220,23 +281,39 @@ const Pagination = ({ maxRecordsPerPage, name }) => {
                     setNextButton(false)
                 }
             }
-        }
-    }, [context.searchTrigger]);
-
-    useEffect(() => {
-        if (name === 'authors') {
-            //calculate number of pages required 
-            const pages = Math.ceil(allAuthorsData.length / maxRecordsPerPage);
-            setMaxPage(pages);
-            const currentPageData = allAuthorsData.slice(0, maxRecordsPerPage)
-            context.setAuthorListing(currentPageData)
-            setFilterData(allAuthorsData);
-            if (pages <= 1) {
-                setNextButton(true);
-            }
             else {
-                setNextButton(false)
+                const pages = Math.ceil(context.authorContext.favouritAuthors.length / maxRecordsPerPage);
+                setMaxPage(pages);
+                setFilterData(context.authorContext.favouritAuthorListing);
+                const currentPageData = context.authorContext.favouritAuthorListing.slice(0, maxRecordsPerPage);
+                const newdata = { ...context.authorContext, favouritAuthorListing: currentPageData };
+                context.setAuthorContext(newdata)
+                if (pages <= 1) {
+                    setNextButton(true);
+                }
+                else {
+                    setNextButton(false)
+                }
             }
+
+        }
+        if (name === 'books') {
+            if (bookmark) {
+
+                const pages = Math.ceil(context.favouritBookContext.favouritBookListing?.length / maxRecordsPerPage);
+                setMaxPage(pages);
+                setFilterData(context.favouritBookContext.favouritBookListing);
+                const currentPageData = context.favouritBookContext.favouritBookListing.slice(0, maxRecordsPerPage);
+                const newdata = { ...context.favouritBookContext, favouritBookListing: currentPageData };
+                context.setFavouritBookContext(newdata)
+                if (pages <= 1) {
+                    setNextButton(true);
+                }
+                else {
+                    setNextButton(false)
+                }
+            }
+
         }
     }, [name])
 

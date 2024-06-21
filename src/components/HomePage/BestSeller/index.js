@@ -23,12 +23,24 @@ const BestSeller = () => {
 
         if (!alreadyExists) {
             const favouritBook = [...context.favouritBookContext.favouritBooks, id];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook });
+            const newdata = allBooksData.map((book) => {
+                const matchingBook = favouritBook.find((item) => item === book.id);
+                return matchingBook ? book : undefined
+            }).filter((item) => item !== undefined);
+
+
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: newdata, favouritBooks: favouritBook });
         }
         else {
             const updatedBooks = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
             const favouritBook = [...updatedBooks];
-            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBooks: favouritBook })
+            const newdata = allBooksData.map((book) => {
+                const matchingBook = updatedBooks.find((item) => item === book.id);
+                return matchingBook ? book : undefined
+            }).filter((item) => item !== undefined);
+
+
+            context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: newdata, favouritBooks: favouritBook });
         }
     }
 

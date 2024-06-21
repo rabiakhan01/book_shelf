@@ -2,38 +2,62 @@ import React, { useContext } from "react";
 import BtnBookMark from "../BtnBookMark";
 import icons from "../../../assets/icons/icons";
 import { bookListingContext } from "../ContextProvider";
-import { allBooksData } from "../../../utils/MockupData";
+import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
-const ProductCard = ({ id, image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon, isAuthor, language }) => {
+const ProductCard = ({ id, bookmark, image, name, intro, review, rate, views, old_price, new_price, onClick, isIcon, isAuthor, language }) => {
     const totalBooks = allBooksData.filter((book) => book.author_id === id).length;
     const context = useContext(bookListingContext);
     //console.log("favourit authors", context.favouritBookContext.favouritAuthors);
+
     const handelFavouritBook = (event) => {
         event.stopPropagation();
-        if (isAuthor) {
-            const alreadyExists = context.favouritBookContext.favouritAuthors?.find((author) => author == +id);
 
+        if (isAuthor) {
+            const alreadyExists = context.authorContext.favouritAuthors?.find((author) => author == +id);
             if (!alreadyExists) {
-                const favouritBook = [...context.favouritBookContext.favouritAuthors, id];
-                context.setFavouritBookContext({ ...context.favouritBookContext, favouritAuthors: favouritBook });
+                const favouritAuthor = [...context.authorContext.favouritAuthors, id];
+                console.log("🚀 ~ handelFavouritBook1 ~ favouritAuthor:", favouritAuthor)
+                const newData = allAuthorsData.map((author) => {
+                    const mathcingAuthor = favouritAuthor.find((item) => item === author.id);
+                    return mathcingAuthor ? author : undefined
+                }).filter((item) => item !== undefined);
+                context.setAuthorContext({ ...context.authorContext, favouritAuthors: favouritAuthor, favouritAuthorListing: newData })
             }
             else {
-                const updatedBooks = context.favouritBookContext.favouritAuthors.filter((book) => book !== +alreadyExists)
-                const favouritBook = [...updatedBooks];
-                context.setFavouritBookContext({ ...context.favouritBookContext, favouritAuthors: favouritBook })
+                const favouritAuthor = context.authorContext.favouritAuthors.filter((author) => author !== +alreadyExists)
+                const updatedAuthor = [...favouritAuthor];
+
+                console.log("🚀 ~ handelFavouritBook ~ updatedAuthor:", updatedAuthor)
+                const newData = allAuthorsData.map((author) => {
+                    const mathcingAuthor = favouritAuthor.find((item) => item === author.id);
+                    return mathcingAuthor ? author : undefined
+                }).filter((item) => item !== undefined);
+
+                context.setAuthorContext({ ...context.authorContext, favouritAuthors: updatedAuthor, favouritAuthorListing: newData })
+
             }
         }
         else {
-            const alreadyExists = context.favouritBookContext.favouritAuthors?.find((book) => book == +id);
+            const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +id);
 
             if (!alreadyExists) {
-                const favouritAuthor = [...context.favouritBookContext.favouritAuthors, id];
-                context.setFavouritBookContext({ ...context.favouritBookContext, favourit: favouritAuthor });
+                const favouritBook = [...context.favouritBookContext.favouritBooks, id];
+                const newdata = allBooksData.map((book) => {
+                    const matchingBook = favouritBook.find((item) => item === book.id);
+                    return matchingBook ? book : undefined
+                }).filter((item) => item !== undefined);
+
+                context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: newdata, favouritBooks: favouritBook });
             }
             else {
-                const updatedBooks = context.favouritBookContext.favouritAuthors.filter((book) => book !== +alreadyExists)
-                const updateAuthor = [...updatedBooks];
-                context.setFavouritBookContext({ ...context.favouritBookContext, favourit: updateAuthor })
+                const favouritBook = context.favouritBookContext.favouritBooks.filter((book) => book !== +alreadyExists)
+                const updatedBook = [...favouritBook];
+                const newdata = allBooksData.map((book) => {
+                    const matchingBook = favouritBook.find((item) => item === book.id);
+                    return matchingBook ? book : undefined
+                }).filter((item) => item !== undefined);
+
+                context.setFavouritBookContext({ ...context.favouritBookContext, favouritBookListing: newdata, favouritBooks: updatedBook });
             }
         }
     }
@@ -48,7 +72,7 @@ const ProductCard = ({ id, image, name, intro, review, rate, views, old_price, n
                     <BtnBookMark
                         onClick={handelFavouritBook}
                         id={id}
-                        isAuthor={true}
+                        isAuthor={isAuthor}
                     />
                 </div>
             </div>
