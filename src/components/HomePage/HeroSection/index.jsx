@@ -1,8 +1,8 @@
 import React from "react";
 import images from '../../../assets/images/images';
 import Button from "../../Shared/Button";
+import { BlackSearchIcon } from '../../../assets/icons'
 import { useNavigate } from "react-router-dom";
-import { SearchIcon } from "../../../assets/icons";
 
 const HeroSection = () => {
 
@@ -18,7 +18,7 @@ const HeroSection = () => {
             </div>
             <div className="flex flex-col md:flex-row gap-2 w-full">
 
-                <div className="relative flex flex-col gap-4 justify-between w-full md:w-1/2 bg-secondaryColor p-4 small-tab:h-56 md:h-auto sm:h-64 rounded-xl">
+                <div className="relative overflow-hidden flex flex-col gap-4 justify-between w-full md:w-1/2 bg-secondaryColor p-4 small-tab:h-56 md:h-auto sm:h-64 rounded-xl">
                     <div className="flex flex-col gap-5">
                         <h1 className="text-textSecondaryColor text-base small-tab:text-xl sm:text-2xl md:text-3xl uppercase w-full lg:w-3/4">find something to read</h1>
                         <p className="text-textLightWhiteColor text-sm small-tab:text-sm md:text-lg w-2/3 xl:w-1/2">Fancy something unusual and unpredictable? Funny or exciting? No problem. Check out the collections we have prepared for you and I want to be a fantastic book keeper.</p>
@@ -32,7 +32,7 @@ const HeroSection = () => {
                             Browese Now
                         </Button>
                     </div>
-                    <SearchIcon />
+                    <BlackSearchIcon className="absolute -right-2 bottom-0 h-44 w-44 small-tab:h-52 small-tab:w-52 md:h-48 md:w-48 lg:h-72 lg:w-72" />
                 </div>
 
                 <div className="relative -mb-2 flex h-56 small-tab:h-56 sm:h-64 md:w-1/2 md:h-auto lg:h-[300px] md:mb-[0.5px]">

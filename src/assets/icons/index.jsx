@@ -16,3 +16,4 @@ export { default as SearchIcon } from './SearchIcon';
 export { default as StarIcon } from './StarIcon';
 export { default as TwitterIcon } from './TwitterIcon';
 export { default as VerticalLineIcon } from './VerticalLineIcon';
+export { default as BlackSearchIcon } from './BlackSearchIcon';

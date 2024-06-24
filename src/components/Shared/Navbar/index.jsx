@@ -68,7 +68,7 @@ const Navbar = () => {
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
                         <div className="relative h-6 w-6 cursor-pointer">
                             <BookmarkIcon />
-                            <div className={`${context.favouritBookContext.favouritBooks.length || context?.authorContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                            <div className={`${context?.favouritBookContext.favouritBooks.length || context?.authorContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
                                 <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length + context.authorContext.favouritAuthors.length}</p>
                             </div>
                         </div>

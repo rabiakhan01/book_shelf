@@ -18,7 +18,6 @@ const BestSeller = () => {
     //console.log("favourit books", context.favouritBookContext.favouritBooks);
 
     const handelFavouritBook = (id) => {
-        this.event.stopPropagation();
         const alreadyExists = context.favouritBookContext.favouritBooks?.find((book) => book == +id);
 
         if (!alreadyExists) {

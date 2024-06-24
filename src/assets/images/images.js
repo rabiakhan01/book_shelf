@@ -56,6 +56,7 @@ const images = {
     cross: require('./cross.png'),
     filterIcon: require('./filterIcon.png'),
     hamburger: require('./hamburger.png'),
+    blackSearch: require('./search.png'),
 
 }
 
