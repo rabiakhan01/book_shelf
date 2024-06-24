@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import icons, { CartIcon, Logo, BookmarkIcon } from "../../../assets/icons";
+import { CartIcon, Logo } from "../../../assets/icons";
 import { Button } from '../index'
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../ContextProvider";
 import { isAuthentication } from "../../../utils/utils";
 import images from "../../../assets/images/images";
+import { BookmarkIcon } from "../../../assets/icons";
 
 const Navbar = () => {
     const context = useContext(bookListingContext);
@@ -67,8 +68,8 @@ const Navbar = () => {
 
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
                         <div className="relative h-6 w-6 cursor-pointer">
-                            <BookmarkIcon />
-                            <div className={`${context?.favouritBookContext.favouritBooks.length || context?.authorContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
+                            <BookmarkIcon className="h-full w-full" onClick={navigateToBookMark} />
+                            <div className={`${context.favouritBookContext.favouritBooks.length || context?.authorContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
                                 <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length + context.authorContext.favouritAuthors.length}</p>
                             </div>
                         </div>

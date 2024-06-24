@@ -74,7 +74,7 @@ const BestSeller = () => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col text-[15px] small-tab:text-base gap-2">
-                                        <div className="flex justify-center items-center text-center  gap-2 border-secondaryColor border rounded-full w-14 h-7 md:w-[70px] md:h-9 px-2">
+                                        <div className="flex justify-center items-center text-center  gap-2 border-secondaryColor border rounded-full w-16 h-7 md:w-[75px] md:h-9 px-2">
                                             <p className="">{book.rating.reviews}</p>
                                             <ReviewIcon />
                                         </div>

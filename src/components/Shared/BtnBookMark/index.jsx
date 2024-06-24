@@ -21,9 +21,9 @@ const BtnBookMark = ({ onClick, id, isAuthor }) => {
                 {
                     isFavourit
                         ?
-                        <BlackBookmarkIcon />
+                        <BlackBookmarkIcon className="h-5 w-5" />
                         :
-                        <BookmarkIcon />
+                        <BookmarkIcon className="h-5 w-5" />
                 }
             </button>
         </div>

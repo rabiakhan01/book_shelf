@@ -32,7 +32,7 @@ const Recommendation = () => {
             </div>
 
             <div className="">
-                <QuestionMarkIcon />
+                <QuestionMarkIcon className="absolute bottom-0 right-10 md:right-20 lg:right-24 sm:h-auto" />
                 <div className="flex">
                 </div>
             </div>

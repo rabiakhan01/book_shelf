@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import PaginationButton from "./PaginationButton";
-import icons, { NextIcon, PreviousIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 import { bookListingContext } from "../ContextProvider";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
@@ -206,7 +206,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 return page;
             }
         })
-        console.log("🚀 ~ newArray ~ newArray:", newArray)
+        //console.log("🚀 ~ newArray ~ newArray:", newArray)
         setPageArray([...newArray])
 
     }, [maxPage])
@@ -410,9 +410,9 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                     <div>
                         <PaginationButton
                             name="prev"
-                            Icon=<PreviousIcon />
                             onChange={() => { }}
                             onClick={() => prevPage()}
+                            isIcon={true}
                             disabled={prevButton}
 
                         />
@@ -425,6 +425,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                                         key={index}
                                         name={page.name}
                                         activeButton={page.active}
+                                        isIcon={false}
                                         onClick={() => handelPageChange(page.name)}
                                     />
                                 )
@@ -434,9 +435,9 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                     <div>
                         <PaginationButton
                             name="next"
-                            Icon=<NextIcon />
                             onChange={() => { }}
                             onClick={() => nextPage()}
+                            isIcon={true}
                             disabled={nextButton}
                         />
                     </div>

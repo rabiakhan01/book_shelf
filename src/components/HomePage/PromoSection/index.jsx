@@ -2,6 +2,7 @@ import React from "react";
 import PromoCard from "../../Shared/PromoCard";
 import { PercentageIcon, PlusIcon, RotatedPercentageIcon } from "../../../assets/icons";
 
+
 const PromoSection = () => {
     return (
         <div className="flex items-center gap-2 mb-4 ">
@@ -10,8 +11,8 @@ const PromoSection = () => {
                 size="w-[40%]"
             >
                 <div>
-                    <PercentageIcon />
-                    <RotatedPercentageIcon />
+                    < PercentageIcon className="absolute extra-small:h-16 extra-small:w-16 sm:w-20 sm:h-20 md:w-auto md:h-auto top-0 left-0" />
+                    < RotatedPercentageIcon className="absolute bottom-0 left-16 w-12 h-12 sm:w-auto sm:h-auto" />
                 </div>
             </PromoCard>
             <PromoCard
