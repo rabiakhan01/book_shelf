@@ -57,6 +57,8 @@ const images = {
     filterIcon: require('./filterIcon.png'),
     hamburger: require('./hamburger.png'),
     blackSearch: require('./search.png'),
+    showPassword: require('./showPassword.png'),
+    hidePassword: require('./hidePassword.png'),
 
 }
 
