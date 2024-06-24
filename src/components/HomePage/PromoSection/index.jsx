@@ -1,8 +1,6 @@
 import React from "react";
 import PromoCard from "../../Shared/PromoCard";
-import icons from "../../../assets/icons/icons";
-import images from "../../../assets/images/images";
-
+import { PercentageIcon, PlusIcon, RotatedPercentageIcon } from "../../../assets/icons";
 
 const PromoSection = () => {
     return (
@@ -12,8 +10,8 @@ const PromoSection = () => {
                 size="w-[40%]"
             >
                 <div>
-                    <img src={icons.percentage} alt="" className="absolute extra-small:h-16 extra-small:w-16 sm:w-20 sm:h-20 md:w-auto md:h-auto top-0 left-0" />
-                    <img src={icons.rotatedPercentage} alt="" className="absolute bottom-0 left-16 w-12 h-12 sm:w-auto sm:h-auto" />
+                    <PercentageIcon />
+                    <RotatedPercentageIcon />
                 </div>
             </PromoCard>
             <PromoCard
@@ -21,8 +19,8 @@ const PromoSection = () => {
                 size="w-[60%]"
             >
                 <div>
-                    <img src={icons.plus} alt="" className="absolute top-0 sm:top-2 left-24" />
-                    <img src={icons.plus} alt="" className="absolute bottom-0 sm:bottom-2 left-[6rem] w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem]" />
+                    <PlusIcon className="absolute top-0 sm:top-2 left-24" />
+                    <PlusIcon className="absolute bottom-0 sm:bottom-2 left-[6rem] w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem]" />
                 </div>
             </PromoCard>
         </div>

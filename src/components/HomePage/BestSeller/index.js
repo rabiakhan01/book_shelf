@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { allBooksData } from "../../../utils/MockupData";
 import BtnBookMark from "../../Shared/BtnBookMark";
-import icons from "../../../assets/icons/icons";
+import { ReviewIcon, StarIcon } from "../../../assets/icons";
 import { useNavigate } from "react-router-dom";
 import { bookListingContext } from "../../Shared/ContextProvider";
 
@@ -77,11 +77,11 @@ const BestSeller = () => {
                                     <div className="flex flex-col text-[15px] small-tab:text-base gap-2">
                                         <div className="flex justify-center items-center text-center  gap-2 border-secondaryColor border rounded-full w-14 h-7 md:w-[70px] md:h-9 px-2">
                                             <p className="">{book.rating.reviews}</p>
-                                            <img src={icons.review} alt="review" className="object-scale-down " />
+                                            <ReviewIcon />
                                         </div>
                                         <div className="flex gap-2 justify-center items-center text-center   border-secondaryColor border rounded-full h-8 w-28 md:w-[105px] md:h-10">
                                             <p>{book.rating.star}</p>
-                                            <img src={icons.star} alt="star" />
+                                            <StarIcon />
                                             <p>({book.rating.views})</p>
                                         </div>
                                     </div>

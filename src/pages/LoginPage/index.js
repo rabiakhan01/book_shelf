@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Button, InputField } from "../../components/Shared";
 import { useNavigate } from "react-router-dom";
-import { isAuthentication } from "../../utils/utils";
-import icons from "../../assets/icons/icons";
+import { Logo } from "../../assets/icons";
 import images from "../../assets/images/images";
 
 const LoginPage = () => {
@@ -91,7 +90,7 @@ const LoginPage = () => {
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
             <div className="flex justify-center items-center gap-1 cursor-pointer mb-4" onClick={navigateToHome}>
-                <img src={icons.logo} alt="logo" className="h-10 w-10 cursor-pointer" />
+                <Logo />
                 <p className="text-xl font-medium text-textLightBlackColor uppercase">BookMooch</p>
             </div>
             {
@@ -102,7 +101,7 @@ const LoginPage = () => {
                         <p className="text-sm sm:text-base">We cannot find an account with that email adress</p>
                     </div>
                     <div>
-                        <img src={icons.warning} alt="" className="w-7 h-7 sm:w-10 sm:h-10" />
+                        <img src={images.warning} alt="" className="w-7 h-7 sm:w-10 sm:h-10" />
                     </div>
                 </div>
             }

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import InputField from '../InputField';
-import icons from '../../../assets/icons/icons';
 import { bookListingContext } from "../ContextProvider";
 import { allBooksData } from "../../../utils/MockupData";
 import BtnCartQuantity from "../BtnCartQuantity";

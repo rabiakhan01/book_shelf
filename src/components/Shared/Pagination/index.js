@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import PaginationButton from "./PaginationButton";
-import icons from '../../../assets/icons/icons';
+import icons, { NextIcon, PreviousIcon } from '../../../assets/icons';
 import { bookListingContext } from "../ContextProvider";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
@@ -410,7 +410,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                     <div>
                         <PaginationButton
                             name="prev"
-                            Icon={icons.nextPageIcon}
+                            Icon=<PreviousIcon />
                             onChange={() => { }}
                             onClick={() => prevPage()}
                             disabled={prevButton}
@@ -434,7 +434,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                     <div>
                         <PaginationButton
                             name="next"
-                            Icon={icons.nextPageIcon}
+                            Icon=<NextIcon />
                             onChange={() => { }}
                             onClick={() => nextPage()}
                             disabled={nextButton}

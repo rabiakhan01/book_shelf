@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BtnBookMark, BtnCartQuantity, Button } from "../../Shared";
-import icons from "../../../assets/icons/icons";
 import NavigationCrumb from "../NavigationCrumb";
 import { useNavigate, useParams } from "react-router-dom";
 import { allBooksData } from "../../../utils/MockupData";
 import { bookListingContext } from "../../Shared/ContextProvider";
+import { ArrowIcon } from "../../../assets/icons";
 
 const SingleBookDetail = () => {
     const navigate = useNavigate();
@@ -218,7 +218,7 @@ const SingleBookDetail = () => {
                                         <div className="flex flex-col gap-2 lg:gap-0 w-full md:w-[34vw] lg:w-[22rem] bg-primaryColor rounded-xl h-auto p-4">
                                             <div className="flex justify-between pb-1">
                                                 <h1 className="uppercase text-base lg:text-lg font-medium">plot summary</h1>
-                                                <img src={icons.arrow} alt="" className="h-4 w-4 lg:w-5 lg:h-5 -rotate-45 cursor-pointer" />
+                                                <ArrowIcon className="h-4 w-4 lg:w-5 lg:h-5 -rotate-45 cursor-pointer" />
                                             </div>
                                             <div className="w-full">
                                                 <p className="line-clamp-[8] lg:line-clamp-[9] text-sm">{book.plot_summary}</p>
@@ -229,7 +229,7 @@ const SingleBookDetail = () => {
                                         </div>
                                         <div className="flex items-center justify-between w-full lg:w-[22rem] h-auto lg:h-16 rounded-xl bg-primaryColor p-3 uppercase">
                                             <p className="font-medium text-sm small-tab:text-base">reception</p>
-                                            <img src={icons.arrow} alt="" className="h-4 w-4 lg:w-5 lg:h-5 cursor-pointer" />
+                                            <ArrowIcon className="h-4 w-4 lg:w-5 lg:h-5 cursor-pointer" />
                                         </div>
 
                                     </div>

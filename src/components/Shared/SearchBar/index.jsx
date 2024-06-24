@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button } from '../../Shared';
 import { bookListingContext } from "../ContextProvider";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
-import icons from "../../../assets/icons/icons";
+import images from "../../../assets/images/images";
 
 
 const SearchBar = ({ name }) => {
@@ -65,7 +64,7 @@ const SearchBar = ({ name }) => {
                 {
                     search &&
                     <div className="absolute flex justify-center items-center right-3 sm:right-4 top-[14px] sm:top-3 lg:top-4 w-5 h-5 sm:w-6 sm:h-6 border border-lightGrayColor rounded-full focus:bg-orange-400 cursor-pointer" onClick={clearSerach}>
-                        <img src={icons.close} alt="cross-search-icon" className="w-[10px] h-[10px] " />
+                        <img src={images.close} alt="cross-search-icon" className="w-[10px] h-[10px] " />
                     </div>
                 }
             </div>

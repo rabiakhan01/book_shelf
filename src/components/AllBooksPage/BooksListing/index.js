@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FilteredChip, Pagination, ProductCard } from "../../Shared";
 import FilterSection from "../../Shared/FilterSection";
-import icons from "../../../assets/icons/icons";
 import { bookListingContext } from "../../Shared/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import { allBooksData } from "../../../utils/MockupData";
+import images from "../../../assets/images/images";
 
 const BooksListing = () => {
 
@@ -50,7 +50,7 @@ const BooksListing = () => {
                 <div className="flex justify-between w-full lg:w-[32.5%] ">
 
                     <div className="flex justify-center items-center gap-2" >
-                        <img src={icons.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6 cursor-pointer" onClick={handelFilters} />
+                        <img src={images.filterIcon} alt="" className="lg:hidden h-5 w-5 small-tab:h-6 small-tab:w-6 cursor-pointer" onClick={handelFilters} />
                         <p className="text-textSecondaryColor text-xl md:text-2xl uppercase">Filters</p>
                         <p className={`text-grayColor text-xl ${context.bookPageContext.bookFilters.length > 0 ? 'flex' : 'hidden'}`}>({context.bookPageContext.bookFilters.length})</p>
                     </div>

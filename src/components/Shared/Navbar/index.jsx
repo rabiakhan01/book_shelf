@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import icons from "../../../assets/icons/icons";
+import icons, { CartIcon, Logo, BookmarkIcon } from "../../../assets/icons";
 import { Button } from '../index'
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +52,7 @@ const Navbar = () => {
         <nav className="sticky top-0 right-0 w-full bg-primaryColor z-30">
             <div className={`relative top-3 flex justify-between lg:h-[80px] items-center w-full rounded-2xl bg-secondaryColor px-3 xs:px-4 py-3 sm:py-4`}>
                 <div className="flex gap-2 xs:gap-3 h-10 items-center cursor-pointer" onClick={() => handelNavigate('/')}>
-                    <img src={icons.logo} alt="logo" className="w-8 h-10" />
+                    <Logo />
                     <h1 className="flex text-textSecondaryColor text-sm sm:text-base font-medium uppercase">bookmooch</h1>
                 </div>
                 <div className="hidden lg:flex">
@@ -67,13 +67,13 @@ const Navbar = () => {
 
                     <div className="flex items-center gap-3 xl:gap-4 pr-2 md:pr-0">
                         <div className="relative h-6 w-6 cursor-pointer">
-                            <img src={icons.bookmark} alt="bookmark" className="h-full w-full" onClick={navigateToBookMark} />
+                            <BookmarkIcon />
                             <div className={`${context.favouritBookContext.favouritBooks.length || context?.authorContext.favouritAuthors.length > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
                                 <p className={`text-blackColor font-medium text-xs sm:text-sm`}>{context.favouritBookContext.favouritBooks.length + context.authorContext.favouritAuthors.length}</p>
                             </div>
                         </div>
                         <div className="relative h-6 w-6 cursor-pointer" onClick={navigateToCart}>
-                            <img src={icons.cart} alt="cart" className="w-full h-full" />
+                            <CartIcon />
                             <div className={`${cartValue > 0 ? 'flex justify-center items-center' : 'hidden'} absolute left-3 -top-2 bg-lightYellowColor h-5 w-5 rounded-full `}>
                                 <p className="text-blackColor font-medium text-xs sm:text-sm">{cartValue}</p>
                             </div>
@@ -100,9 +100,9 @@ const Navbar = () => {
                     <div className="flex lg:hidden">
                         {
                             drawer ?
-                                <img src={icons.cross} alt="cross" className="h-3 w-3 sm:h-4 sm:w-4 cursor-pointer" onClick={hideMenu} />
+                                <img src={images.cross} alt="cross" className="h-3 w-3 sm:h-4 sm:w-4 cursor-pointer" onClick={hideMenu} />
                                 :
-                                <img src={icons.hamburger} alt="hamburger" className="navbar h-4 w-4 sm:h-5 sm:w-5 cursor-pointer" onClick={showMenu} />
+                                <img src={images.hamburger} alt="hamburger" className="navbar h-4 w-4 sm:h-5 sm:w-5 cursor-pointer" onClick={showMenu} />
                         }
                     </div>
                 </div>

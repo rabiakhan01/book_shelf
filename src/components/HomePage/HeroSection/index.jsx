@@ -1,8 +1,8 @@
 import React from "react";
 import images from '../../../assets/images/images';
-import icons from '../../../assets/icons/icons';
 import Button from "../../Shared/Button";
 import { useNavigate } from "react-router-dom";
+import { SearchIcon } from "../../../assets/icons";
 
 const HeroSection = () => {
 
@@ -32,7 +32,7 @@ const HeroSection = () => {
                             Browese Now
                         </Button>
                     </div>
-                    <img src={icons.blackSearch} alt="" className="absolute right-0 bottom-0 h-44 w-44 small-tab:h-52 small-tab:w-52 md:h-48 md:w-48 lg:h-60 lg:w-60" />
+                    <SearchIcon />
                 </div>
 
                 <div className="relative -mb-2 flex h-56 small-tab:h-56 sm:h-64 md:w-1/2 md:h-auto lg:h-[300px] md:mb-[0.5px]">

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import BtnBookMark from "../BtnBookMark";
-import icons from "../../../assets/icons/icons";
+import { ReviewIcon, StarIcon } from "../../../assets/icons";
 import { bookListingContext } from "../ContextProvider";
 import { allAuthorsData, allBooksData } from "../../../utils/MockupData";
 
@@ -98,11 +98,11 @@ const ProductCard = ({ id, image, name, intro, review, rate, views, old_price, n
                             <div className="flex gap-2">
                                 <div className="flex justify-center items-center gap-2 border border-secondaryColor  rounded-full h-7 p-3">
                                     <p>{review}</p>
-                                    <img src={icons.review} alt="" className="object-scale-down" />
+                                    <ReviewIcon />
                                 </div>
                                 <div className="flex justify-center items-center gap-2 border border-secondaryColor  rounded-full h-7 p-3">
                                     <p>{rate}</p>
-                                    <img src={icons.star} alt="" />
+                                    <StarIcon />
                                     <p>({views})</p>
                                 </div>
                             </div>

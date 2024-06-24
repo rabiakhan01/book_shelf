@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import icons from "../../../assets/icons/icons";
 import { bookListingContext } from "../ContextProvider";
 import { allBooksData } from "../../../utils/MockupData";
+import images from "../../../assets/images/images";
 
 const FilteredChip = ({ name }) => {
 
@@ -37,7 +37,7 @@ const FilteredChip = ({ name }) => {
     return (
         <div className="flex justify-center items-center gap-2 bg-chipColor w-auto p-2 rounded-full mb-3 lg:mb-0">
             <p className="text-sm text-textLightWhiteColor text-nowrap">{name}</p>
-            <button className="flex justify-center items-center h-6 w-6 sm:h-8 sm:w-8 bg-secondaryColor rounded-full" ><img src={icons.cross} className="w-3 h-3" onClick={() => removeFilter(name)} /></button>
+            <button className="flex justify-center items-center h-6 w-6 sm:h-8 sm:w-8 bg-secondaryColor rounded-full" ><img src={images.cross} className="w-3 h-3" onClick={() => removeFilter(name)} /></button>
         </div>
     )
 

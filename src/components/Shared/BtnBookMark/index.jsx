@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import icons from "../../../assets/icons/icons";
+import { BlackBookmarkIcon, BookmarkIcon } from "../../../assets/icons";
 import { bookListingContext } from "../ContextProvider";
 
 const BtnBookMark = ({ onClick, id, isAuthor }) => {
@@ -21,9 +21,9 @@ const BtnBookMark = ({ onClick, id, isAuthor }) => {
                 {
                     isFavourit
                         ?
-                        <img src={icons.blackBook} alt="bookmark" className="h-5 w-5" />
+                        <BlackBookmarkIcon />
                         :
-                        <img src={icons.bookmark} alt="bookmark" className="h-5 w-5" />
+                        <BookmarkIcon />
                 }
             </button>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import icons from '../../../assets/icons/icons';
+import { ArrowIcon, QuestionMarkIcon } from '../../../assets/icons';
 import Button from "../../Shared/Button";
 import { useNavigate } from "react-router-dom";
 const Recommendation = () => {
@@ -24,14 +24,15 @@ const Recommendation = () => {
                             variant="contained"
                             size="large"
                         >
-                            <img src={icons.arrow} alt="" className="h-5 w-5 small-tab:h-7 small-tab:w-7 sm:h-10 sm:w-10 " />
+                            <ArrowIcon />
+
                         </Button>
                     </div>
                 </div>
             </div>
 
             <div className="">
-                <img src={icons.questionMark} alt="" className="absolute bottom-0 right-10 md:right-20 lg:right-24 sm:h-auto" />
+                <QuestionMarkIcon />
                 <div className="flex">
                 </div>
             </div>

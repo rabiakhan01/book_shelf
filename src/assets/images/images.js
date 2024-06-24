@@ -45,6 +45,18 @@ const images = {
     profileImg: require('./profile_img.jpg'),
     user: require('./user.png'),
 
+    //png Icons
+
+    upArrow: require('./upArrow.png'),
+    Vector: require('./Vector.png'),
+    warning: require('./warning.png'),
+    yellowStar: require('./yellow-star.png'),
+    circleText: require('./circle text.png'),
+    close: require('./close.png'),
+    cross: require('./cross.png'),
+    filterIcon: require('./filterIcon.png'),
+    hamburger: require('./hamburger.png'),
+
 }
 
 export default images;

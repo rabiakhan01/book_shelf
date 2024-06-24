@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import icons from "../../../assets/icons/icons";
+import { StarIcon } from "../../../assets/icons";
 
 const ReviewCard = ({ image, name, date, rating, description }) => {
 
@@ -27,7 +27,7 @@ const ReviewCard = ({ image, name, date, rating, description }) => {
                 </div>
             </div>
             <div className="flex gap-1">
-                <img src={icons.star} alt="star" />
+                <StarIcon />
                 <p className="font-medium">{rating}</p>
             </div>
             <div>

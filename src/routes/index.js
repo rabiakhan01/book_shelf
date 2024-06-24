@@ -10,6 +10,7 @@ import { Layout } from "../components/Shared";
 import CartPage from "../pages/CartPage";
 import AllAuthorPage from "../pages/AllAuthorsPage";
 import BookMarkPage from "../pages/BookMarkPage";
+import RedirectPage from "../pages/RedirectPage";
 
 
 const Routing = () => {
@@ -21,6 +22,7 @@ const Routing = () => {
             <Route path='/cart' element=<Layout><CartPage /></Layout> />
             <Route path='/all-authors' element=<Layout><AllAuthorPage /></Layout> />
             <Route path='/bookmark' element=<Layout><BookMarkPage /></Layout> />
+            <Route path="*" element=<RedirectPage /> />
             <Route element={<PublicRoutes />}>
                 {
                     publicRoutes.map((route, index) => {

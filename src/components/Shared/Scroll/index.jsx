@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import icons from "../../../assets/icons/icons";
-
+import images from '../../../assets/images/images'
 const Scroll = () => {
 
     const [showScroll, setShowScroll] = useState(false);
@@ -24,7 +23,7 @@ const Scroll = () => {
     }
     return (
         <div className={`justify-center items-center h-8 w-8 bg-lightYellowColor rounded-full cursor-pointer ${showScroll ? 'flex' : 'hidden'}`} onClick={handelScroll}>
-            <img src={icons.upArrow} alt="up-arrow" className="h-5 w-5" />
+            <img src={images.upArrow} alt="up-arrow" className="h-5 w-5" />
         </div>
     )
 }
