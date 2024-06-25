@@ -2,6 +2,7 @@ import React from "react";
 import { NextIcon, PreviousIcon } from "../../../../assets/icons";
 
 const PaginationButton = ({ name, isIcon, onClick, disabled, activeButton }) => {
+    console.log("disabled", disabled)
     let size
     if (isIcon) {
         size = `w-14 small-tab:w-20 h-8 sm:w-24 sm:h-10 bg-lightBlackColor`;

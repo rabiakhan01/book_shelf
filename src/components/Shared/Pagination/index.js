@@ -26,12 +26,9 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
             }
         }
     }
-    // console.log("max", calculateMaxPage())
     const [maxPage, setMaxPage] = useState(calculateMaxPage());
-    // console.log("🚀 ~ Pagination ~ maxPage:", maxPage)
     const [filterData, setFilterData] = useState([]);
-    // console.log("🚀 ~ Pagination ~ filterData:", filterData)
-    const [currentPage, setCurrentPage] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
     const [prevButton, setPrevButton] = useState(true);
     const [nextButton, setNextButton] = useState(false);
     const [pageArray, setPageArray] = useState([]);
@@ -107,8 +104,6 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                     const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
                     context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData });
                 }
-                const element = document.getElementById('author-card');
-                element.scroll({ top: 0, behavior: "smooth" });
             }
             //handel the listing of author when search is applied
             else {
@@ -171,7 +166,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 setMaxPage(pages);
                 const currentPageData = allBooksData.slice(0, maxRecordsPerPage)
                 context.setBookPageContext({ ...context.bookPageContext, bookListing: currentPageData })
-                if (pages < 1) {
+                if (pages <= 1) {
                     setNextButton(true);
                 }
                 else {
@@ -183,6 +178,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
 
     //handel the next and previous page diability when the current page changes
     useEffect(() => {
+        console.log("currentmpage", currentPage)
         if (currentPage <= 1) {
             setPrevButton(true);
             setNextButton(false);
@@ -233,7 +229,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 const currentPageData = context.authorListing.slice(0, maxRecordsPerPage);
                 context.setAuthorListing(currentPageData);
             }
-            if (pages < 1) {
+            if (pages <= 1) {
                 setNextButton(true);
             }
             else {
@@ -356,7 +352,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 }
             }
 
-            if (pages < 1) {
+            if (pages <= 1) {
                 setNextButton(true);
             }
             else {
@@ -395,7 +391,7 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                 }
             }
 
-            if (pages < 1) {
+            if (pages <= 1) {
                 setNextButton(true);
             }
             else {

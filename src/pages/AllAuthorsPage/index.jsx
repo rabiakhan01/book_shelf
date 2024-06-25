@@ -12,7 +12,7 @@ const AllAuthorPage = () => {
             </div>
             <div className="pb-4">
                 <Headline
-                    headlineData="Book mark"
+                    headlineData="All Authors"
                 />
             </div>
             <div className="flex flex-col p-4 bg-secondaryColor min-h-[58vh] w-full mb-4">

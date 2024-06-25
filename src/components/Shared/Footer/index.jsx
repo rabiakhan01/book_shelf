@@ -1,6 +1,6 @@
 import React from "react";
 import icons, { FacebookIcon, InstraIcon, Logo, TwitterIcon } from "../../../assets/icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Footer = () => {
     const navigate = useNavigate();
     const handelNavigate = (path) => {
@@ -15,9 +15,13 @@ const Footer = () => {
                         <h1 className="flex text-textSecondaryColor text-sm sm:text-base font-medium uppercase">bookmooch</h1>
                     </div>
                     <div className="flex gap-2 sm:gap-6 ">
-                        <InstraIcon className="object-scale-down cursor-pointer" />
-                        <FacebookIcon className="object-scale-down cursor-pointer" />
-                        <TwitterIcon className="object-scale-down cursor-pointer" />
+                        <Link to="https://www.linkedin.com/in/rabiakhanwebdeveloper/" ><InstraIcon className="object-scale-down cursor-pointer" /></Link>
+                        <Link to="https://www.linkedin.com/in/rabiakhanwebdeveloper/" >
+                            <FacebookIcon className="object-scale-down cursor-pointer" />
+                        </Link>
+                        <Link to="https://www.linkedin.com/in/rabiakhanwebdeveloper/" >
+                            <TwitterIcon className="object-scale-down cursor-pointer" />
+                        </Link>
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 h-auto text-xs sm:text-sm xl:text-base justify-between sm:items-center  bg-blackColor text-textSecondaryColor px-4 py-2 ">
