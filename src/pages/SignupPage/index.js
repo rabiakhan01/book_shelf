@@ -6,6 +6,7 @@ import images from "../../assets/images/images";
 
 const SignupPage = () => {
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
 
     const getUser = () => {
         const userData = localStorage.getItem('loginData');
@@ -88,13 +89,22 @@ const SignupPage = () => {
 
         }
     }
+
     const navigateToLogin = () => {
         navigate('/login');
         setErrorMessage('');
     }
-    const navigateToHome = () => (
+    const navigateToHome = () => {
         navigate('/')
-    )
+    }
+
+    const handelShowPassword = () => {
+        setShowPassword(false);
+    }
+    const handelHidePassword = () => {
+        setShowPassword(true);
+    }
+
     return (
         <div className="flex flex-col justify-center items-center h-lvh bg-primaryColor">
             <div className="flex justify-center items-center gap-1 cursor-pointer mb-4" onClick={navigateToHome}>
@@ -138,14 +148,22 @@ const SignupPage = () => {
                         onChange={handelChange}
                         error={errorMessage.emailError}
                     />
-                    <InputField
-                        name="password"
-                        value={signupUser.password}
-                        type="password"
-                        placeholder="Password"
-                        onChange={handelChange}
-                        error={errorMessage.passwordError}
-                    />
+                    <div className="relative">
+                        <InputField
+                            name="password"
+                            value={signupUser.password}
+                            type={!showPassword ? 'password' : 'text'}
+                            placeholder="Password"
+                            onChange={handelChange}
+                            error={errorMessage.passwordError}
+                        />
+                        {
+                            !showPassword ?
+                                <img src={images.hidePassword} alt="hide-password" className="absolute top-[14px] right-3 h-5 w-5 cursor-pointer" onClick={handelHidePassword} />
+                                :
+                                <img src={images.showPassword} alt="show-password" className="absolute top-[14px] right-3 h-5 w-5 cursor-pointer" onClick={handelShowPassword} />
+                        }
+                    </div>
                     <div className="mt-6">
                         <Button
                             variant="contained"
