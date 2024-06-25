@@ -11,7 +11,7 @@ const FavouritBooks = () => {
     }
 
     return (
-        <div className={`flex bg-secondaryColor min-h-[58vh] w-full flex-wrap gap-4 justify-center items-center h-[70vh] overflow-auto`} id="cards">
+        <div className={`flex bg-secondaryColor min-h-[58vh] w-full flex-wrap gap-2 h-[70vh] overflow-auto`} id="cards">
 
             {
                 context.favouritBookContext.favouritBooks.length > 0 ?
@@ -34,7 +34,7 @@ const FavouritBooks = () => {
                     })
                     :
                     <div className="flex flex-col w-full h-full justify-center items-center text-textLightWhiteColor">
-                        <p className="text-xl font-medium">No favourit book</p>
+                        <p className="text-xl font-medium">No Favourit Book</p>
                     </div>
             }
         </div>

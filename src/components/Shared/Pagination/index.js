@@ -107,6 +107,8 @@ const Pagination = ({ maxRecordsPerPage, name, bookmark }) => {
                     const currentPageData = filterData.slice(firstIndexOfPage, lastIndexOfPage);
                     context.setAuthorContext({ ...context.authorContext, favouritAuthorListing: currentPageData });
                 }
+                const element = document.getElementById('author-card');
+                element.scroll({ top: 0, behavior: "smooth" });
             }
             //handel the listing of author when search is applied
             else {
